@@ -11,6 +11,29 @@
 		D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53043F32A1EA10200B30BCF /* ContentView.swift */; };
 		D53043F62A1EA10600B30BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53043F52A1EA10600B30BCF /* Assets.xcassets */; };
 		D53043F92A1EA10600B30BCF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53043F82A1EA10600B30BCF /* Preview Assets.xcassets */; };
+		D53044012A1EA73400B30BCF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044002A1EA73400B30BCF /* SplashView.swift */; };
+		D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044032A1EA8AD00B30BCF /* Enums.swift */; };
+		D530441B2A1EAEBE00B30BCF /* Urbanist-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044092A1EAEBC00B30BCF /* Urbanist-LightItalic.ttf */; };
+		D530441C2A1EAEBE00B30BCF /* Urbanist-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440A2A1EAEBC00B30BCF /* Urbanist-MediumItalic.ttf */; };
+		D530441D2A1EAEBE00B30BCF /* Urbanist-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440B2A1EAEBD00B30BCF /* Urbanist-BlackItalic.ttf */; };
+		D530441E2A1EAEBE00B30BCF /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440C2A1EAEBD00B30BCF /* Urbanist-SemiBold.ttf */; };
+		D530441F2A1EAEBE00B30BCF /* Urbanist-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440D2A1EAEBD00B30BCF /* Urbanist-ThinItalic.ttf */; };
+		D53044202A1EAEBE00B30BCF /* Urbanist-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440E2A1EAEBD00B30BCF /* Urbanist-ExtraBold.ttf */; };
+		D53044212A1EAEBE00B30BCF /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440F2A1EAEBD00B30BCF /* Urbanist-ExtraLight.ttf */; };
+		D53044222A1EAEBE00B30BCF /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044102A1EAEBD00B30BCF /* Urbanist-Medium.ttf */; };
+		D53044232A1EAEBE00B30BCF /* Urbanist-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044112A1EAEBD00B30BCF /* Urbanist-ExtraBoldItalic.ttf */; };
+		D53044242A1EAEBE00B30BCF /* Urbanist-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044122A1EAEBD00B30BCF /* Urbanist-Thin.ttf */; };
+		D53044252A1EAEBE00B30BCF /* Urbanist-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044132A1EAEBD00B30BCF /* Urbanist-Italic.ttf */; };
+		D53044262A1EAEBE00B30BCF /* Urbanist-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044142A1EAEBD00B30BCF /* Urbanist-Light.ttf */; };
+		D53044272A1EAEBE00B30BCF /* Urbanist-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044152A1EAEBD00B30BCF /* Urbanist-Bold.ttf */; };
+		D53044282A1EAEBE00B30BCF /* Urbanist-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044162A1EAEBD00B30BCF /* Urbanist-BoldItalic.ttf */; };
+		D53044292A1EAEBE00B30BCF /* Urbanist-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044172A1EAEBE00B30BCF /* Urbanist-Black.ttf */; };
+		D530442A2A1EAEBE00B30BCF /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044182A1EAEBE00B30BCF /* Urbanist-Regular.ttf */; };
+		D530442B2A1EAEBE00B30BCF /* Urbanist-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044192A1EAEBE00B30BCF /* Urbanist-SemiBoldItalic.ttf */; };
+		D530442C2A1EAEBE00B30BCF /* Urbanist-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530441A2A1EAEBE00B30BCF /* Urbanist-ExtraLightItalic.ttf */; };
+		D53044302A1EB11500B30BCF /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530442F2A1EB11400B30BCF /* ColorExtension.swift */; };
+		D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044312A1EB4F800B30BCF /* LoginIntroView.swift */; };
+		D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044332A1EBCC900B30BCF /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +42,30 @@
 		D53043F32A1EA10200B30BCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D53043F52A1EA10600B30BCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D53043F82A1EA10600B30BCF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D53044002A1EA73400B30BCF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		D53044032A1EA8AD00B30BCF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		D53044072A1EAAEC00B30BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D53044092A1EAEBC00B30BCF /* Urbanist-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-LightItalic.ttf"; sourceTree = "<group>"; };
+		D530440A2A1EAEBC00B30BCF /* Urbanist-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-MediumItalic.ttf"; sourceTree = "<group>"; };
+		D530440B2A1EAEBD00B30BCF /* Urbanist-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-BlackItalic.ttf"; sourceTree = "<group>"; };
+		D530440C2A1EAEBD00B30BCF /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
+		D530440D2A1EAEBD00B30BCF /* Urbanist-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ThinItalic.ttf"; sourceTree = "<group>"; };
+		D530440E2A1EAEBD00B30BCF /* Urbanist-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBold.ttf"; sourceTree = "<group>"; };
+		D530440F2A1EAEBD00B30BCF /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
+		D53044102A1EAEBD00B30BCF /* Urbanist-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Medium.ttf"; sourceTree = "<group>"; };
+		D53044112A1EAEBD00B30BCF /* Urbanist-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		D53044122A1EAEBD00B30BCF /* Urbanist-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Thin.ttf"; sourceTree = "<group>"; };
+		D53044132A1EAEBD00B30BCF /* Urbanist-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Italic.ttf"; sourceTree = "<group>"; };
+		D53044142A1EAEBD00B30BCF /* Urbanist-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Light.ttf"; sourceTree = "<group>"; };
+		D53044152A1EAEBD00B30BCF /* Urbanist-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Bold.ttf"; sourceTree = "<group>"; };
+		D53044162A1EAEBD00B30BCF /* Urbanist-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-BoldItalic.ttf"; sourceTree = "<group>"; };
+		D53044172A1EAEBE00B30BCF /* Urbanist-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Black.ttf"; sourceTree = "<group>"; };
+		D53044182A1EAEBE00B30BCF /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
+		D53044192A1EAEBE00B30BCF /* Urbanist-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		D530441A2A1EAEBE00B30BCF /* Urbanist-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		D530442F2A1EB11400B30BCF /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		D53044312A1EB4F800B30BCF /* LoginIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIntroView.swift; sourceTree = "<group>"; };
+		D53044332A1EBCC900B30BCF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +98,11 @@
 		D53043F02A1EA10200B30BCF /* AiChatBot */ = {
 			isa = PBXGroup;
 			children = (
+				D530442D2A1EB0F500B30BCF /* Utils */,
+				D53044082A1EAE6300B30BCF /* Fonts */,
+				D53044072A1EAAEC00B30BCF /* Info.plist */,
+				D53044022A1EA87900B30BCF /* Constants */,
+				D53043FF2A1EA72300B30BCF /* Views */,
 				D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */,
 				D53043F32A1EA10200B30BCF /* ContentView.swift */,
 				D53043F52A1EA10600B30BCF /* Assets.xcassets */,
@@ -65,6 +117,65 @@
 				D53043F82A1EA10600B30BCF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D53043FF2A1EA72300B30BCF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D53044002A1EA73400B30BCF /* SplashView.swift */,
+				D53044312A1EB4F800B30BCF /* LoginIntroView.swift */,
+				D53044332A1EBCC900B30BCF /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D53044022A1EA87900B30BCF /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D53044032A1EA8AD00B30BCF /* Enums.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		D53044082A1EAE6300B30BCF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D53044172A1EAEBE00B30BCF /* Urbanist-Black.ttf */,
+				D530440B2A1EAEBD00B30BCF /* Urbanist-BlackItalic.ttf */,
+				D53044152A1EAEBD00B30BCF /* Urbanist-Bold.ttf */,
+				D53044162A1EAEBD00B30BCF /* Urbanist-BoldItalic.ttf */,
+				D530440E2A1EAEBD00B30BCF /* Urbanist-ExtraBold.ttf */,
+				D53044112A1EAEBD00B30BCF /* Urbanist-ExtraBoldItalic.ttf */,
+				D530440F2A1EAEBD00B30BCF /* Urbanist-ExtraLight.ttf */,
+				D530441A2A1EAEBE00B30BCF /* Urbanist-ExtraLightItalic.ttf */,
+				D53044132A1EAEBD00B30BCF /* Urbanist-Italic.ttf */,
+				D53044142A1EAEBD00B30BCF /* Urbanist-Light.ttf */,
+				D53044092A1EAEBC00B30BCF /* Urbanist-LightItalic.ttf */,
+				D53044102A1EAEBD00B30BCF /* Urbanist-Medium.ttf */,
+				D530440A2A1EAEBC00B30BCF /* Urbanist-MediumItalic.ttf */,
+				D53044182A1EAEBE00B30BCF /* Urbanist-Regular.ttf */,
+				D530440C2A1EAEBD00B30BCF /* Urbanist-SemiBold.ttf */,
+				D53044192A1EAEBE00B30BCF /* Urbanist-SemiBoldItalic.ttf */,
+				D53044122A1EAEBD00B30BCF /* Urbanist-Thin.ttf */,
+				D530440D2A1EAEBD00B30BCF /* Urbanist-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D530442D2A1EB0F500B30BCF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D530442E2A1EB10300B30BCF /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D530442E2A1EB10300B30BCF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D530442F2A1EB11400B30BCF /* ColorExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +236,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D53044212A1EAEBE00B30BCF /* Urbanist-ExtraLight.ttf in Resources */,
+				D53044232A1EAEBE00B30BCF /* Urbanist-ExtraBoldItalic.ttf in Resources */,
+				D530441B2A1EAEBE00B30BCF /* Urbanist-LightItalic.ttf in Resources */,
+				D530441C2A1EAEBE00B30BCF /* Urbanist-MediumItalic.ttf in Resources */,
+				D530442C2A1EAEBE00B30BCF /* Urbanist-ExtraLightItalic.ttf in Resources */,
+				D53044222A1EAEBE00B30BCF /* Urbanist-Medium.ttf in Resources */,
 				D53043F92A1EA10600B30BCF /* Preview Assets.xcassets in Resources */,
+				D53044272A1EAEBE00B30BCF /* Urbanist-Bold.ttf in Resources */,
+				D53044252A1EAEBE00B30BCF /* Urbanist-Italic.ttf in Resources */,
+				D530441F2A1EAEBE00B30BCF /* Urbanist-ThinItalic.ttf in Resources */,
+				D53044292A1EAEBE00B30BCF /* Urbanist-Black.ttf in Resources */,
+				D53044202A1EAEBE00B30BCF /* Urbanist-ExtraBold.ttf in Resources */,
+				D530442A2A1EAEBE00B30BCF /* Urbanist-Regular.ttf in Resources */,
+				D53044262A1EAEBE00B30BCF /* Urbanist-Light.ttf in Resources */,
+				D530441E2A1EAEBE00B30BCF /* Urbanist-SemiBold.ttf in Resources */,
+				D530442B2A1EAEBE00B30BCF /* Urbanist-SemiBoldItalic.ttf in Resources */,
+				D53044242A1EAEBE00B30BCF /* Urbanist-Thin.ttf in Resources */,
 				D53043F62A1EA10600B30BCF /* Assets.xcassets in Resources */,
+				D530441D2A1EAEBE00B30BCF /* Urbanist-BlackItalic.ttf in Resources */,
+				D53044282A1EAEBE00B30BCF /* Urbanist-BoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +267,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */,
+				D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
+				D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */,
+				D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */,
+				D53044012A1EA73400B30BCF /* SplashView.swift in Sources */,
+				D53044302A1EB11500B30BCF /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +404,7 @@
 				DEVELOPMENT_TEAM = KC6PY3RPXS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AiChatBot/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +434,7 @@
 				DEVELOPMENT_TEAM = KC6PY3RPXS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AiChatBot/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

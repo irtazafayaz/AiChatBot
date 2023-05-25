@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Type=Logo Default, Component=Logo.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

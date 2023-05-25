@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct AiChatBotApp: App {
+    @State private var showSplashScreen = true
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if showSplashScreen {
+                SplashView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showSplashScreen = false
+                        }
+                    }
+            } else {
+                ContentView()
+            }
         }
     }
 }
