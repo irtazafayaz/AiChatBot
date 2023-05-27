@@ -41,7 +41,7 @@ struct LoginIntroView: View {
             
             Spacer()
             
-            NavigationLink(destination: LoginView()) {
+            NavigationLink(destination: LoginRegisterSelectionView()) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(Color(hex: "#17CE92"))
@@ -57,14 +57,6 @@ struct LoginIntroView: View {
             
         }
         .background(Color.white)
-        .overlay(
-            Group {
-                if showLoginPage {
-                    LoginView()
-                        .transition(.move(edge: .bottom))
-                }
-            }
-        )
     }
 }
 

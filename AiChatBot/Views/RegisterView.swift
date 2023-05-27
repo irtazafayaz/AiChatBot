@@ -1,13 +1,13 @@
 //
-//  LoginView.swift
+//  RegisterView.swift
 //  AiChatBot
 //
-//  Created by Irtaza Fiaz on 25/05/2023.
+//  Created by Irtaza Fiaz on 26/05/2023.
 //
 
 import SwiftUI
 
-struct LoginView: View {
+struct RegisterView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -17,11 +17,11 @@ struct LoginView: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            Text("Welcome back 👋")
+            Text("Hello There 👋")
                 .font(Font.custom("Urbanist-Bold", size: 32))
                 .frame(alignment: .leading)
             
-            Text("Please enter your email & password to log in.")
+            Text("Please enter your email & password to create an account.")
                 .font(Font.custom("Urbanist-Regular", size: 18))
                 .multilineTextAlignment(.leading)
                 .padding(.top, 10)
@@ -71,10 +71,14 @@ struct LoginView: View {
                     Image(systemName: isAgreed ? "checkmark.square.fill" : "square")
                         .foregroundColor(isAgreed ? .green : .gray)
                 }
-                Text("Remember me")
+                Text("I agree to ChattyAI Public Agreement, Terms, & Privacy Policy.")
                     .font(.system(size: 14))
                     .foregroundColor(.black)
                     .lineLimit(nil)
+                    .onTapGesture {
+                        // Open the link here
+                        //openLink()
+                    }
             }
             .padding(.top, 10)
             
@@ -84,11 +88,11 @@ struct LoginView: View {
             
             
             HStack(alignment: .center) {
-                Text("Don't have an account?")
+                Text("Already Have an account?")
                 Button(action: {
                     
                 }, label: {
-                    Text("Signup")
+                    Text("Login")
                         .foregroundColor(Color(hex: "#17CE92"))
                 })
             }
@@ -106,7 +110,7 @@ struct LoginView: View {
             .frame(maxWidth: .infinity)
             .padding(.top, 20)
             
-            NavigationLink(destination: LoginView()) {
+            NavigationLink(destination: CompleteYourProfileView()) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(Color(hex: "#17CE92"))
@@ -114,7 +118,7 @@ struct LoginView: View {
                         .frame(width: 183, height: 65)
                         .padding()
                     
-                    Text("Login")
+                    Text("Continue ")
                         .foregroundColor(.white)
                         .font(.system(size: 18, weight: .bold))
                 }
@@ -127,14 +131,10 @@ struct LoginView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
     }
-        
-    
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        RegisterView()
     }
 }
-
-

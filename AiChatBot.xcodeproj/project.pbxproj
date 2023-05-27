@@ -34,6 +34,16 @@
 		D53044302A1EB11500B30BCF /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530442F2A1EB11400B30BCF /* ColorExtension.swift */; };
 		D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044312A1EB4F800B30BCF /* LoginIntroView.swift */; };
 		D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044332A1EBCC900B30BCF /* LoginView.swift */; };
+		D53044362A201F3400B30BCF /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044352A201F3400B30BCF /* UnderlinedTextField.swift */; };
+		D53044392A20A14E00B30BCF /* DividerWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044382A20A14E00B30BCF /* DividerWithLabel.swift */; };
+		D530443B2A20A56500B30BCF /* LoginRegisterSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530443A2A20A56500B30BCF /* LoginRegisterSelectionView.swift */; };
+		D530443D2A20A7EB00B30BCF /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530443C2A20A7EB00B30BCF /* RegisterView.swift */; };
+		D530443F2A20D4C500B30BCF /* CustomBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530443E2A20D4C500B30BCF /* CustomBackButton.swift */; };
+		D53044412A20D5CE00B30BCF /* CompleteYourProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044402A20D5CE00B30BCF /* CompleteYourProfileView.swift */; };
+		D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044422A20D6F300B30BCF /* RoundedIconWithEditButton.swift */; };
+		D53044462A20E22600B30BCF /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = D53044452A20E22600B30BCF /* iPhoneNumberField */; };
+		D53044482A21724000B30BCF /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044472A21724000B30BCF /* PickerTextField.swift */; };
+		D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044492A22C2CD00B30BCF /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +76,15 @@
 		D530442F2A1EB11400B30BCF /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		D53044312A1EB4F800B30BCF /* LoginIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIntroView.swift; sourceTree = "<group>"; };
 		D53044332A1EBCC900B30BCF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		D53044352A201F3400B30BCF /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
+		D53044382A20A14E00B30BCF /* DividerWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerWithLabel.swift; sourceTree = "<group>"; };
+		D530443A2A20A56500B30BCF /* LoginRegisterSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterSelectionView.swift; sourceTree = "<group>"; };
+		D530443C2A20A7EB00B30BCF /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		D530443E2A20D4C500B30BCF /* CustomBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButton.swift; sourceTree = "<group>"; };
+		D53044402A20D5CE00B30BCF /* CompleteYourProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteYourProfileView.swift; sourceTree = "<group>"; };
+		D53044422A20D6F300B30BCF /* RoundedIconWithEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedIconWithEditButton.swift; sourceTree = "<group>"; };
+		D53044472A21724000B30BCF /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
+		D53044492A22C2CD00B30BCF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D53044462A20E22600B30BCF /* iPhoneNumberField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +145,9 @@
 				D53044002A1EA73400B30BCF /* SplashView.swift */,
 				D53044312A1EB4F800B30BCF /* LoginIntroView.swift */,
 				D53044332A1EBCC900B30BCF /* LoginView.swift */,
+				D530443A2A20A56500B30BCF /* LoginRegisterSelectionView.swift */,
+				D530443C2A20A7EB00B30BCF /* RegisterView.swift */,
+				D53044402A20D5CE00B30BCF /* CompleteYourProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +188,7 @@
 		D530442D2A1EB0F500B30BCF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D53044372A20A13200B30BCF /* Widgets */,
 				D530442E2A1EB10300B30BCF /* Extensions */,
 			);
 			path = Utils;
@@ -174,8 +198,21 @@
 			isa = PBXGroup;
 			children = (
 				D530442F2A1EB11400B30BCF /* ColorExtension.swift */,
+				D53044352A201F3400B30BCF /* UnderlinedTextField.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D53044372A20A13200B30BCF /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				D53044382A20A14E00B30BCF /* DividerWithLabel.swift */,
+				D530443E2A20D4C500B30BCF /* CustomBackButton.swift */,
+				D53044422A20D6F300B30BCF /* RoundedIconWithEditButton.swift */,
+				D53044472A21724000B30BCF /* PickerTextField.swift */,
+				D53044492A22C2CD00B30BCF /* LoadingView.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +231,9 @@
 			dependencies = (
 			);
 			name = AiChatBot;
+			packageProductDependencies = (
+				D53044452A20E22600B30BCF /* iPhoneNumberField */,
+			);
 			productName = AiChatBot;
 			productReference = D53043EE2A1EA10200B30BCF /* AiChatBot.app */;
 			productType = "com.apple.product-type.application";
@@ -222,6 +262,9 @@
 				Base,
 			);
 			mainGroup = D53043E52A1EA10200B30BCF;
+			packageReferences = (
+				D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+			);
 			productRefGroup = D53043EF2A1EA10200B30BCF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -266,13 +309,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D530443D2A20A7EB00B30BCF /* RegisterView.swift in Sources */,
 				D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */,
 				D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
 				D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */,
+				D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */,
+				D530443B2A20A56500B30BCF /* LoginRegisterSelectionView.swift in Sources */,
 				D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */,
+				D53044412A20D5CE00B30BCF /* CompleteYourProfileView.swift in Sources */,
+				D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */,
 				D53044012A1EA73400B30BCF /* SplashView.swift in Sources */,
 				D53044302A1EB11500B30BCF /* ColorExtension.swift in Sources */,
+				D53044482A21724000B30BCF /* PickerTextField.swift in Sources */,
+				D530443F2A20D4C500B30BCF /* CustomBackButton.swift in Sources */,
+				D53044362A201F3400B30BCF /* UnderlinedTextField.swift in Sources */,
+				D53044392A20A14E00B30BCF /* DividerWithLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +527,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D53044452A20E22600B30BCF /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D53043E62A1EA10200B30BCF /* Project object */;
 }

@@ -1,13 +1,8 @@
-//
-//  SplashView.swift
-//  AiChatBot
-//
-//  Created by Irtaza Fiaz on 25/05/2023.
-//
-
 import SwiftUI
 
 struct SplashView: View {
+    @State private var isLoading = false
+    
     var body: some View {
         VStack {
             Spacer()
@@ -15,7 +10,7 @@ struct SplashView: View {
             Image("ic_app_logo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 160, height: 160) 
+                .frame(width: 160, height: 160)
             
             Text("ChattyAI")
                 .font(Font.custom("Urbanist-Bold", size: 40))
@@ -25,13 +20,21 @@ struct SplashView: View {
             
             Spacer()
             
-            Image("ic_loading")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 60, height: 60)
-                .padding(.bottom,50)
+            if isLoading {
+                LoadingView()
+                    .frame(width: 60, height: 60)
+                    .padding(.bottom, 50)
+            }
         }
-
+        .onAppear {
+            isLoading = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation {
+                    isLoading = false
+                }
+            }
+        }
     }
 }
 
