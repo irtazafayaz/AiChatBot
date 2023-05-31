@@ -22,7 +22,7 @@ struct LoginRegisterSelectionView: View {
                     .foregroundColor(Color(hex: "#17CE92"))
             }
             
-            NavigationLink(destination: LoginView()) {
+            NavigationLink(destination: LoginView(viewModel: LoginVM())) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(Color(hex: "#17CE92"))
@@ -38,14 +38,14 @@ struct LoginRegisterSelectionView: View {
                 .padding(.top, 10)
             }
             
-            NavigationLink(destination: RegisterView()) {
+            NavigationLink(destination: RegisterView(viewModel: RegisterUserVM())) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(Color(hex: "#E8FAF4"))
                         .frame(height: 65)
                         .padding()
                     
-                    Text("Signup")
+                    Text("Sign up")
                         .foregroundColor(Color(hex: "#17CE92"))
                         .font(.system(size: 18, weight: .bold))
                 }

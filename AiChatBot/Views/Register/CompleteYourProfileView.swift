@@ -11,21 +11,14 @@ import UIKit
 
 struct CompleteYourProfileView: View {
     
-    @State private var isLoading = false
-
+    @ObservedObject private var viewModel: RegisterUserVM
     
-    
-    @State private var fullName: String = ""
-    @State private var phoneNumber: String = ""
-    @State private var selectedGender = ""
-    @State private var selectedDate = Date()
-    
-    var genders = ["Male", "Female", "Other"] // Example gender options
+    init(viewModel: RegisterUserVM) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
-
-            
             
             Text("Complete your profile 📋")
                 .font(Font.custom("Urbanist-Bold", size: 32))
@@ -48,11 +41,13 @@ struct CompleteYourProfileView: View {
                 
                 VStack(alignment: .leading) {
                     Text("Full Name")
-                        .font(.headline)
+                        .foregroundColor(Color(hex: "#212121"))
+                        .font(Font.custom("Urbanist-Bold", size: 16))
                     HStack {
-                        TextField("Full Name", text: $fullName)
-                        Image("ic_dropdown")
-                            .foregroundColor(.gray)
+                        TextField("Full Name", text: $viewModel.fullName)
+                            .foregroundColor(viewModel.fullName.isEmpty ? Color(hex: "#9E9E9E") : Color(hex: "#212121"))
+                            .font(Font.custom("Urbanist-Bold", size: 20))
+                        
                     }
                     .padding(.bottom, 20)
                     .underlinedTextFieldStyle()
@@ -63,13 +58,16 @@ struct CompleteYourProfileView: View {
                 
                 VStack(alignment: .leading) {
                     Text("Phone Number")
-                        .font(.headline)
-                    iPhoneNumberField("(000) 000-0000", text: $phoneNumber)
-                        .flagHidden(false)
-                        .flagSelectable(true)
-                        .font(Font.custom("Urbanist-Bold", size: 20))
-                        .padding(.bottom, 10)
-                        .underlinedTextFieldStyle()
+                        .foregroundColor(Color(hex: "#212121"))
+                        .font(Font.custom("Urbanist-Bold", size: 16))
+                    iPhoneNumberField("(000) 000-0000", text: $viewModel.phoneNumber) { field in
+                        field.textColor = UIColor(Color(hex: "#212121"))
+                        field.font = UIFont(name: "Urbanist-Bold", size: 20)
+                    }
+                    .flagHidden(false)
+                    .flagSelectable(true)
+                    .padding(.bottom, 10)
+                    .underlinedTextFieldStyle()
                 }
                 .padding(.top, 10)
                 
@@ -77,42 +75,28 @@ struct CompleteYourProfileView: View {
                 
                 VStack(alignment: .leading) {
                     Text("Gender")
-                        .font(.headline)
-                    Menu("Gender", content: {
-                        
-                        ForEach(self.genders, id: \.self, content: { gender in
+                        .foregroundColor(Color(hex: "#212121"))
+                        .font(Font.custom("Urbanist-Bold", size: 16))
+                    Menu(viewModel.selectedGender.isEmpty ? "Gender" : viewModel.selectedGender, content: {
+                        ForEach(self.viewModel.genders, id: \.self, content: { gender in
                             Button(action: {
-                                selectedGender = gender
+                                viewModel.selectedGender = gender
                             }) {
                                 Label(gender, systemImage: "person")
                             }
                         })
-                        
                     })
+                    .foregroundColor(viewModel.selectedGender.isEmpty ? Color(hex: "#9E9E9E") : Color(hex: "#212121"))
+                    .font(Font.custom("Urbanist-Bold", size: 20))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 10)
                     .underlinedTextFieldStyle()
                 }
                 .padding(.top, 10)
                 
-                VStack(alignment: .leading) {
-                    Text("Date")
-                        .font(.headline)
-                    DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
-                        .accentColor(.red) // Set the desired color for the divider
-                        .foregroundColor(.blue)
-                    
-                    
-                    RoundedRectangle(cornerRadius: 1)
-                        .frame(height: 1)
-                        .foregroundColor(Color(hex: "#17CE92"))
-                        .padding(.top, 5)
-                    
-                }
-                .padding(.top, 10)
             }
             HStack {
-                NavigationLink(destination: LoginView()) {
+                NavigationLink(destination: HomeView()) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 100)
                             .foregroundColor(Color(hex: "#E8FAF4"))
@@ -126,7 +110,7 @@ struct CompleteYourProfileView: View {
                     }
                     .padding(.top, 10)
                 }
-                NavigationLink(destination: LoginView()) {
+                NavigationLink(destination: HomeView()) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 100)
                             .foregroundColor(Color(hex: "#17CE92"))
@@ -141,6 +125,7 @@ struct CompleteYourProfileView: View {
                     .padding(.top, 10)
                 }
             }
+            .padding(.bottom, 10)
         }
         .ignoresSafeArea()
         .padding(.horizontal)
@@ -152,7 +137,7 @@ struct CompleteYourProfileView: View {
 
 struct CompleteYourProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        CompleteYourProfileView()
+        CompleteYourProfileView(viewModel: RegisterUserVM())
     }
 }
 
