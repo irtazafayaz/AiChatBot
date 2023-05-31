@@ -44,6 +44,12 @@
 		D53044462A20E22600B30BCF /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = D53044452A20E22600B30BCF /* iPhoneNumberField */; };
 		D53044482A21724000B30BCF /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044472A21724000B30BCF /* PickerTextField.swift */; };
 		D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044492A22C2CD00B30BCF /* LoadingView.swift */; };
+		D530444C2A24123D00B30BCF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530444B2A24123D00B30BCF /* HomeView.swift */; };
+		D53044512A24DF8100B30BCF /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044502A24DF8100B30BCF /* ResetPasswordView.swift */; };
+		D53044552A24E31A00B30BCF /* CustomOTPBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044542A24E31A00B30BCF /* CustomOTPBox.swift */; };
+		D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530445C2A26193F00B30BCF /* LoginVM.swift */; };
+		D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530445E2A261ADE00B30BCF /* ResetPasswordVM.swift */; };
+		D530447F2A27F00E00B30BCF /* RegisterUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +91,12 @@
 		D53044422A20D6F300B30BCF /* RoundedIconWithEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedIconWithEditButton.swift; sourceTree = "<group>"; };
 		D53044472A21724000B30BCF /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		D53044492A22C2CD00B30BCF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		D530444B2A24123D00B30BCF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D53044502A24DF8100B30BCF /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		D53044542A24E31A00B30BCF /* CustomOTPBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOTPBox.swift; sourceTree = "<group>"; };
+		D530445C2A26193F00B30BCF /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
+		D530445E2A261ADE00B30BCF /* ResetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVM.swift; sourceTree = "<group>"; };
+		D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +130,8 @@
 		D53043F02A1EA10200B30BCF /* AiChatBot */ = {
 			isa = PBXGroup;
 			children = (
+				D530445B2A2618EE00B30BCF /* ViewModels */,
+				D53044562A24E53500B30BCF /* Models */,
 				D530442D2A1EB0F500B30BCF /* Utils */,
 				D53044082A1EAE6300B30BCF /* Fonts */,
 				D53044072A1EAAEC00B30BCF /* Info.plist */,
@@ -142,12 +156,10 @@
 		D53043FF2A1EA72300B30BCF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D53044002A1EA73400B30BCF /* SplashView.swift */,
-				D53044312A1EB4F800B30BCF /* LoginIntroView.swift */,
-				D53044332A1EBCC900B30BCF /* LoginView.swift */,
-				D530443A2A20A56500B30BCF /* LoginRegisterSelectionView.swift */,
-				D530443C2A20A7EB00B30BCF /* RegisterView.swift */,
-				D53044402A20D5CE00B30BCF /* CompleteYourProfileView.swift */,
+				D530444F2A24DF4900B30BCF /* Register */,
+				D530444E2A24DF4200B30BCF /* Login */,
+				D530444D2A24DF2600B30BCF /* Landing Pages */,
+				D530444B2A24123D00B30BCF /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,8 +223,54 @@
 				D53044422A20D6F300B30BCF /* RoundedIconWithEditButton.swift */,
 				D53044472A21724000B30BCF /* PickerTextField.swift */,
 				D53044492A22C2CD00B30BCF /* LoadingView.swift */,
+				D53044542A24E31A00B30BCF /* CustomOTPBox.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		D530444D2A24DF2600B30BCF /* Landing Pages */ = {
+			isa = PBXGroup;
+			children = (
+				D53044002A1EA73400B30BCF /* SplashView.swift */,
+				D53044312A1EB4F800B30BCF /* LoginIntroView.swift */,
+				D530443A2A20A56500B30BCF /* LoginRegisterSelectionView.swift */,
+			);
+			path = "Landing Pages";
+			sourceTree = "<group>";
+		};
+		D530444E2A24DF4200B30BCF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D53044332A1EBCC900B30BCF /* LoginView.swift */,
+				D53044502A24DF8100B30BCF /* ResetPasswordView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		D530444F2A24DF4900B30BCF /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				D530443C2A20A7EB00B30BCF /* RegisterView.swift */,
+				D53044402A20D5CE00B30BCF /* CompleteYourProfileView.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		D53044562A24E53500B30BCF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D530445B2A2618EE00B30BCF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D530445C2A26193F00B30BCF /* LoginVM.swift */,
+				D530445E2A261ADE00B30BCF /* ResetPasswordVM.swift */,
+				D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,15 +370,21 @@
 				D530443D2A20A7EB00B30BCF /* RegisterView.swift in Sources */,
 				D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */,
 				D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */,
+				D53044512A24DF8100B30BCF /* ResetPasswordView.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
 				D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */,
+				D530444C2A24123D00B30BCF /* HomeView.swift in Sources */,
 				D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */,
+				D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */,
 				D530443B2A20A56500B30BCF /* LoginRegisterSelectionView.swift in Sources */,
+				D530447F2A27F00E00B30BCF /* RegisterUserVM.swift in Sources */,
 				D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */,
 				D53044412A20D5CE00B30BCF /* CompleteYourProfileView.swift in Sources */,
+				D53044552A24E31A00B30BCF /* CustomOTPBox.swift in Sources */,
 				D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */,
 				D53044012A1EA73400B30BCF /* SplashView.swift in Sources */,
 				D53044302A1EB11500B30BCF /* ColorExtension.swift in Sources */,
+				D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */,
 				D53044482A21724000B30BCF /* PickerTextField.swift in Sources */,
 				D530443F2A20D4C500B30BCF /* CustomBackButton.swift in Sources */,
 				D53044362A201F3400B30BCF /* UnderlinedTextField.swift in Sources */,

@@ -12,24 +12,40 @@ struct DividerWithLabel: View {
     
     let label: String
     let padding: CGFloat
-    let color: Color
+    let dividerColor: Color
+    let labelColor: Color
+    let fontName: String
+    let fontSize: CGFloat
     
-    init(label: String, padding: CGFloat = 0, color: Color = .gray) {
+    
+    init(
+        label: String,
+        padding: CGFloat = 0,
+        dividerColor: Color = Color(hex: "#EEEEEE"),
+        labelColor: Color = Color(hex: "#616161"),
+        fontName: String = "Urbanist-Medium",
+        fontSize: CGFloat = 18
+    ) {
         self.label = label
         self.padding = padding
-        self.color = color
+        self.dividerColor = dividerColor
+        self.labelColor = labelColor
+        self.fontName = fontName
+        self.fontSize = fontSize
     }
+    
     var body: some View {
         
         HStack {
             dividerLine
-            Text(label).foregroundColor(color)
+            Text(label).foregroundColor(labelColor)
+                .font(Font.custom(fontName, size: fontSize))
                 .frame(maxWidth: .infinity)
                 .fixedSize(horizontal: true, vertical: false)
             dividerLine
         }
     }
     private var dividerLine: some View {
-        return VStack { Divider().background(color) }.padding(padding)
+        return VStack { Divider().background(dividerColor) }.padding(padding)
     }
 }
