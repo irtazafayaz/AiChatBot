@@ -20,11 +20,11 @@ struct LoginView: View {
             VStack(alignment: .leading) {
                 
                 Text("Welcome back 👋")
-                    .font(Font.custom("Urbanist-Bold", size: 32))
+                    .font(Font.custom(FontFamily.bold.rawValue, size: 32))
                     .frame(alignment: .leading)
                 
                 Text("Please enter your email & password to log in.")
-                    .font(Font.custom("Urbanist-Regular", size: 18))
+                    .font(Font.custom(FontFamily.regular.rawValue, size: 18))
                     .multilineTextAlignment(.leading)
                     .padding(.top, 10)
                     .lineLimit(2)
@@ -61,7 +61,7 @@ struct LoginView: View {
                                 viewModel.isPasswordVisible.toggle()
                             }) {
                                 Image(systemName: viewModel.isPasswordVisible ? "eye.fill" : "eye.slash.fill")
-                                    .foregroundColor(Color(hex: "#17CE92"))
+                                    .foregroundColor(Color(hex: Colors.primary.rawValue))
                             }
                         }
                         .padding(.bottom, 20)
@@ -91,25 +91,25 @@ struct LoginView: View {
                     
                     Divider()
                         .frame(height: 1)
-                        .overlay(Color(hex: "#EEEEEE"))
+                        .overlay(Color(hex: Colors.divider.rawValue))
                         .padding(.top, 20)
                     
                     NavigationLink(destination: ResetPasswordView(viewModel: ResetPasswordVM())) {
                         Text("Forgot password?")
-                            .foregroundColor(Color(hex: "#17CE92"))
+                            .foregroundColor(Color(hex: Colors.primary.rawValue))
                             .frame(maxWidth: .infinity)
                             .padding(.top, 10)
-                            .font(Font.custom("Urbanist-Bold", size: 18))
+                            .font(Font.custom(FontFamily.bold.rawValue, size: 18))
                     }
                     
                     
                     HStack(alignment: .center) {
                         Text("Don't have an account?")
-                            .font(Font.custom("Urbanist-Medium", size: 16))
+                            .font(Font.custom(FontFamily.medium.rawValue, size: 16))
                         NavigationLink(destination: RegisterView(viewModel: RegisterUserVM())) {
                             Text("Signup")
-                                .foregroundColor(Color(hex: "#17CE92"))
-                                .font(Font.custom("Urbanist-Bold", size: 16))
+                                .foregroundColor(Color(hex: Colors.primary.rawValue))
+                                .font(Font.custom(FontFamily.bold.rawValue, size: 16))
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -131,7 +131,7 @@ struct LoginView: View {
                 }, label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 100)
-                            .foregroundColor(Color(hex: "#17CE92"))
+                            .foregroundColor(Color(hex: Colors.primary.rawValue))
                             .shadow(color: Color.green.opacity(0.25), radius: 24, x: 4, y: 8)
                             .frame(height: 65)
                             .padding()
@@ -151,7 +151,7 @@ struct LoginView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: CustomBackButton())
             .navigationDestination(isPresented: $viewModel.loginActionSuccess, destination: {
-                HomeView()
+                HomeView(viewModel: HomeVM())
             })
         }
     }
