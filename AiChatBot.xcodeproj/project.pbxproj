@@ -50,6 +50,18 @@
 		D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530445C2A26193F00B30BCF /* LoginVM.swift */; };
 		D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530445E2A261ADE00B30BCF /* ResetPasswordVM.swift */; };
 		D530447F2A27F00E00B30BCF /* RegisterUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */; };
+		D55328AB2A2E95CC00AE74C8 /* StartChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */; };
+		D55328AD2A2E96CD00AE74C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AC2A2E96CC00AE74C8 /* ChatView.swift */; };
+		D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AE2A2F626500AE74C8 /* ChatModel.swift */; };
+		D55328B12A2F62DA00AE74C8 /* ContentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328B02A2F62DA00AE74C8 /* ContentMessageView.swift */; };
+		D55328B32A2F638E00AE74C8 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328B22A2F638E00AE74C8 /* MessageView.swift */; };
+		D55328B52A2F652000AE74C8 /* ChatVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328B42A2F652000AE74C8 /* ChatVM.swift */; };
+		D55328B72A31D30700AE74C8 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328B62A31D30700AE74C8 /* PDFView.swift */; };
+		D55B69632A295466009D6B18 /* EnumUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B69622A295466009D6B18 /* EnumUtils.swift */; };
+		D55B69652A2AA418009D6B18 /* ScanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B69642A2AA418009D6B18 /* ScanData.swift */; };
+		D55B69672A2AA463009D6B18 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B69662A2AA463009D6B18 /* HomeVM.swift */; };
+		D55B69692A2AA6CF009D6B18 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B69682A2AA6CF009D6B18 /* ScannerView.swift */; };
+		D55B696B2A2AAB8B009D6B18 /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B696A2A2AAB8B009D6B18 /* TextRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +109,18 @@
 		D530445C2A26193F00B30BCF /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		D530445E2A261ADE00B30BCF /* ResetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVM.swift; sourceTree = "<group>"; };
 		D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserVM.swift; sourceTree = "<group>"; };
+		D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChatView.swift; sourceTree = "<group>"; };
+		D55328AC2A2E96CC00AE74C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		D55328AE2A2F626500AE74C8 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		D55328B02A2F62DA00AE74C8 /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
+		D55328B22A2F638E00AE74C8 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		D55328B42A2F652000AE74C8 /* ChatVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVM.swift; sourceTree = "<group>"; };
+		D55328B62A31D30700AE74C8 /* PDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		D55B69622A295466009D6B18 /* EnumUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumUtils.swift; sourceTree = "<group>"; };
+		D55B69642A2AA418009D6B18 /* ScanData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanData.swift; sourceTree = "<group>"; };
+		D55B69662A2AA463009D6B18 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
+		D55B69682A2AA6CF009D6B18 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		D55B696A2A2AAB8B009D6B18 /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,10 +180,12 @@
 		D53043FF2A1EA72300B30BCF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D55328A92A2E95B300AE74C8 /* Chat */,
 				D530444F2A24DF4900B30BCF /* Register */,
 				D530444E2A24DF4200B30BCF /* Login */,
 				D530444D2A24DF2600B30BCF /* Landing Pages */,
 				D530444B2A24123D00B30BCF /* HomeView.swift */,
+				D55B69682A2AA6CF009D6B18 /* ScannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -200,8 +226,10 @@
 		D530442D2A1EB0F500B30BCF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D53044802A27F42A00B30BCF /* Enums */,
 				D53044372A20A13200B30BCF /* Widgets */,
 				D530442E2A1EB10300B30BCF /* Extensions */,
+				D55B696A2A2AAB8B009D6B18 /* TextRecognizer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,6 +287,8 @@
 		D53044562A24E53500B30BCF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D55B69642A2AA418009D6B18 /* ScanData.swift */,
+				D55328AE2A2F626500AE74C8 /* ChatModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -269,8 +299,30 @@
 				D530445C2A26193F00B30BCF /* LoginVM.swift */,
 				D530445E2A261ADE00B30BCF /* ResetPasswordVM.swift */,
 				D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */,
+				D55B69662A2AA463009D6B18 /* HomeVM.swift */,
+				D55328B42A2F652000AE74C8 /* ChatVM.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D53044802A27F42A00B30BCF /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				D55B69622A295466009D6B18 /* EnumUtils.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		D55328A92A2E95B300AE74C8 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */,
+				D55328AC2A2E96CC00AE74C8 /* ChatView.swift */,
+				D55328B02A2F62DA00AE74C8 /* ContentMessageView.swift */,
+				D55328B22A2F638E00AE74C8 /* MessageView.swift */,
+				D55328B62A31D30700AE74C8 /* PDFView.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,24 +420,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				D530443D2A20A7EB00B30BCF /* RegisterView.swift in Sources */,
+				D55328AD2A2E96CD00AE74C8 /* ChatView.swift in Sources */,
 				D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */,
 				D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */,
 				D53044512A24DF8100B30BCF /* ResetPasswordView.swift in Sources */,
+				D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
 				D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */,
 				D530444C2A24123D00B30BCF /* HomeView.swift in Sources */,
+				D55328B52A2F652000AE74C8 /* ChatVM.swift in Sources */,
 				D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */,
+				D55B69652A2AA418009D6B18 /* ScanData.swift in Sources */,
 				D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */,
+				D55328B32A2F638E00AE74C8 /* MessageView.swift in Sources */,
+				D55B69632A295466009D6B18 /* EnumUtils.swift in Sources */,
+				D55328B12A2F62DA00AE74C8 /* ContentMessageView.swift in Sources */,
 				D530443B2A20A56500B30BCF /* LoginRegisterSelectionView.swift in Sources */,
 				D530447F2A27F00E00B30BCF /* RegisterUserVM.swift in Sources */,
 				D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */,
 				D53044412A20D5CE00B30BCF /* CompleteYourProfileView.swift in Sources */,
 				D53044552A24E31A00B30BCF /* CustomOTPBox.swift in Sources */,
+				D55B696B2A2AAB8B009D6B18 /* TextRecognizer.swift in Sources */,
 				D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */,
+				D55B69692A2AA6CF009D6B18 /* ScannerView.swift in Sources */,
 				D53044012A1EA73400B30BCF /* SplashView.swift in Sources */,
+				D55328B72A31D30700AE74C8 /* PDFView.swift in Sources */,
 				D53044302A1EB11500B30BCF /* ColorExtension.swift in Sources */,
 				D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */,
 				D53044482A21724000B30BCF /* PickerTextField.swift in Sources */,
+				D55328AB2A2E95CC00AE74C8 /* StartChatView.swift in Sources */,
+				D55B69672A2AA463009D6B18 /* HomeVM.swift in Sources */,
 				D530443F2A20D4C500B30BCF /* CustomBackButton.swift in Sources */,
 				D53044362A201F3400B30BCF /* UnderlinedTextField.swift in Sources */,
 				D53044392A20A14E00B30BCF /* DividerWithLabel.swift in Sources */,

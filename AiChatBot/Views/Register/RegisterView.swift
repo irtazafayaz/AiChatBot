@@ -19,13 +19,13 @@ struct RegisterView: View {
         VStack(alignment: .leading) {
             
             Text("Hello There 👋")
-                .font(Font.custom("Urbanist-Bold", size: 32))
+                .font(Font.custom(FontFamily.bold.rawValue, size: 32))
                 .frame(alignment: .leading)
             
             ScrollView {
                 
                 Text("Please enter your email & password to create an account.")
-                    .font(Font.custom("Urbanist-Regular", size: 18))
+                    .font(Font.custom(FontFamily.regular.rawValue, size: 18))
                     .multilineTextAlignment(.leading)
                     .padding(.top, 10)
                     .lineLimit(2)
@@ -58,7 +58,7 @@ struct RegisterView: View {
                             viewModel.isPasswordVisible.toggle()
                         }) {
                             Image(systemName: viewModel.isPasswordVisible ? "eye.fill" : "eye.slash.fill")
-                                .foregroundColor(Color(hex: "#17CE92"))
+                                .foregroundColor(Color(hex: Colors.primary.rawValue))
                         }
                     }
                     .padding(.bottom, 20)
@@ -91,11 +91,11 @@ struct RegisterView: View {
                 NavigationLink(destination: LoginView(viewModel: LoginVM())) {
                     HStack(alignment: .center) {
                         Text("Already Have an account?")
-                            .font(Font.custom("Urbanist-Medium", fixedSize: 16))
-                            .foregroundColor(Color(hex: "#212121"))
+                            .font(Font.custom(FontFamily.medium.rawValue, fixedSize: 16))
+                            .foregroundColor(Color(hex: Colors.labelDark.rawValue))
                         Text("Login")
-                            .font(Font.custom("Urbanist-Bold", fixedSize: 16))
-                            .foregroundColor(Color(hex: "#17CE92"))
+                            .font(Font.custom(FontFamily.bold.rawValue, fixedSize: 16))
+                            .foregroundColor(Color(hex: Colors.primary.rawValue))
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top, 20)
@@ -116,7 +116,7 @@ struct RegisterView: View {
             NavigationLink(destination: CompleteYourProfileView(viewModel: viewModel)) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
-                        .foregroundColor(Color(hex: "#17CE92"))
+                        .foregroundColor(Color(hex: Colors.primary.rawValue))
                         .shadow(color: Color.green.opacity(0.25), radius: 24, x: 4, y: 8)
                         .frame(height: 65)
                         .padding()

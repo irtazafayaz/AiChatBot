@@ -9,7 +9,14 @@ import SwiftUI
 
 @main
 struct AiChatBotApp: App {
+    
     @State private var showSplashScreen = true
+    
+    init() {
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().tableFooterView = UIView()
+    }
+    
     var body: some Scene {
         WindowGroup {
             if showSplashScreen {
