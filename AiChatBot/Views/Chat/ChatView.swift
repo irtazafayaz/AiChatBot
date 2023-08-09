@@ -97,6 +97,7 @@ struct ChatView: View {
                     }
                     .padding()
                     
+                    
                     Text("These are just a few examples of what I can do.")
                         .font(Font.custom(FontFamily.medium.rawValue, size: 16))
                         .foregroundColor(Color(hex: "9E9E9E"))
