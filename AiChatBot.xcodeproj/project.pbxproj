@@ -50,6 +50,9 @@
 		D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530445C2A26193F00B30BCF /* LoginVM.swift */; };
 		D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530445E2A261ADE00B30BCF /* ResetPasswordVM.swift */; };
 		D530447F2A27F00E00B30BCF /* RegisterUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */; };
+		D53A80372A844A90003C15D3 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A80362A844A90003C15D3 /* UserViewModel.swift */; };
+		D53A803A2A844B80003C15D3 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A80392A844B80003C15D3 /* OpenAIService.swift */; };
+		D53A803D2A844C65003C15D3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D53A803C2A844C65003C15D3 /* Alamofire */; };
 		D55328AB2A2E95CC00AE74C8 /* StartChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */; };
 		D55328AD2A2E96CD00AE74C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AC2A2E96CC00AE74C8 /* ChatView.swift */; };
 		D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AE2A2F626500AE74C8 /* ChatModel.swift */; };
@@ -62,6 +65,8 @@
 		D55B69672A2AA463009D6B18 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B69662A2AA463009D6B18 /* HomeVM.swift */; };
 		D55B69692A2AA6CF009D6B18 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B69682A2AA6CF009D6B18 /* ScannerView.swift */; };
 		D55B696B2A2AAB8B009D6B18 /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B696A2A2AAB8B009D6B18 /* TextRecognizer.swift */; };
+		D5D350A72AA5161F00201EE9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D350A62AA5161F00201EE9 /* ImagePicker.swift */; };
+		D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +114,8 @@
 		D530445C2A26193F00B30BCF /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		D530445E2A261ADE00B30BCF /* ResetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVM.swift; sourceTree = "<group>"; };
 		D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserVM.swift; sourceTree = "<group>"; };
+		D53A80362A844A90003C15D3 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		D53A80392A844B80003C15D3 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChatView.swift; sourceTree = "<group>"; };
 		D55328AC2A2E96CC00AE74C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		D55328AE2A2F626500AE74C8 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -121,6 +128,8 @@
 		D55B69662A2AA463009D6B18 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		D55B69682A2AA6CF009D6B18 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		D55B696A2A2AAB8B009D6B18 /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
+		D5D350A62AA5161F00201EE9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAssistantView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D53044462A20E22600B30BCF /* iPhoneNumberField in Frameworks */,
+				D53A803D2A844C65003C15D3 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +164,7 @@
 		D53043F02A1EA10200B30BCF /* AiChatBot */ = {
 			isa = PBXGroup;
 			children = (
+				D53A80382A844B74003C15D3 /* Service */,
 				D530445B2A2618EE00B30BCF /* ViewModels */,
 				D53044562A24E53500B30BCF /* Models */,
 				D530442D2A1EB0F500B30BCF /* Utils */,
@@ -252,6 +263,7 @@
 				D53044472A21724000B30BCF /* PickerTextField.swift */,
 				D53044492A22C2CD00B30BCF /* LoadingView.swift */,
 				D53044542A24E31A00B30BCF /* CustomOTPBox.swift */,
+				D5D350A62AA5161F00201EE9 /* ImagePicker.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -301,6 +313,7 @@
 				D530447E2A27F00E00B30BCF /* RegisterUserVM.swift */,
 				D55B69662A2AA463009D6B18 /* HomeVM.swift */,
 				D55328B42A2F652000AE74C8 /* ChatVM.swift */,
+				D53A80362A844A90003C15D3 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -313,6 +326,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		D53A80382A844B74003C15D3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D53A80392A844B80003C15D3 /* OpenAIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		D55328A92A2E95B300AE74C8 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +342,7 @@
 				D55328B02A2F62DA00AE74C8 /* ContentMessageView.swift */,
 				D55328B22A2F638E00AE74C8 /* MessageView.swift */,
 				D55328B62A31D30700AE74C8 /* PDFView.swift */,
+				D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -343,6 +365,7 @@
 			name = AiChatBot;
 			packageProductDependencies = (
 				D53044452A20E22600B30BCF /* iPhoneNumberField */,
+				D53A803C2A844C65003C15D3 /* Alamofire */,
 			);
 			productName = AiChatBot;
 			productReference = D53043EE2A1EA10200B30BCF /* AiChatBot.app */;
@@ -374,6 +397,7 @@
 			mainGroup = D53043E52A1EA10200B30BCF;
 			packageReferences = (
 				D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+				D53A803B2A844C65003C15D3 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = D53043EF2A1EA10200B30BCF /* Products */;
 			projectDirPath = "";
@@ -427,6 +451,7 @@
 				D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
 				D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */,
+				D5D350A72AA5161F00201EE9 /* ImagePicker.swift in Sources */,
 				D530444C2A24123D00B30BCF /* HomeView.swift in Sources */,
 				D55328B52A2F652000AE74C8 /* ChatVM.swift in Sources */,
 				D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */,
@@ -442,16 +467,19 @@
 				D53044552A24E31A00B30BCF /* CustomOTPBox.swift in Sources */,
 				D55B696B2A2AAB8B009D6B18 /* TextRecognizer.swift in Sources */,
 				D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */,
+				D53A803A2A844B80003C15D3 /* OpenAIService.swift in Sources */,
 				D55B69692A2AA6CF009D6B18 /* ScannerView.swift in Sources */,
 				D53044012A1EA73400B30BCF /* SplashView.swift in Sources */,
 				D55328B72A31D30700AE74C8 /* PDFView.swift in Sources */,
 				D53044302A1EB11500B30BCF /* ColorExtension.swift in Sources */,
 				D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */,
 				D53044482A21724000B30BCF /* PickerTextField.swift in Sources */,
+				D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */,
 				D55328AB2A2E95CC00AE74C8 /* StartChatView.swift in Sources */,
 				D55B69672A2AA463009D6B18 /* HomeVM.swift in Sources */,
 				D530443F2A20D4C500B30BCF /* CustomBackButton.swift in Sources */,
 				D53044362A201F3400B30BCF /* UnderlinedTextField.swift in Sources */,
+				D53A80372A844A90003C15D3 /* UserViewModel.swift in Sources */,
 				D53044392A20A14E00B30BCF /* DividerWithLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +693,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		D53A803B2A844C65003C15D3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -672,6 +708,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
 			productName = iPhoneNumberField;
+		};
+		D53A803C2A844C65003C15D3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D53A803B2A844C65003C15D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -58,29 +58,27 @@ struct HomeView: View {
             //                }
             //            }
             
-            
             VStack(alignment: .center) {
-                
                 TabView {
-                    // Tab 1
                     StartChatView()
                         .tabItem {
                             Image(systemName: "house")
                             Text("Chat")
                         }
-                    
-                    // Tab 2
-                    Text("Tab 2 Content")
+                    ChatAssistantView()
                         .tabItem {
                             Image(systemName: "message")
-                            Text("Messages")
+                            Text("AI Assistants")
                         }
-                    
-                    // Tab 3
                     Text("Tab 3 Content")
                         .tabItem {
                             Image(systemName: "person")
-                            Text("Profile")
+                            Text("History")
+                        }
+                    Text("Account")
+                        .tabItem {
+                            Image(systemName: "person")
+                            Text("Account")
                         }
                 }
                 
@@ -96,12 +94,7 @@ struct HomeView: View {
                         .foregroundColor(Color(hex: Colors.labelDark.rawValue))
                 })
             }
-            
-            
-            
-            
         }
-        
     }
 }
 

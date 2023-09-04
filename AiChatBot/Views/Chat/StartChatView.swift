@@ -10,6 +10,8 @@ import SwiftUI
 struct StartChatView: View {
     var body: some View {
         VStack {
+            
+            
             Image("ic_app_logo")
                 .padding(.top, 30)
             

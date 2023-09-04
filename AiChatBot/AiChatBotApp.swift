@@ -11,7 +11,8 @@ import SwiftUI
 struct AiChatBotApp: App {
     
     @State private var showSplashScreen = true
-    
+    @StateObject var userViewModel = UserViewModel()
+
     init() {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
@@ -28,6 +29,7 @@ struct AiChatBotApp: App {
                     }
             } else {
                 ContentView()
+                    .environmentObject(userViewModel)
             }
         }
     }
