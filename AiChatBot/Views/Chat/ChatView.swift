@@ -11,7 +11,8 @@ import UIKit
 
 struct ChatView: View {
     
-    //MARK: Data Members
+    //MARK: - Data Members -
+    
     @EnvironmentObject var userViewModel: UserViewModel
     @ObservedObject private var viewModel: ChatVM
     @State private var isEditing: Bool = false
@@ -22,18 +23,23 @@ struct ChatView: View {
     @State private var emptyString: String = ""
     var predefinedMessage: String = ""
     @FocusState var isTextFieldFocused: Bool
+    @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
+    @Environment(\.managedObjectContext) var moc
     
-    //MARK: Export PDF
+    //MARK: - Export PDF -
+    
     @State private var renderedImage = Image(systemName: "photo")
     @Environment(\.displayScale) var displayScale
     @State private var isShowingDocumentPicker = false
     
-    //MARK: Image Picker
+    //MARK: - Image Picker -
+    
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
     
-    //MARK: Initialization Methods
+    //MARK: - Initialization Methods -
+    
     init() {
         viewModel = ChatVM(with: "")
     }
@@ -63,6 +69,8 @@ struct ChatView: View {
         }
     }
     
+    //MARK: - Custom UIs -
+    
     var chatNorStartedView: some View {
         VStack {
             Image("ic_app_logo_gray")
@@ -85,7 +93,6 @@ struct ChatView: View {
                         bl: 10,
                         br: 10
                     ).fill(Color(hex: Colors.chatBG.rawValue)))
-                
                 Text("Generate all the text you want.\n(essays, articles, reports, stories, & more)")
                     .font(Font.custom(FontFamily.medium.rawValue, size: 16))
                     .foregroundColor(Color(hex: "9E9E9E"))
@@ -98,7 +105,6 @@ struct ChatView: View {
                         bl: 10,
                         br: 10
                     ).fill(Color(hex: Colors.chatBG.rawValue)))
-                
                 Text("Conversational AI.\n(I can talk to you like a natural human)")
                     .font(Font.custom(FontFamily.medium.rawValue, size: 16))
                     .foregroundColor(Color(hex: "9E9E9E"))
@@ -113,17 +119,13 @@ struct ChatView: View {
                     ).fill(Color(hex: Colors.chatBG.rawValue)))
             }
             .padding()
-            
-            
             Text("These are just a few examples of what I can do.")
                 .font(Font.custom(FontFamily.medium.rawValue, size: 16))
                 .foregroundColor(Color(hex: "9E9E9E"))
-            
             Spacer()
             Divider()
             bottomView(image: "profile", proxy: nil)
         }
-        
     }
     
     var chatListView: some View {
@@ -146,12 +148,10 @@ struct ChatView: View {
             .onChange(of: viewModel.messages.filter({$0.role != .system}).last?.content) { _ in  scrollToBottom(proxy: proxy)
             }
         }
-        
     }
     
     func bottomView(image: String, proxy: ScrollViewProxy?) -> some View {
         HStack(alignment: .top, spacing: 8) {
-            
             TextField("Message...", text: $viewModel.currentInput, onEditingChanged: { editing in
                 isEditing = editing
             })
@@ -182,8 +182,7 @@ struct ChatView: View {
                     .frame(width: 60, height: 60)
             }
             .disabled(viewModel.currentInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-            
-            
+
             Button {
                 Task { @MainActor in
                     convoStarted = true
@@ -191,7 +190,28 @@ struct ChatView: View {
                     if proxy != nil {
                         scrollToBottom(proxy: proxy!)
                     }
-                    viewModel.sendMessage()
+                    let chat = ChatHistory(context: moc)
+                    chat.id = UUID()
+                    chat.message = viewModel.currentInput
+                    chat.role = "user"
+                    chat.createdAt = Date()
+                    try? moc.save()
+//                    viewModel.sendMessage { success in
+//                        if success {
+//                            let chat = ChatHistory(context: moc)
+//                            chat.id = UUID()
+//                            chat.message = viewModel.currentInput
+//                            chat.role = "user"
+//                            chat.createdAt = Date()
+//                            try? moc.save()
+//
+//                        }
+//                    }
+                    
+                    
+                    
+                    
+                    
                 }
             } label: {
                 Image("ic_send_btn_icon")
@@ -200,14 +220,8 @@ struct ChatView: View {
                     .frame(width: 60, height: 60)
             }
             .disabled(viewModel.currentInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-            
         }
         .padding(.top, 12)
-    }
-    
-    private func scrollToBottom(proxy: ScrollViewProxy) {
-        guard let id = viewModel.messages.filter({$0.role != .system}).last?.id else { return }
-        proxy.scrollTo(id, anchor: .bottomTrailing)
     }
     
     func getMessageView(_ message: Message) -> some View {
@@ -243,6 +257,8 @@ struct ChatView: View {
         .padding(.vertical, 10)
     }
     
+    //MARK: - Render text to PDF -
+    
     @MainActor func render(viewSize: CGSize) {
         let renderer = ImageRenderer(
             content: PDFView(text: "shgfdhasgfjd h fgjahdgsfhjdjgfjhsd hfgdsjhfgjdsfhgjsdfgfdhsgfjhsdgfj")
@@ -259,18 +275,12 @@ struct ChatView: View {
             kCGPDFContextCreator: "Your App Name",
             kCGPDFContextAuthor: "Your Name",
         ]
-        
         let format = UIGraphicsPDFRendererFormat()
         format.documentInfo = pdfMetaData as [String: Any]
-        
         let pdfData = NSMutableData() // Create NSMutableData instance
         let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 300, height: 500), format: format)
-        
         let pageInfo = PDFPageInfo(text: text)
-        
         let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("temp.pdf")
-        
-        // Use fileURL in the writePDF function
         do {
             try renderer.writePDF(to: fileURL) { context in
                 context.beginPage()
@@ -279,22 +289,18 @@ struct ChatView: View {
         } catch {
             print("Error writing PDF: \(error)")
         }
-        
-        
-        // Read data from the file and append it to pdfData
         if let fileData = try? Data(contentsOf: fileURL) {
             pdfData.append(fileData)
         }
-        
         return pdfData as Data
     }
     
-    func generatePDF() {
-        isShowingDocumentPicker = true
+    //MARK: - Actions -
+    
+    private func scrollToBottom(proxy: ScrollViewProxy) {
+        guard let id = viewModel.messages.filter({$0.role != .system}).last?.id else { return }
+        proxy.scrollTo(id, anchor: .bottomTrailing)
     }
-    
-    
-    //MARK: Send JPEG to Server
     
     func sendImageToServer() {
         if let image = selectedImage, let imageData = image.jpegData(compressionQuality: 1.0) {
@@ -322,6 +328,13 @@ struct ChatView: View {
         }
 
     }
+    
+    
+    
+    func generatePDF() {
+        isShowingDocumentPicker = true
+    }
+    
     
 }
 

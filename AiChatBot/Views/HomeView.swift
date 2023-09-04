@@ -10,7 +10,8 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject private var viewModel: HomeVM
-    
+    @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
+
     init(viewModel: HomeVM) {
         self.viewModel = viewModel
     }
@@ -26,7 +27,6 @@ struct HomeView: View {
     }
     
     var body: some View {
-        NavigationStack {
             
             /// This code will  be used in a separate file
             
@@ -70,12 +70,12 @@ struct HomeView: View {
                             Image(systemName: "message")
                             Text("AI Assistants")
                         }
-                    Text("Tab 3 Content")
+                    ChatHistoryView()
                         .tabItem {
                             Image(systemName: "person")
                             Text("History")
                         }
-                    Text("Account")
+                    Text("g")
                         .tabItem {
                             Image(systemName: "person")
                             Text("Account")
@@ -94,7 +94,6 @@ struct HomeView: View {
                         .foregroundColor(Color(hex: Colors.labelDark.rawValue))
                 })
             }
-        }
     }
 }
 

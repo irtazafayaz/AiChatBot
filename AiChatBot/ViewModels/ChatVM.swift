@@ -22,18 +22,14 @@ class ChatVM: ObservableObject {
         currentInput = text
     }
     
-    func sendMessage() {
-        
+    func sendMessage(completion: @escaping (Bool) -> Void) {
         if currentInput.isEmpty {
             return
         }
-        
         let newMessage = Message(id: UUID().uuidString, content: currentInput, createdAt: Date(), role: .user)
         messages.append(newMessage)
-        currentInput = ""
-        
+//        currentInput = ""
         openAIService.sendStreamMessages(messages: messages).responseStreamString { [weak self] stream in
-            
             guard let self = self else { return }
             switch stream.event {
             case .stream(let response):
@@ -53,20 +49,17 @@ class ChatVM: ObservableObject {
                         }
                         let newMessage = Message(id: newMessageResponse.id, content: self.messages[existingMessageIndex].content + messageContent, createdAt: Date(), role: .assistant)
                         self.messages[existingMessageIndex] = newMessage
-                        //                        self.scrollToTop.toggle()
-                        
                     }
                 case .failure(_):
                     print("/ChatVM/sendMessage/sendStreamMessage/Failure")
+                    completion(false)
                 }
-                //                print(response)
             case .complete(_):
                 print("COMPLETE")
                 scrollToTop.toggle()
+                completion(true)
             }
-            
         }
-        
     }
     
     
@@ -80,6 +73,10 @@ class ChatVM: ObservableObject {
             }
             return streamResponse
         }
+    }
+    
+    func addHistory() {
+        
     }
     
 }

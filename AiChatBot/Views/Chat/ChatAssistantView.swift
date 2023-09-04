@@ -15,10 +15,8 @@ struct ChatAssistantView: View {
     var body: some View {
         
         VStack {
-            
             ScrollView {
                 HStack(spacing: 20) {
-                    
                     Button {
                         selectedText = "Act as a writer."
                         moveToChatScreen.toggle()
@@ -45,7 +43,6 @@ struct ChatAssistantView: View {
                             br: 10
                         ).fill(Color(hex: Colors.chatBG.rawValue)))
                     }
-                    
                     Button {
                         selectedText = "Act as a writer."
                         moveToChatScreen.toggle()
@@ -121,7 +118,6 @@ struct ChatAssistantView: View {
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                                 .padding(.top, 5)
-                            
                         }
                         .frame(height: 226.0)
                         .padding()
@@ -152,7 +148,6 @@ struct ChatAssistantView: View {
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                                 .padding(.top, 5)
-                            
                         }
                         .frame(height: 226.0)
                         .padding()
@@ -180,7 +175,6 @@ struct ChatAssistantView: View {
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                                 .padding(.top, 5)
-                            
                         }
                         .frame(height: 226.0)
                         .padding()
@@ -194,7 +188,6 @@ struct ChatAssistantView: View {
                 }
                 .padding(.top, 10)
             }
-            
         }
         .padding(.horizontal, 10)
         .navigationBarBackButtonHidden(true)
