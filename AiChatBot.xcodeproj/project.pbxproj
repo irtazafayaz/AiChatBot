@@ -58,6 +58,7 @@
 		D5496E912AA613930057A9E3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496E902AA613930057A9E3 /* DataController.swift */; };
 		D5496E942AA627010057A9E3 /* ChatHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496E932AA627010057A9E3 /* ChatHistoryView.swift */; };
 		D5496E962AA690420057A9E3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496E952AA690420057A9E3 /* Utilities.swift */; };
+		D5496E982AA724E80057A9E3 /* ChatHistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496E972AA724E80057A9E3 /* ChatHistoryCard.swift */; };
 		D55328AB2A2E95CC00AE74C8 /* StartChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */; };
 		D55328AD2A2E96CD00AE74C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AC2A2E96CC00AE74C8 /* ChatView.swift */; };
 		D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AE2A2F626500AE74C8 /* ChatModel.swift */; };
@@ -126,6 +127,7 @@
 		D5496E902AA613930057A9E3 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		D5496E932AA627010057A9E3 /* ChatHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryView.swift; sourceTree = "<group>"; };
 		D5496E952AA690420057A9E3 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		D5496E972AA724E80057A9E3 /* ChatHistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryCard.swift; sourceTree = "<group>"; };
 		D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChatView.swift; sourceTree = "<group>"; };
 		D55328AC2A2E96CC00AE74C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		D55328AE2A2F626500AE74C8 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				D5496E932AA627010057A9E3 /* ChatHistoryView.swift */,
+				D5496E972AA724E80057A9E3 /* ChatHistoryCard.swift */,
 			);
 			path = "Chat History";
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */,
 				D53A803A2A844B80003C15D3 /* OpenAIService.swift in Sources */,
 				D55B69692A2AA6CF009D6B18 /* ScannerView.swift in Sources */,
+				D5496E982AA724E80057A9E3 /* ChatHistoryCard.swift in Sources */,
 				D53044012A1EA73400B30BCF /* SplashView.swift in Sources */,
 				D55328B72A31D30700AE74C8 /* PDFView.swift in Sources */,
 				D53044302A1EB11500B30BCF /* ColorExtension.swift in Sources */,
@@ -641,6 +645,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) requires camera access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -651,7 +657,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = thefreelancers.AiChatBot;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -671,6 +677,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) requires camera access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -681,7 +689,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = thefreelancers.AiChatBot;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

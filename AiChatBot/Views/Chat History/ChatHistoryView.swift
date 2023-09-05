@@ -11,66 +11,62 @@ struct ChatHistoryView: View {
     
     @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
     @Environment(\.managedObjectContext) var moc
-
-    func delete(at offsets: IndexSet) {
-        for index in offsets {
-            let language = chatHistory[index]
-            moc.delete(language)
-        }
-        
-        do {
-            try moc.save()
-        } catch {
-            // handle the Core Data error
-        }
-        
-    }
     
     var body: some View {
         VStack {
             ScrollView {
                 VStack(spacing: 10) {
                     ForEach(chatHistory, id: \.self) { chat in
-                        
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("\(chat.message ?? "No Response")")
-                                    .font(Font.custom(FontFamily.semiBold.rawValue, size: 18))
-                                    .foregroundColor(Color(hex: Colors.labelDark.rawValue))
-                                Text(Utilities.formatDate(chat.createdAt ?? Date()))
-                                    .font(Font.custom(FontFamily.regular.rawValue, size: 10))
-                                    .foregroundColor(Color(hex: Colors.labelGray.rawValue))
-                                    .padding(.top, 2)
+                        ZStack {
+                            HStack {
+                                Spacer()
+                                Button {
+                                    delete(at: IndexSet(integer: chatHistory.firstIndex(of: chat)!))
+                                } label: {
+                                    Image("ic_delete")
+                                        .foregroundColor(.white)
+                                        .padding(10)
+                                }
                             }
-                            Spacer()
-                            Image("ic_arrow_right")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(RoundedCorners(
+                                tl: 10,
+                                tr: 10,
+                                bl: 10,
+                                br: 10
+                            ).fill(Color(hex: "#F75555")))
+                            ChatHistoryCard(message: chat.message ?? "NaN", date: Utilities.formatDate(chat.createdAt ?? Date()) )
                         }
-                        .padding()
-                        .background(RoundedCorners(
-                            tl: 10,
-                            tr: 10,
-                            bl: 10,
-                            br: 10
-                        ).fill(Color(hex: Colors.chatBG.rawValue)))
-                        
                     }
-                    .onDelete(perform: delete)
                 }
             }
             .padding(.top, 20)
         }
         .padding(.horizontal, 10)
-//        .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading, content: {
-//                HStack {
-//                    CustomBackButton()
-//                    Text("BROO")
-//                        .font(Font.custom(FontFamily.bold.rawValue, size: 24))
-//                        .foregroundColor(Color(hex: "#FFFFFF"))
-//                }
-//            })
-//        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading, content: {
+                HStack {
+                    CustomBackButton()
+                    Text("History")
+                        .font(Font.custom(FontFamily.bold.rawValue, size: 24))
+                        .foregroundColor(Color(hex: "#FFFFFF"))
+                }
+            })
+        }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        for index in offsets {
+            let language = chatHistory[index]
+            moc.delete(language)
+        }
+        do {
+            try moc.save()
+        } catch  {
+            print("> Error occured during deleting from core data")
+        }
     }
 }
 

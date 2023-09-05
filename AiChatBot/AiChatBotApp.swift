@@ -12,7 +12,8 @@ struct AiChatBotApp: App {
     
     @State private var showSplashScreen = true
     @StateObject var userViewModel = UserViewModel()
-
+    @StateObject private var dataController = DataController()
+    
     init() {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
@@ -30,6 +31,7 @@ struct AiChatBotApp: App {
             } else {
                 ContentView()
                     .environmentObject(userViewModel)
+                    .environment(\.managedObjectContext, dataController.container.viewContext)
             }
         }
     }
