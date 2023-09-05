@@ -59,6 +59,12 @@
 		D5496E942AA627010057A9E3 /* ChatHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496E932AA627010057A9E3 /* ChatHistoryView.swift */; };
 		D5496E962AA690420057A9E3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496E952AA690420057A9E3 /* Utilities.swift */; };
 		D5496E982AA724E80057A9E3 /* ChatHistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496E972AA724E80057A9E3 /* ChatHistoryCard.swift */; };
+		D5496E9B2AA74B8F0057A9E3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496E9A2AA74B8F0057A9E3 /* ProfileView.swift */; };
+		D5496E9E2AA76E520057A9E3 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = D5496E9D2AA76E520057A9E3 /* RevenueCat */; };
+		D5496EA12AA76E770057A9E3 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496EA02AA76E770057A9E3 /* PaywallView.swift */; };
+		D5496EA32AA76FB10057A9E3 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496EA22AA76FB10057A9E3 /* UserDefaults.swift */; };
+		D5496EA52AA773780057A9E3 /* SharedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496EA42AA773780057A9E3 /* SharedWebView.swift */; };
+		D5496EA72AA773980057A9E3 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5496EA62AA773980057A9E3 /* WebView.swift */; };
 		D55328AB2A2E95CC00AE74C8 /* StartChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */; };
 		D55328AD2A2E96CD00AE74C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AC2A2E96CC00AE74C8 /* ChatView.swift */; };
 		D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55328AE2A2F626500AE74C8 /* ChatModel.swift */; };
@@ -128,6 +134,11 @@
 		D5496E932AA627010057A9E3 /* ChatHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryView.swift; sourceTree = "<group>"; };
 		D5496E952AA690420057A9E3 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D5496E972AA724E80057A9E3 /* ChatHistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryCard.swift; sourceTree = "<group>"; };
+		D5496E9A2AA74B8F0057A9E3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		D5496EA02AA76E770057A9E3 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		D5496EA22AA76FB10057A9E3 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		D5496EA42AA773780057A9E3 /* SharedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedWebView.swift; sourceTree = "<group>"; };
+		D5496EA62AA773980057A9E3 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChatView.swift; sourceTree = "<group>"; };
 		D55328AC2A2E96CC00AE74C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		D55328AE2A2F626500AE74C8 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -151,6 +162,7 @@
 			files = (
 				D53044462A20E22600B30BCF /* iPhoneNumberField in Frameworks */,
 				D53A803D2A844C65003C15D3 /* Alamofire in Frameworks */,
+				D5496E9E2AA76E520057A9E3 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,13 +215,14 @@
 		D53043FF2A1EA72300B30BCF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D5496E9F2AA76E650057A9E3 /* Paywall */,
+				D5496E992AA74B810057A9E3 /* Profile */,
 				D5496E922AA626EC0057A9E3 /* Chat History */,
 				D55328A92A2E95B300AE74C8 /* Chat */,
 				D530444F2A24DF4900B30BCF /* Register */,
 				D530444E2A24DF4200B30BCF /* Login */,
 				D530444D2A24DF2600B30BCF /* Landing Pages */,
 				D530444B2A24123D00B30BCF /* HomeView.swift */,
-				D55B69682A2AA6CF009D6B18 /* ScannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +277,7 @@
 			children = (
 				D530442F2A1EB11400B30BCF /* ColorExtension.swift */,
 				D53044352A201F3400B30BCF /* UnderlinedTextField.swift */,
+				D5496EA22AA76FB10057A9E3 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,9 +374,28 @@
 			path = "Chat History";
 			sourceTree = "<group>";
 		};
+		D5496E992AA74B810057A9E3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D5496E9A2AA74B8F0057A9E3 /* ProfileView.swift */,
+				D5496EA42AA773780057A9E3 /* SharedWebView.swift */,
+				D5496EA62AA773980057A9E3 /* WebView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D5496E9F2AA76E650057A9E3 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				D5496EA02AA76E770057A9E3 /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
 		D55328A92A2E95B300AE74C8 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				D55B69682A2AA6CF009D6B18 /* ScannerView.swift */,
 				D55328AA2A2E95CC00AE74C8 /* StartChatView.swift */,
 				D55328AC2A2E96CC00AE74C8 /* ChatView.swift */,
 				D55328B02A2F62DA00AE74C8 /* ContentMessageView.swift */,
@@ -392,6 +425,7 @@
 			packageProductDependencies = (
 				D53044452A20E22600B30BCF /* iPhoneNumberField */,
 				D53A803C2A844C65003C15D3 /* Alamofire */,
+				D5496E9D2AA76E520057A9E3 /* RevenueCat */,
 			);
 			productName = AiChatBot;
 			productReference = D53043EE2A1EA10200B30BCF /* AiChatBot.app */;
@@ -424,6 +458,7 @@
 			packageReferences = (
 				D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 				D53A803B2A844C65003C15D3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D5496E9C2AA76E510057A9E3 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 			);
 			productRefGroup = D53043EF2A1EA10200B30BCF /* Products */;
 			projectDirPath = "";
@@ -480,6 +515,7 @@
 				D5D350A72AA5161F00201EE9 /* ImagePicker.swift in Sources */,
 				D530444C2A24123D00B30BCF /* HomeView.swift in Sources */,
 				D55328B52A2F652000AE74C8 /* ChatVM.swift in Sources */,
+				D5496EA12AA76E770057A9E3 /* PaywallView.swift in Sources */,
 				D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */,
 				D55B69652A2AA418009D6B18 /* ScanData.swift in Sources */,
 				D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */,
@@ -495,6 +531,7 @@
 				D53044552A24E31A00B30BCF /* CustomOTPBox.swift in Sources */,
 				D55B696B2A2AAB8B009D6B18 /* TextRecognizer.swift in Sources */,
 				D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */,
+				D5496EA72AA773980057A9E3 /* WebView.swift in Sources */,
 				D53A803A2A844B80003C15D3 /* OpenAIService.swift in Sources */,
 				D55B69692A2AA6CF009D6B18 /* ScannerView.swift in Sources */,
 				D5496E982AA724E80057A9E3 /* ChatHistoryCard.swift in Sources */,
@@ -504,14 +541,17 @@
 				D5496E8C2AA6126D0057A9E3 /* ChatHistory.swift in Sources */,
 				D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */,
 				D53044482A21724000B30BCF /* PickerTextField.swift in Sources */,
+				D5496EA32AA76FB10057A9E3 /* UserDefaults.swift in Sources */,
 				D5496E962AA690420057A9E3 /* Utilities.swift in Sources */,
 				D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */,
+				D5496E9B2AA74B8F0057A9E3 /* ProfileView.swift in Sources */,
 				D55328AB2A2E95CC00AE74C8 /* StartChatView.swift in Sources */,
 				D55B69672A2AA463009D6B18 /* HomeVM.swift in Sources */,
 				D5496E8F2AA613040057A9E3 /* ChatHistoryCD.xcdatamodeld in Sources */,
 				D530443F2A20D4C500B30BCF /* CustomBackButton.swift in Sources */,
 				D53044362A201F3400B30BCF /* UnderlinedTextField.swift in Sources */,
 				D53A80372A844A90003C15D3 /* UserViewModel.swift in Sources */,
+				D5496EA52AA773780057A9E3 /* SharedWebView.swift in Sources */,
 				D53044392A20A14E00B30BCF /* DividerWithLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,10 +681,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AiChatBot/Preview Content\"";
-				DEVELOPMENT_TEAM = KC6PY3RPXS;
+				DEVELOPMENT_TEAM = JVX482ZABQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "School AI";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) requires camera access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -657,7 +698,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.broo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -673,10 +714,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AiChatBot/Preview Content\"";
-				DEVELOPMENT_TEAM = KC6PY3RPXS;
+				DEVELOPMENT_TEAM = JVX482ZABQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "School AI";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) requires camera access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -689,7 +731,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.broo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -737,6 +779,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D5496E9C2AA76E510057A9E3 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -749,6 +799,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D53A803B2A844C65003C15D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D5496E9D2AA76E520057A9E3 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5496E9C2AA76E510057A9E3 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
 		};
 /* End XCSwiftPackageProductDependency section */
 

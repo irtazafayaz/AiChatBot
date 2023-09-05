@@ -34,7 +34,7 @@ struct ChatView: View {
     
     //MARK: - Image Picker -
     
-    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
     
@@ -176,13 +176,19 @@ struct ChatView: View {
                 self.sourceType = .camera
                 self.isImagePickerDisplay.toggle()
             } label: {
-                Image("ic_send_btn_icon")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 60, height: 60)
+                Circle()
+                    .fill(Color(hex: Colors.primary.rawValue))
+                    .frame(width: 50, height: 50)
+                    .overlay(
+                        Image(systemName: "camera.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .padding()
+                    )
             }
-            .disabled(viewModel.currentInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-
+            
             Button {
                 Task { @MainActor in
                     convoStarted = true
@@ -196,17 +202,17 @@ struct ChatView: View {
                     chat.role = "user"
                     chat.createdAt = Date()
                     try? moc.save()
-//                    viewModel.sendMessage { success in
-//                        if success {
-//                            let chat = ChatHistory(context: moc)
-//                            chat.id = UUID()
-//                            chat.message = viewModel.currentInput
-//                            chat.role = "user"
-//                            chat.createdAt = Date()
-//                            try? moc.save()
-//
-//                        }
-//                    }
+                    //                    viewModel.sendMessage { success in
+                    //                        if success {
+                    //                            let chat = ChatHistory(context: moc)
+                    //                            chat.id = UUID()
+                    //                            chat.message = viewModel.currentInput
+                    //                            chat.role = "user"
+                    //                            chat.createdAt = Date()
+                    //                            try? moc.save()
+                    //
+                    //                        }
+                    //                    }
                     
                     
                     
@@ -214,10 +220,17 @@ struct ChatView: View {
                     
                 }
             } label: {
-                Image("ic_send_btn_icon")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 60, height: 60)
+                Circle()
+                    .fill(Color(hex: Colors.primary.rawValue)) // Change the background color as needed
+                    .frame(width: 50, height: 50) // Adjust the size as needed
+                    .overlay(
+                        Image("ic_send_btn_icon")
+                            .resizable()
+                            .scaledToFit()
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .padding()
+                    )
             }
             .disabled(viewModel.currentInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
@@ -326,7 +339,7 @@ struct ChatView: View {
             
             task.resume()
         }
-
+        
     }
     
     

@@ -6,7 +6,8 @@
 //
 
 import Foundation
-
+import RevenueCat
+import SwiftUI
 
 class Utilities {
     
@@ -19,5 +20,19 @@ class Utilities {
     static func formatDate(_ date: Date) -> String {
         return dateFormatter.string(from: date)
     }
+    
+    static func updateSubscription() {
+        Purchases.shared.getCustomerInfo { cust, error in
+           _ = updateCustumerInCache(cust: cust)
+        }
+    }
+    static func updateCustumerInCache(cust: CustomerInfo?) -> Bool {
+        UserDefaults.standard.isProMemeber = cust?.entitlements["pro"]?.isActive == true
+        UserDefaults.standard.subscriptionDate = cust?.entitlements["pro"]?.latestPurchaseDate
+        UserDefaults.standard.expiryDate = cust?.entitlements["pro"]?.expirationDate
+        UserDefaults.standard.subscriptionType = cust?.entitlements["pro"]?.productIdentifier ?? ""
+        return cust?.entitlements["pro"]?.isActive == true
+    }
+    
 }
 

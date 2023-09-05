@@ -62,25 +62,26 @@ struct HomeView: View {
                 TabView {
                     StartChatView()
                         .tabItem {
-                            Image(systemName: "house")
+                            Image("ic_tab_chat")
                             Text("Chat")
                         }
                     ChatAssistantView()
                         .tabItem {
-                            Image(systemName: "message")
+                            Image("ic_tab_assistant")
                             Text("AI Assistants")
                         }
                     ChatHistoryView()
                         .tabItem {
-                            Image(systemName: "person")
+                            Image("ic_tab_history")
                             Text("History")
                         }
-                    Text("g")
+                    ProfileView()
                         .tabItem {
-                            Image(systemName: "person")
+                            Image("ic_tab_people")
                             Text("Account")
                         }
                 }
+                .accentColor(Color(hex: Colors.primary.rawValue))
                 
             }
             .navigationBarBackButtonHidden(true)

@@ -6,26 +6,28 @@
 //
 
 import Foundation
+import RevenueCat
 
 class UserViewModel: ObservableObject {
     
     @Published var isSubscriptionActive = false
 
     init() {
-//        Purchases.shared.getCustomerInfo { (customerInfo, error) in
-//            self.isSubscriptionActive = customerInfo?.entitlements.all["pro"]?.isActive == true
-//        }
+        Purchases.shared.getCustomerInfo { (customerInfo, error) in
+            self.isSubscriptionActive = customerInfo?.entitlements.all["pro"]?.isActive == true
+        }
     }
+    
     
     func checkIfSubscribed(completion: @escaping (Bool) -> Void) {
         completion(true)
-//        Purchases.shared.getCustomerInfo { (customerInfo, error) in
-//            if customerInfo?.entitlements.all["pro"]?.isActive == true {
-//                completion(true)
-//            } else {
-//                completion(false)
-//            }
-//        }
+        Purchases.shared.getCustomerInfo { (customerInfo, error) in
+            if customerInfo?.entitlements.all["pro"]?.isActive == true {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
     
     
