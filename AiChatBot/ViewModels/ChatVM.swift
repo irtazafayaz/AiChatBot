@@ -11,15 +11,19 @@ import Combine
 
 class ChatVM: ObservableObject {
     
-    @Published var messages: [Message] = DataSource.messages
+    @Published var messages: [Message] = []
+    @Published var msgsArr: [MessageWithImages] = []
     @Published var currentInput: String = ""
     @Published var scrollToTop: Bool = false
     @Published var isInteracting = false
     
     private let openAIService = OpenAIService()
-    
-    init(with text: String) {
+    var updateSessionID: Bool
+
+    init(with text: String, updateSessionID: Bool, messages: [Message] = []) {
         currentInput = text
+        self.updateSessionID = updateSessionID
+        self.messages = messages
     }
     
     func sendMessage(completion: @escaping (Bool) -> Void) {
@@ -75,8 +79,13 @@ class ChatVM: ObservableObject {
         }
     }
     
-    func addHistory() {
+    func addImage(selectedImage: UIImage) {
         
+        
+        
+        
+        
+        print("AAAAAAAAAAAA")
     }
     
 }

@@ -52,5 +52,14 @@ extension UserDefaults {
         }
     }
     
+    var sessionID: Int {
+        get {
+            UserDefaults.standard.integer(forKey: "sessionID")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "sessionID")
+        }
+    }
+    
     
 }

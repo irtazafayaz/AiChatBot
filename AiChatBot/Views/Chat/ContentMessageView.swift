@@ -7,32 +7,6 @@
 
 import SwiftUI
 
-//struct ContentMessageView: View {
-//    
-//    var contentMessage: String
-//    var isCurrentUser: Bool
-//    
-//    var body: some View {
-//        Text(contentMessage)
-//            .padding(10)
-//            .foregroundColor(isCurrentUser ? Color.white : Color.black)
-//            .background(RoundedCorners(
-//                tl: isCurrentUser ? 10 : 0,
-//                tr: 10,
-//                bl: 10,
-//                br: isCurrentUser ? 0 : 10
-//            ).fill(Color(hex: isCurrentUser ? Colors.primary.rawValue : Colors.chatBG.rawValue)))
-//
-//    }
-//}
-//
-//struct ContentMessageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentMessageView(contentMessage: "Hi, I am Irtu", isCurrentUser: false)
-//    }
-//}
-//
-//
 struct RoundedCorners: Shape {
     var tl: CGFloat = 0.0
     var tr: CGFloat = 0.0

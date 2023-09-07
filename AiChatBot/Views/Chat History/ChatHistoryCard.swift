@@ -19,6 +19,7 @@ struct ChatHistoryCard: View {
                 Text(message)
                     .font(Font.custom(FontFamily.semiBold.rawValue, size: 18))
                     .foregroundColor(Color(hex: Colors.labelDark.rawValue))
+                    .lineLimit(1)
                 Text(date)
                     .font(Font.custom(FontFamily.regular.rawValue, size: 10))
                     .foregroundColor(Color(hex: Colors.labelGray.rawValue))

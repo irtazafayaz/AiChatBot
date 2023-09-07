@@ -16,37 +16,47 @@ struct ChatView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @ObservedObject private var viewModel: ChatVM
     @State private var isEditing: Bool = false
-    @State private var convoStarted: Bool = true
     @State var isPaywallPresented = false
     @State var isAdShown = false
     @State private var paywallMsgDisplayed: Bool = false
     @State private var emptyString: String = ""
     var predefinedMessage: String = ""
     @FocusState var isTextFieldFocused: Bool
+    
+    //MARK: Core Data
     @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
     @Environment(\.managedObjectContext) var moc
-    
-    //MARK: - Export PDF -
-    
+    @State private var updateSessionID: Bool = true
+//    @Binding var fromChatHistory: Bool
+
+    //MARK: Export PDF
     @State private var renderedImage = Image(systemName: "photo")
     @Environment(\.displayScale) var displayScale
     @State private var isShowingDocumentPicker = false
     
-    //MARK: - Image Picker -
-    
-    @State private var sourceType: UIImagePickerController.SourceType = .camera
+    //MARK: Image Picker
+    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
     
     //MARK: - Initialization Methods -
     
-    init() {
-        viewModel = ChatVM(with: "")
+    init(viewModel: ChatVM) {
+        self.viewModel = viewModel
     }
     
     var body: some View {
         VStack {
-            if convoStarted {
+            if let image = selectedImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200) // Adjust the size as needed
+            } else {
+                Text("No image selected")
+            }
+
+            if !viewModel.messages.isEmpty {
                 chatListView
             } else {
                 chatNorStartedView
@@ -65,7 +75,7 @@ struct ChatView: View {
             })
         }
         .sheet(isPresented: self.$isImagePickerDisplay) {
-            ImagePicker(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+            ImagePicker(selectedImage: self.$selectedImage, sourceType: self.sourceType, viewModel: viewModel)
         }
     }
     
@@ -173,7 +183,7 @@ struct ChatView: View {
             .ignoresSafeArea(.keyboard, edges: .bottom)
             
             Button {
-                self.sourceType = .camera
+                self.sourceType = .photoLibrary
                 self.isImagePickerDisplay.toggle()
             } label: {
                 Circle()
@@ -191,33 +201,16 @@ struct ChatView: View {
             
             Button {
                 Task { @MainActor in
-                    convoStarted = true
                     isTextFieldFocused = false
                     if proxy != nil {
                         scrollToBottom(proxy: proxy!)
                     }
-                    let chat = ChatHistory(context: moc)
-                    chat.id = UUID()
-                    chat.message = viewModel.currentInput
-                    chat.role = "user"
-                    chat.createdAt = Date()
-                    try? moc.save()
-                    //                    viewModel.sendMessage { success in
-                    //                        if success {
-                    //                            let chat = ChatHistory(context: moc)
-                    //                            chat.id = UUID()
-                    //                            chat.message = viewModel.currentInput
-                    //                            chat.role = "user"
-                    //                            chat.createdAt = Date()
-                    //                            try? moc.save()
-                    //
-                    //                        }
-                    //                    }
-                    
-                    
-                    
-                    
-                    
+                    addHistory(message: viewModel.currentInput, role: "user")
+                    viewModel.sendMessage { success in
+                        if success {
+                            addHistory(message: viewModel.messages.filter({$0.role != .system}).last?.content ?? "NaN", role: "assistant")
+                        }
+                    }
                 }
             } label: {
                 Circle()
@@ -339,10 +332,23 @@ struct ChatView: View {
             
             task.resume()
         }
-        
     }
     
-    
+    func addHistory(message: String, role: String) {
+        if updateSessionID {
+            if viewModel.messages.isEmpty {
+                UserDefaults.standard.sessionID += 1
+            }
+            updateSessionID = false
+        }
+        let chat = ChatHistory(context: moc)
+        chat.id = UUID()
+        chat.message = message
+        chat.role = role
+        chat.createdAt = Date()
+        chat.sessionID = Double(UserDefaults.standard.sessionID)
+        try? moc.save()
+    }
     
     func generatePDF() {
         isShowingDocumentPicker = true
@@ -353,7 +359,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView(viewModel: ChatVM(with: "", updateSessionID: false))
     }
 }
 
@@ -374,37 +380,3 @@ struct RenderView: View {
         .padding()
     }
 }
-
-
-
-//
-//VStack {
-//
-//    if selectedImage != nil {
-//        Image(uiImage: selectedImage!)
-//            .resizable()
-//            .aspectRatio(contentMode: .fit)
-//            .clipShape(Circle())
-//            .frame(width: 300, height: 300)
-//    } else {
-//        Image(systemName: "snow")
-//            .resizable()
-//            .aspectRatio(contentMode: .fit)
-//            .clipShape(Circle())
-//            .frame(width: 300, height: 300)
-//    }
-//
-//    Button("Camera") {
-//        self.sourceType = .camera
-//        self.isImagePickerDisplay.toggle()
-//    }.padding()
-//
-//    Button("photo") {
-//        self.sourceType = .photoLibrary
-//        self.isImagePickerDisplay.toggle()
-//    }.padding()
-//}
-//.navigationBarTitle("Demo")
-//.sheet(isPresented: self.$isImagePickerDisplay) {
-//    ImagePicker(selectedImage: self.$selectedImage, sourceType: self.sourceType)
-//}

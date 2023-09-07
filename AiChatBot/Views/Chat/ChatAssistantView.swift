@@ -74,7 +74,7 @@ struct ChatAssistantView: View {
                 
                 HStack(spacing: 20) {
                     Button {
-                        selectedText = "Act as a writer."
+                        selectedText = "Act as a phographer."
                         moveToChatScreen.toggle()
                     } label: {
                         VStack(alignment: .leading) {
@@ -202,7 +202,7 @@ struct ChatAssistantView: View {
             })
         }
         .navigationDestination(isPresented: $moveToChatScreen, destination: {
-            ChatView()
+            ChatView(viewModel: ChatVM(with: selectedText, updateSessionID: true))
         })
         
     }

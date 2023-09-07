@@ -17,7 +17,6 @@ struct OpenAIChatBody: Encodable {
         case model, messages, stream
         case maxTokens = "max_tokens"
     }
-    
 }
 
 struct OpenAIChatMessage: Codable {
@@ -45,6 +44,18 @@ struct Message: Decodable {
     let content: String
     let createdAt: Date
     let role: SenderRole
+}
+
+struct MessageWithImages {
+    let id: String
+    let content: MessageContent
+    let createdAt: Date
+    let role: SenderRole
+}
+
+enum MessageContent {
+    case text(String)
+    case image(Data)
 }
 
 struct ChatStreamCompletionResponse: Decodable {

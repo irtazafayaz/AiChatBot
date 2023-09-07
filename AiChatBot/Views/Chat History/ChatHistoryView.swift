@@ -9,34 +9,99 @@ import SwiftUI
 
 struct ChatHistoryView: View {
     
-    @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
+    @FetchRequest(
+        entity: ChatHistory.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \ChatHistory.sessionID, ascending: true),
+            NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: true) // Sort by createdAt in descending order
+        ]
+    ) var chatHistory: FetchedResults<ChatHistory>
+    
     @Environment(\.managedObjectContext) var moc
+    @State private var moveToChatScreen: Bool = false
+    @State private var fromChatHistory: Bool = true
+    @State private var selectedMessages: [Message] = []
+    
+    var groupedItems: [(Double, [ChatHistory])] {
+        let groupedDictionary = Dictionary(grouping: chatHistory) { item in
+            return item.sessionID
+        }
+        return groupedDictionary.sorted { $0.key < $1.key }
+    }
+    
+    var uniqueGroups: [Double] {
+        let groupSet = Set(chatHistory.compactMap { $0.sessionID })
+        return Array(groupSet)
+    }
+    
+    func representativeItem(forGroup group: Double) -> ChatHistory? {
+        return chatHistory.first { $0.sessionID == group } // Replace with your actual grouping attribute
+    }
+    
+    func convertDataToMessagesArray(forGroup group: Double) {
+        
+        let chatArr = chatHistory.filter { $0.sessionID == group }
+        if !chatArr.isEmpty {
+            selectedMessages = chatArr.map {
+                Message(
+                    id: UUID().uuidString,
+                    content: $0.message ?? "NaN",
+                    createdAt: $0.createdAt ?? Date(),
+                    role: SenderRole(rawValue: $0.role ?? "NaN") ?? .paywall
+                )
+            }
+        }
+    }
+    
+    
+    
+    //    var body: some View {
+    //            List {
+    //                ForEach(uniqueGroups, id: \.self) { group in
+    //                    if let representativeItem = representativeItem(forGroup: group) {
+    //                        Section(header: Text("Group: \(group)")) {
+    //                            Text(representativeItem.message ?? "Unknown")
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        }
+    
+    
+    
     
     var body: some View {
         VStack {
             ScrollView {
                 VStack(spacing: 10) {
-                    ForEach(chatHistory, id: \.self) { chat in
-                        ZStack {
-                            HStack {
-                                Spacer()
-                                Button {
-                                    delete(at: IndexSet(integer: chatHistory.firstIndex(of: chat)!))
-                                } label: {
-                                    Image("ic_delete")
-                                        .foregroundColor(.white)
-                                        .padding(10)
+                    ForEach(uniqueGroups, id: \.self) { group in
+                        if let chat = representativeItem(forGroup: group) {
+                            Button {
+                                convertDataToMessagesArray(forGroup: group)
+                                moveToChatScreen.toggle()
+                            } label: {
+                                ZStack {
+                                    HStack {
+                                        Spacer()
+                                        Button {
+                                            delete(at: IndexSet(integer: chatHistory.firstIndex(of: chat)!))
+                                        } label: {
+                                            Image("ic_delete")
+                                                .foregroundColor(.white)
+                                                .padding(10)
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(RoundedCorners(
+                                        tl: 10,
+                                        tr: 10,
+                                        bl: 10,
+                                        br: 10
+                                    ).fill(Color(hex: "#F75555")))
+                                    ChatHistoryCard(message: "\(chat.sessionID) - \(String(describing: chat.message))", date: Utilities.formatDate(chat.createdAt ?? Date()) )
                                 }
                             }
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(RoundedCorners(
-                                tl: 10,
-                                tr: 10,
-                                bl: 10,
-                                br: 10
-                            ).fill(Color(hex: "#F75555")))
-                            ChatHistoryCard(message: chat.message ?? "NaN", date: Utilities.formatDate(chat.createdAt ?? Date()) )
                         }
                     }
                 }
@@ -55,6 +120,9 @@ struct ChatHistoryView: View {
                 }
             })
         }
+        .navigationDestination(isPresented: $moveToChatScreen, destination: {
+            ChatView(viewModel: ChatVM(with: "", updateSessionID: true, messages: selectedMessages))
+        })
     }
     
     func delete(at offsets: IndexSet) {

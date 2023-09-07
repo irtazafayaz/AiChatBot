@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct StartChatView: View {
+    
+    @State var isChatScreenPresented = false
+    
     var body: some View {
         VStack {
             
@@ -33,7 +36,9 @@ struct StartChatView: View {
             
             Spacer()
             
-            NavigationLink(destination: ChatView()) {
+            Button {
+                isChatScreenPresented.toggle()
+            } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(Color(hex: Colors.primary.rawValue))
@@ -48,6 +53,9 @@ struct StartChatView: View {
             }
             .padding(.bottom, 50)
         }
+        .navigationDestination(isPresented: $isChatScreenPresented, destination: {
+            ChatView(viewModel: ChatVM(with: "", updateSessionID: true, messages: []))
+        })
     }
 }
 

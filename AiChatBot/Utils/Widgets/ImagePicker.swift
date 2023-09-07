@@ -15,14 +15,18 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) var isPresented
     var sourceType: UIImagePickerController.SourceType
-    
+    @ObservedObject var viewModel: ChatVM
+
     func makeUIViewController(context: Context) -> some UIViewController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = self.sourceType
+        imagePicker.delegate = context.coordinator
         return imagePicker
     }
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
+        if let image = selectedImage {
+            viewModel.addImage(selectedImage: selectedImage!)
+        }
     }
     
     func makeCoordinator() -> Coordinator {
