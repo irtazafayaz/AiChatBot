@@ -11,8 +11,9 @@ import UIKit
 
 struct CompleteYourProfileView: View {
     
-    @ObservedObject private var viewModel: RegisterUserVM
-    
+    @ObservedObject var viewModel: RegisterUserVM
+    @Environment(\.presentationMode) var presentationMode
+
     init(viewModel: RegisterUserVM) {
         self.viewModel = viewModel
     }
@@ -96,28 +97,15 @@ struct CompleteYourProfileView: View {
                 
             }
             HStack {
-                NavigationLink(destination: HomeView(viewModel: HomeVM())) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 100)
-                            .foregroundColor(Color(hex: Colors.secondary.rawValue))
-                            .shadow(color: Color(hex: Colors.secondary.rawValue).opacity(0.25), radius: 24, x: 4, y: 8)
-                            .frame(width: 140, height: 65)
-                            .padding()
-                        
-                        Text("Skip")
-                            .foregroundColor(Color(hex: Colors.primary.rawValue))
-                            .font(.system(size: 18, weight: .bold))
-                    }
-                    .padding(.top, 10)
-                }
-                NavigationLink(destination: HomeView(viewModel: HomeVM())) {
+                Button(action: {
+                    viewModel.registerUser()
+                }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 100)
                             .foregroundColor(Color(hex: Colors.primary.rawValue))
                             .shadow(color: Color.green.opacity(0.25), radius: 24, x: 4, y: 8)
                             .frame(width: 140, height: 65)
                             .padding()
-                        
                         Text("Continue")
                             .foregroundColor(.white)
                             .font(.system(size: 18, weight: .bold))
@@ -132,12 +120,9 @@ struct CompleteYourProfileView: View {
         .padding(.top)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
-    }
-}
-
-struct CompleteYourProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        CompleteYourProfileView(viewModel: RegisterUserVM())
+        .navigationDestination(isPresented: $viewModel.registerActionSuccess, destination: {
+            LoginRegisterSelectionView()
+        })
     }
 }
 

@@ -10,6 +10,7 @@ import SwiftUI
 struct RegisterView: View {
     
     @ObservedObject private var viewModel: RegisterUserVM
+    @State private var isCompleteProfileOpen: Bool = false
     
     init(viewModel: RegisterUserVM) {
         self.viewModel = viewModel
@@ -66,6 +67,28 @@ struct RegisterView: View {
                 }
                 .padding(.top, 10)
                 
+                // MARK: Confirm Password Text Field
+                VStack(alignment: .leading) {
+                    Text("Confirm Password")
+                        .font(.headline)
+                    HStack {
+                        if viewModel.isConfirmPasswordVisible {
+                            TextField("Password", text: $viewModel.confirmPassword)
+                        } else {
+                            SecureField("Password", text: $viewModel.confirmPassword)
+                        }
+                        Button(action: {
+                            viewModel.isConfirmPasswordVisible.toggle()
+                        }) {
+                            Image(systemName: viewModel.isConfirmPasswordVisible ? "eye.fill" : "eye.slash.fill")
+                                .foregroundColor(Color(hex: Colors.primary.rawValue))
+                        }
+                    }
+                    .padding(.bottom, 20)
+                    .underlinedTextFieldStyle()
+                }
+                .padding(.top, 10)
+                
                 // MARK: CheckBox Agreement
                 HStack {
                     Button(action: {
@@ -101,19 +124,10 @@ struct RegisterView: View {
                     .padding(.top, 20)
                 }
                 
-                DividerWithLabel(label: "or continue with")
-                    .padding(.top, 20)
-                
-                
-                HStack(alignment: .center) {
-                    Image("ic_facebook")
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.top, 10)
-                
-                
             }
-            NavigationLink(destination: CompleteYourProfileView(viewModel: viewModel)) {
+            Button(action: {
+                isCompleteProfileOpen.toggle()
+            }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
                         .foregroundColor(Color(hex: Colors.primary.rawValue))
@@ -136,6 +150,9 @@ struct RegisterView: View {
         .padding(.top)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
+        .navigationDestination(isPresented: $isCompleteProfileOpen, destination: {
+            CompleteYourProfileView(viewModel: viewModel)
+        })
     }
 }
 

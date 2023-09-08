@@ -12,7 +12,9 @@ class RegisterUserVM: ObservableObject {
     //MARK: RegisterView
     @Published var email: String = ""
     @Published var password: String = ""
+    @Published var confirmPassword: String = ""
     @Published var isPasswordVisible = false
+    @Published var isConfirmPasswordVisible = false
     @Published var isAgreed = false
     @Published var registerActionSuccess = false
     
@@ -22,13 +24,33 @@ class RegisterUserVM: ObservableObject {
     @Published var phoneNumber: String = ""
     @Published var selectedGender = ""
     @Published var selectedDate = Date()
-    
+        
     let genders = ["Male", "Female", "Other"]
     
+    private let service = BaseService.shared
+    
+    func createParams() -> [String: String] {
+        var params = [String: String]()
+        params["confirm_password"] = confirmPassword
+        params["email"] = email
+        params["password"] = password
+        params["phone_number"] = phoneNumber
+        params["full_name"] = fullName
+        return params
+    }
+    
+    
     func registerUser() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            self.registerActionSuccess = true
-        })
+        service.registerUser(from: .register, params: createParams()) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let response):
+                print("API RESPONSE \(response)")
+                self.registerActionSuccess = true
+            case .failure(let error):
+                print("API ERROR \(error)")
+            }
+        }
     }
     
 }

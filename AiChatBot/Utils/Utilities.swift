@@ -17,6 +17,13 @@ class Utilities {
         return dateFormatter
     }()
     
+    static let jsonDecoder: JSONDecoder = {
+       let jsonDecoder = JSONDecoder()
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
+        return jsonDecoder
+    }()
+    
     static func formatDate(_ date: Date) -> String {
         return dateFormatter.string(from: date)
     }
