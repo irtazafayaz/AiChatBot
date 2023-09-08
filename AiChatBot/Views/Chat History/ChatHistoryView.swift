@@ -13,7 +13,7 @@ struct ChatHistoryView: View {
         entity: ChatHistory.entity(),
         sortDescriptors: [
             NSSortDescriptor(keyPath: \ChatHistory.sessionID, ascending: true),
-            NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: true) // Sort by createdAt in descending order
+            NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: true)
         ]
     ) var chatHistory: FetchedResults<ChatHistory>
     
@@ -35,7 +35,7 @@ struct ChatHistoryView: View {
     }
     
     func representativeItem(forGroup group: Double) -> ChatHistory? {
-        return chatHistory.first { $0.sessionID == group } // Replace with your actual grouping attribute
+        return chatHistory.first { $0.sessionID == group }
     }
     
     func convertDataToMessagesArray(forGroup group: Double) {
@@ -53,23 +53,6 @@ struct ChatHistoryView: View {
         }
     }
     
-    
-    
-    //    var body: some View {
-    //            List {
-    //                ForEach(uniqueGroups, id: \.self) { group in
-    //                    if let representativeItem = representativeItem(forGroup: group) {
-    //                        Section(header: Text("Group: \(group)")) {
-    //                            Text(representativeItem.message ?? "Unknown")
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
-    
-    
-    
-    
     var body: some View {
         VStack {
             ScrollView {
@@ -81,24 +64,24 @@ struct ChatHistoryView: View {
                                 moveToChatScreen.toggle()
                             } label: {
                                 ZStack {
-                                    HStack {
-                                        Spacer()
-                                        Button {
-                                            delete(at: IndexSet(integer: chatHistory.firstIndex(of: chat)!))
-                                        } label: {
-                                            Image("ic_delete")
-                                                .foregroundColor(.white)
-                                                .padding(10)
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
-                                    .background(RoundedCorners(
-                                        tl: 10,
-                                        tr: 10,
-                                        bl: 10,
-                                        br: 10
-                                    ).fill(Color(hex: "#F75555")))
+//                                    HStack {
+//                                        Spacer()
+//                                        Button {
+//                                            delete(at: IndexSet(integer: chatHistory.firstIndex(of: chat)!))
+//                                        } label: {
+//                                            Image("ic_delete")
+//                                                .foregroundColor(.white)
+//                                                .padding(10)
+//                                        }
+//                                    }
+//                                    .frame(maxWidth: .infinity)
+//                                    .padding()
+//                                    .background(RoundedCorners(
+//                                        tl: 10,
+//                                        tr: 10,
+//                                        bl: 10,
+//                                        br: 10
+//                                    ).fill(Color(hex: "#F75555")))
                                     ChatHistoryCard(message: "\(chat.sessionID) - \(String(describing: chat.message))", date: Utilities.formatDate(chat.createdAt ?? Date()) )
                                 }
                             }
@@ -121,7 +104,7 @@ struct ChatHistoryView: View {
             })
         }
         .navigationDestination(isPresented: $moveToChatScreen, destination: {
-            ChatView()
+            ChatView(messagesArr: selectedMessages)
         })
     }
     

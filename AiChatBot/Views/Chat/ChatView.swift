@@ -39,6 +39,10 @@ struct ChatView: View {
     
     //MARK: - Initialization Methods -
     
+    init(messagesArr: [MessageWithImages] = []) {
+        _viewModel = StateObject(wrappedValue: ChatVM(with: "", messages: messagesArr))
+    }
+    
     var body: some View {
         VStack {
             if !viewModel.msgsArr.isEmpty {
