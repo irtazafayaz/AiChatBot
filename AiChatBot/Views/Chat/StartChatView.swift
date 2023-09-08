@@ -10,10 +10,10 @@ import SwiftUI
 struct StartChatView: View {
     
     @State var isChatScreenPresented = false
-    
+    @Environment(\.managedObjectContext) var moc
+
     var body: some View {
         VStack {
-            
             
             Image("ic_app_logo")
                 .padding(.top, 30)
@@ -54,7 +54,7 @@ struct StartChatView: View {
             .padding(.bottom, 50)
         }
         .navigationDestination(isPresented: $isChatScreenPresented, destination: {
-            ChatView(viewModel: ChatVM(with: "", updateSessionID: true, messages: []))
+            ChatView()
         })
     }
 }

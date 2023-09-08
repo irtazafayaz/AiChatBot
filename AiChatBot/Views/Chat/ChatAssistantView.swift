@@ -11,7 +11,8 @@ struct ChatAssistantView: View {
     
     @State private var selectedText: String = ""
     @State private var moveToChatScreen: Bool = false
-    
+    @Environment(\.managedObjectContext) var moc
+
     var body: some View {
         
         VStack {
@@ -202,7 +203,7 @@ struct ChatAssistantView: View {
             })
         }
         .navigationDestination(isPresented: $moveToChatScreen, destination: {
-            ChatView(viewModel: ChatVM(with: selectedText, updateSessionID: true))
+            ChatView()
         })
         
     }

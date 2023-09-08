@@ -53,9 +53,20 @@ struct MessageWithImages {
     let role: SenderRole
 }
 
-enum MessageContent {
+enum MessageContent: Equatable {
     case text(String)
     case image(Data)
+
+    static func == (lhs: MessageContent, rhs: MessageContent) -> Bool {
+        switch (lhs, rhs) {
+        case let (.text(leftText), .text(rightText)):
+            return leftText == rightText
+        case let (.image(leftImageData), .image(rightImageData)):
+            return leftImageData == rightImageData
+        default:
+            return false
+        }
+    }
 }
 
 struct ChatStreamCompletionResponse: Decodable {

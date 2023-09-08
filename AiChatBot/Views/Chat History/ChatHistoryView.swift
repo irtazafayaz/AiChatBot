@@ -20,7 +20,7 @@ struct ChatHistoryView: View {
     @Environment(\.managedObjectContext) var moc
     @State private var moveToChatScreen: Bool = false
     @State private var fromChatHistory: Bool = true
-    @State private var selectedMessages: [Message] = []
+    @State private var selectedMessages: [MessageWithImages] = []
     
     var groupedItems: [(Double, [ChatHistory])] {
         let groupedDictionary = Dictionary(grouping: chatHistory) { item in
@@ -43,9 +43,9 @@ struct ChatHistoryView: View {
         let chatArr = chatHistory.filter { $0.sessionID == group }
         if !chatArr.isEmpty {
             selectedMessages = chatArr.map {
-                Message(
+                MessageWithImages(
                     id: UUID().uuidString,
-                    content: $0.message ?? "NaN",
+                    content: ($0.message != nil) ? .text($0.message ?? "NaN") : .image($0.imageData!),
                     createdAt: $0.createdAt ?? Date(),
                     role: SenderRole(rawValue: $0.role ?? "NaN") ?? .paywall
                 )
@@ -121,7 +121,7 @@ struct ChatHistoryView: View {
             })
         }
         .navigationDestination(isPresented: $moveToChatScreen, destination: {
-            ChatView(viewModel: ChatVM(with: "", updateSessionID: true, messages: selectedMessages))
+            ChatView()
         })
     }
     

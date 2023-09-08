@@ -14,7 +14,7 @@ struct ChatView: View {
     //MARK: - Data Members -
     
     @EnvironmentObject var userViewModel: UserViewModel
-    @ObservedObject private var viewModel: ChatVM
+    @StateObject private var viewModel: ChatVM = ChatVM(with: "")
     @State private var isEditing: Bool = false
     @State var isPaywallPresented = false
     @State var isAdShown = false
@@ -26,9 +26,7 @@ struct ChatView: View {
     //MARK: Core Data
     @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
     @Environment(\.managedObjectContext) var moc
-    @State private var updateSessionID: Bool = true
-//    @Binding var fromChatHistory: Bool
-
+    
     //MARK: Export PDF
     @State private var renderedImage = Image(systemName: "photo")
     @Environment(\.displayScale) var displayScale
@@ -41,23 +39,10 @@ struct ChatView: View {
     
     //MARK: - Initialization Methods -
     
-    init(viewModel: ChatVM) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
         VStack {
-            if let image = selectedImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200) // Adjust the size as needed
-            } else {
-                Text("No image selected")
-            }
-
-            if !viewModel.messages.isEmpty {
-                chatListView
+            if !viewModel.msgsArr.isEmpty {
+                chatListWithImagesView
             } else {
                 chatNorStartedView
             }
@@ -76,6 +61,9 @@ struct ChatView: View {
         }
         .sheet(isPresented: self.$isImagePickerDisplay) {
             ImagePicker(selectedImage: self.$selectedImage, sourceType: self.sourceType, viewModel: viewModel)
+        }
+        .onAppear {
+            print("Helllo - \(viewModel.updateSessionID)")
         }
     }
     
@@ -160,6 +148,28 @@ struct ChatView: View {
         }
     }
     
+    var chatListWithImagesView: some View {
+        ScrollViewReader { proxy in
+            VStack(spacing: 0) {
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        ForEach(viewModel.msgsArr.filter({$0.role != .system}), id: \.id) { message in
+                            getMessageViewWithImage(message)
+                        }
+                    }
+                    .onTapGesture {
+                        isTextFieldFocused = false
+                    }
+                }
+                Divider()
+                bottomView(image: "profile", proxy: proxy)
+                Spacer()
+            }
+            .onChange(of: viewModel.msgsArr.filter({$0.role != .system}).last?.content) { _ in  scrollToBottom(proxy: proxy)
+            }
+        }
+    }
+    
     func bottomView(image: String, proxy: ScrollViewProxy?) -> some View {
         HStack(alignment: .top, spacing: 8) {
             TextField("Message...", text: $viewModel.currentInput, onEditingChanged: { editing in
@@ -205,17 +215,19 @@ struct ChatView: View {
                     if proxy != nil {
                         scrollToBottom(proxy: proxy!)
                     }
-                    addHistory(message: viewModel.currentInput, role: "user")
-                    viewModel.sendMessage { success in
-                        if success {
-                            addHistory(message: viewModel.messages.filter({$0.role != .system}).last?.content ?? "NaN", role: "assistant")
-                        }
+                    let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(self.viewModel.currentInput), createdAt: Date(), role: .user)
+                    addToCoreData(message: newMessage)
+                    viewModel.sendMessageApi { success in
+
+                        let newMessageServer = MessageWithImages(id: UUID().uuidString, content: .text("NaN"), createdAt: Date(), role: .assistant)
+                        viewModel.msgsArr.append(newMessageServer)
+                        addToCoreData(message: newMessageServer)
                     }
                 }
             } label: {
                 Circle()
-                    .fill(Color(hex: Colors.primary.rawValue)) // Change the background color as needed
-                    .frame(width: 50, height: 50) // Adjust the size as needed
+                    .fill(Color(hex: Colors.primary.rawValue))
+                    .frame(width: 50, height: 50)
                     .overlay(
                         Image("ic_send_btn_icon")
                             .resizable()
@@ -263,6 +275,55 @@ struct ChatView: View {
         .padding(.vertical, 10)
     }
     
+    func getMessageViewWithImage(_ message: MessageWithImages) -> some View {
+        HStack {
+            if message.role == .user {
+                Spacer()
+            }
+            HStack {
+                switch message.content {
+                case .text(let content):
+                    Text(content)
+                        .font(.custom(FontFamily.medium.rawValue, size: 18))
+                        .foregroundColor(message.role == .user ? .white : .black)
+                        .padding()
+                        .background(RoundedCorners(
+                            tl: message.role == .user ? 20 : 8,
+                            tr: 20,
+                            bl: 20,
+                            br: message.role == .user ? 8 : 20
+                        ).fill(message.role == .user ? Color(hex: Colors.primary.rawValue) : Color(hex: "#F5F5F5")))
+                    if message.role == .assistant {
+                        Button(action: {
+                            generatePDF()
+                        }, label: {
+                            Image("ic_copy")
+                        })
+                        .padding()
+                        .sheet(isPresented: $isShowingDocumentPicker) {
+                            DocumentPicker(isShowingPicker: $isShowingDocumentPicker, pdfData: createPDF(text: content))
+                        }
+                    }
+                case .image(let data):
+                    Image(uiImage: UIImage(data: data) ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
+                        .padding()
+                        .background(RoundedCorners(
+                            tl: message.role == .user ? 20 : 8,
+                            tr: 20,
+                            bl: 20,
+                            br: message.role == .user ? 8 : 20
+                        ).fill(message.role == .user ? Color(hex: Colors.primary.rawValue) : Color(hex: "#F5F5F5")))
+                }
+            }
+            if message.role == .assistant || message.role == .paywall {
+                Spacer()
+            }
+        }
+        .padding(.vertical, 10)
+    }
+    
     //MARK: - Render text to PDF -
     
     @MainActor func render(viewSize: CGSize) {
@@ -283,7 +344,7 @@ struct ChatView: View {
         ]
         let format = UIGraphicsPDFRendererFormat()
         format.documentInfo = pdfMetaData as [String: Any]
-        let pdfData = NSMutableData() // Create NSMutableData instance
+        let pdfData = NSMutableData()
         let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 300, height: 500), format: format)
         let pageInfo = PDFPageInfo(text: text)
         let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("temp.pdf")
@@ -313,13 +374,7 @@ struct ChatView: View {
             let url = URL(string: "https://yourserver.com/upload")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            
-            // Set appropriate headers if needed
-            // request.setValue("application/jpeg", forHTTPHeaderField: "Content-Type")
-            
-            // Attach image data to the request body
             request.httpBody = imageData
-            
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     print("Error: \(error)")
@@ -329,17 +384,16 @@ struct ChatView: View {
                     print("Response: \(responseString ?? "")")
                 }
             }
-            
             task.resume()
         }
     }
     
     func addHistory(message: String, role: String) {
-        if updateSessionID {
+        if viewModel.updateSessionID {
             if viewModel.messages.isEmpty {
                 UserDefaults.standard.sessionID += 1
             }
-            updateSessionID = false
+            viewModel.updateSessionID = false
         }
         let chat = ChatHistory(context: moc)
         chat.id = UUID()
@@ -350,19 +404,32 @@ struct ChatView: View {
         try? moc.save()
     }
     
+        func addToCoreData(message: MessageWithImages) {
+            if viewModel.updateSessionID {
+                if viewModel.msgsArr.isEmpty {
+                    UserDefaults.standard.sessionID += 1
+                }
+                viewModel.updateSessionID = false
+            }
+            let chat = ChatHistory(context: moc)
+            chat.id = UUID()
+            if case .text(let text) = message.content {
+                chat.message = text
+            } else if case .image(let imageData) = message.content {
+                chat.imageData = imageData
+            }
+            chat.role = message.role.rawValue
+            chat.createdAt = Date()
+            chat.sessionID = Double(UserDefaults.standard.sessionID)
+            try? moc.save()
+        }
+    
     func generatePDF() {
         isShowingDocumentPicker = true
     }
     
     
 }
-
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView(viewModel: ChatVM(with: "", updateSessionID: false))
-    }
-}
-
 
 struct RenderView: View {
     let text: String
