@@ -21,10 +21,19 @@ class BaseService: BaseActions {
     func loadAndDecode<D: Decodable>(
         url: URL,
         params: [String: String],
+        method: HTTPMethod = .post ,
         completion: @escaping (Result<D, ApiError>) -> ()) {
             
-            let headers: HTTPHeaders = ["Content-Type": "application/json"]
-            AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+            var headers: HTTPHeaders = ["Content-Type": "application/json"]
+            
+            if let refreshToken = params["refresh_token"] {
+                headers["Authorization"] = "Bearer \(refreshToken)"
+            }
+            var p = params
+            if method == .get {
+                p = [:]
+            }
+            AF.request(url, method: method, parameters: p, encoding: method == .get ? URLEncoding.default : JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseJSON { response in
                     switch response.result {
@@ -64,5 +73,22 @@ class BaseService: BaseActions {
         }
         self.loadAndDecode(url: url, params: params, completion: completion)
     }
+    
+    func login(from movieEndPoint: ApiServiceEndPoint, params: [String: String], completion: @escaping (Result<LoginResponse, ApiError>) -> ()) {
+        guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+            completion(.failure(.invalidEndPoint))
+            return
+        }
+        self.loadAndDecode(url: url, params: params, completion: completion)
+    }
+    
+    func logout(from movieEndPoint: ApiServiceEndPoint, refreshToken: String, completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
+        guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+            completion(.failure(.invalidEndPoint))
+            return
+        }
+        self.loadAndDecode(url: url, params: ["refresh_token": refreshToken], method: .get, completion: completion)
+    }
+
     
 }

@@ -10,9 +10,9 @@ import Foundation
 class RegisterUserVM: ObservableObject {
     
     //MARK: RegisterView
-    @Published var email: String = ""
-    @Published var password: String = ""
-    @Published var confirmPassword: String = ""
+    @Published var email: String = "a@a.com"
+    @Published var password: String = "12345678"
+    @Published var confirmPassword: String = "12345678"
     @Published var isPasswordVisible = false
     @Published var isConfirmPasswordVisible = false
     @Published var isAgreed = false
@@ -20,8 +20,8 @@ class RegisterUserVM: ObservableObject {
     
     //MARK: CompleteYourProfileView
     @Published var isLoading = false
-    @Published var fullName: String = ""
-    @Published var phoneNumber: String = ""
+    @Published var fullName: String = "dasd"
+    @Published var phoneNumber: String = "423424244"
     @Published var selectedGender = ""
     @Published var selectedDate = Date()
         

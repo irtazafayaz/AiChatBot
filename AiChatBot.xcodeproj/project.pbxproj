@@ -81,6 +81,7 @@
 		D55E44ED2AAB308F005B1C55 /* BaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E44EC2AAB308F005B1C55 /* BaseActions.swift */; };
 		D55E44EF2AAB30A3005B1C55 /* APIServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E44EE2AAB30A3005B1C55 /* APIServiceEndpoint.swift */; };
 		D55E44F12AAB322B005B1C55 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E44F02AAB322B005B1C55 /* ResponseModel.swift */; };
+		D55E44F32AAB70DD005B1C55 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E44F22AAB70DD005B1C55 /* ProfileVM.swift */; };
 		D5D350A72AA5161F00201EE9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D350A62AA5161F00201EE9 /* ImagePicker.swift */; };
 		D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */; };
 /* End PBXBuildFile section */
@@ -159,6 +160,7 @@
 		D55E44EC2AAB308F005B1C55 /* BaseActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseActions.swift; sourceTree = "<group>"; };
 		D55E44EE2AAB30A3005B1C55 /* APIServiceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceEndpoint.swift; sourceTree = "<group>"; };
 		D55E44F02AAB322B005B1C55 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		D55E44F22AAB70DD005B1C55 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		D5D350A62AA5161F00201EE9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAssistantView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -355,6 +357,7 @@
 				D55328B42A2F652000AE74C8 /* ChatVM.swift */,
 				D53A80362A844A90003C15D3 /* UserViewModel.swift */,
 				D5496E902AA613930057A9E3 /* DataController.swift */,
+				D55E44F22AAB70DD005B1C55 /* ProfileVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				D55328B12A2F62DA00AE74C8 /* ContentMessageView.swift in Sources */,
 				D530443B2A20A56500B30BCF /* LoginRegisterSelectionView.swift in Sources */,
 				D5496E912AA613930057A9E3 /* DataController.swift in Sources */,
+				D55E44F32AAB70DD005B1C55 /* ProfileVM.swift in Sources */,
 				D530447F2A27F00E00B30BCF /* RegisterUserVM.swift in Sources */,
 				D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */,
 				D53044412A20D5CE00B30BCF /* CompleteYourProfileView.swift in Sources */,

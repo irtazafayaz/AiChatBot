@@ -10,3 +10,15 @@ import Foundation
 struct RegisterResponse: Decodable {
     let message: String
 }
+
+struct LoginResponse: Decodable {
+    let refreshToken: String
+    let accessToken: String
+
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case refreshToken = "refresh_token"
+    }
+}
+
+

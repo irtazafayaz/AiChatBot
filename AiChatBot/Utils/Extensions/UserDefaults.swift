@@ -61,5 +61,14 @@ extension UserDefaults {
         }
     }
     
+    var refreshToken: String? {
+        get {
+            UserDefaults.standard.string(forKey: "refresh_token")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "refresh_token")
+        }
+    }
+    
     
 }

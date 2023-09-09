@@ -115,14 +115,6 @@ struct LoginView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top, 20)
                     
-                    DividerWithLabel(label: "or continue with")
-                        .padding(.top, 20)
-                    
-                    HStack(alignment: .center) {
-                        Image("ic_facebook")
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.top, 20)
                     
                 }
                 

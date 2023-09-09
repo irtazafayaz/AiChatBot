@@ -19,7 +19,7 @@ class Utilities {
     
     static let jsonDecoder: JSONDecoder = {
        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        jsonDecoder.keyDecodingStrategy = .useDefaultKeys
         jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
         return jsonDecoder
     }()

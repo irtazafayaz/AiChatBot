@@ -11,7 +11,8 @@ import Alamofire
 enum ApiServiceEndPoint: String, CaseIterable, Identifiable {
         
     case register = "signup"
-    case login
+    case login = ""
+    case logout = "logout"
     
     var id: String { rawValue }
     var description: String {
@@ -20,6 +21,8 @@ enum ApiServiceEndPoint: String, CaseIterable, Identifiable {
             return "Register User"
         case .login:
             return "Login User"
+        case .logout:
+            return "Logout User"
         }
     }
 }

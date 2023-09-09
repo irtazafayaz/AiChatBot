@@ -12,7 +12,13 @@ struct ProfileView: View {
     @State var isPaywallPresented = false
     @State private var showTerms = false
     @State private var showPrivacy = false
+    @ObservedObject private var viewModel: ProfileVM
+    @Environment(\.presentationMode) var presentationMode
 
+    init () {
+        self.viewModel = ProfileVM()
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -111,26 +117,28 @@ struct ProfileView: View {
                 .padding(.horizontal)
             }
             
-
-            
-            HStack(alignment: .center) {
-                Image("ic_logout")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 17, height: 20)
-                Text("Logout")
-                    .font(Font.custom(FontFamily.bold.rawValue, size: 18))
-                    .foregroundColor(Color(hex: "#F75555"))
-                    .padding(.leading, 10)
-                Spacer()
+            Button {
+                viewModel.logout { success in
+                    if success {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            } label: {
+                HStack(alignment: .center) {
+                    Image("ic_logout")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 17, height: 20)
+                    Text("Logout")
+                        .font(Font.custom(FontFamily.bold.rawValue, size: 18))
+                        .foregroundColor(Color(hex: "#F75555"))
+                        .padding(.leading, 10)
+                    Spacer()
+                }
+                .padding(.top, 10)
+                .padding(.horizontal)
             }
-            .padding(.top, 10)
-            .padding(.horizontal)
-            
             Spacer()
-            
-            
-            
         }
         .padding()
         .navigationDestination(isPresented: $isPaywallPresented, destination: {
