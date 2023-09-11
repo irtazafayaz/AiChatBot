@@ -15,6 +15,7 @@ class LoginVM: ObservableObject {
     @Published var isPasswordVisible = false
     @Published var isAgreed = false
     @Published var loginActionSuccess: Bool = false
+    @Published var showPopUp: Bool = false
     
     private let service = BaseService.shared
     
@@ -26,19 +27,22 @@ class LoginVM: ObservableObject {
     }
     
     func login() {
+        showPopUp.toggle()
         service.login(from: .login, params: createParams()) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let response):
                 print("API RESPONSE \(response)")
+                showPopUp.toggle()
                 UserDefaults.standard.refreshToken = response.refreshToken
                 self.loginActionSuccess = true
             case .failure(let error):
                 print("API ERROR \(error)")
+                showPopUp.toggle()
             }
         }
     }
     
     
-
+    
 }

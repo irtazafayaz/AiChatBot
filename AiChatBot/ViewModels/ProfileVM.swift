@@ -11,19 +11,23 @@ class ProfileVM: ObservableObject {
     
     private let service = BaseService.shared
     @Published var logoutActionSuccess: Bool = false
+    @Published var showPopUp: Bool = false
 
     func logout(completion: @escaping (Bool) -> Void) {
         guard let refreshToken = UserDefaults.standard.refreshToken else { return }
+        showPopUp.toggle()
         service.logout(from: .logout, refreshToken: refreshToken) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let response):
                 print("API RESPONSE \(response)")
+                showPopUp.toggle()
                 UserDefaults.standard.refreshToken = ""
                 self.logoutActionSuccess = true
                 completion(true)
             case .failure(let error):
                 print("API ERROR \(error)")
+                showPopUp.toggle()
                 completion(false)
             }
         }

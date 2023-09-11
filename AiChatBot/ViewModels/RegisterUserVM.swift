@@ -24,7 +24,8 @@ class RegisterUserVM: ObservableObject {
     @Published var phoneNumber: String = "423424244"
     @Published var selectedGender = ""
     @Published var selectedDate = Date()
-        
+    @Published var showPopUp: Bool = false
+
     let genders = ["Male", "Female", "Other"]
     
     private let service = BaseService.shared
@@ -41,14 +42,17 @@ class RegisterUserVM: ObservableObject {
     
     
     func registerUser() {
+        showPopUp.toggle()
         service.registerUser(from: .register, params: createParams()) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let response):
                 print("API RESPONSE \(response)")
+                showPopUp.toggle()
                 self.registerActionSuccess = true
             case .failure(let error):
                 print("API ERROR \(error)")
+                showPopUp.toggle()
             }
         }
     }

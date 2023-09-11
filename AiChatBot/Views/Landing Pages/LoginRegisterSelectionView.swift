@@ -52,16 +52,6 @@ struct LoginRegisterSelectionView: View {
                 .frame(maxWidth: .infinity)
             }
             
-            DividerWithLabel(label: "or continue with")
-                .padding(.top, 20)
-            
-            
-            HStack(alignment: .center) {
-                Image("ic_facebook")
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 20)
-            
         }
         .navigationBarBackButtonHidden(true)
         .padding()

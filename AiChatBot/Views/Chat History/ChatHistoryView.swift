@@ -12,7 +12,7 @@ struct ChatHistoryView: View {
     @FetchRequest(
         entity: ChatHistory.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: false)
+            NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: true)
         ]
     ) var chatHistory: FetchedResults<ChatHistory>
     
@@ -30,11 +30,12 @@ struct ChatHistoryView: View {
     
     var uniqueGroups: [Double] {
         let groupSet = Set(chatHistory.compactMap { $0.sessionID })
-        return Array(groupSet)
+        let sortedChatHistory = groupSet.sorted { $0 > $1 }
+        return Array(sortedChatHistory)
     }
     
     func representativeItem(forGroup group: Double) -> ChatHistory? {
-        return chatHistory.first { $0.sessionID == group }
+        return chatHistory.last { $0.sessionID == group }
     }
     
     func convertDataToMessagesArray(forGroup group: Double) {
