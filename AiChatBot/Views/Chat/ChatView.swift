@@ -37,6 +37,8 @@ struct ChatView: View {
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
     
+    @ObservedObject var webSocket = WebSocket()
+    
     //MARK: - Initialization Methods -
     
     init(messagesArr: [MessageWithImages] = []) {
