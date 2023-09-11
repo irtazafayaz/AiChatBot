@@ -12,8 +12,7 @@ struct ChatHistoryView: View {
     @FetchRequest(
         entity: ChatHistory.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \ChatHistory.sessionID, ascending: true),
-            NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: true)
+            NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: false)
         ]
     ) var chatHistory: FetchedResults<ChatHistory>
     
@@ -64,25 +63,7 @@ struct ChatHistoryView: View {
                                 moveToChatScreen.toggle()
                             } label: {
                                 ZStack {
-//                                    HStack {
-//                                        Spacer()
-//                                        Button {
-//                                            delete(at: IndexSet(integer: chatHistory.firstIndex(of: chat)!))
-//                                        } label: {
-//                                            Image("ic_delete")
-//                                                .foregroundColor(.white)
-//                                                .padding(10)
-//                                        }
-//                                    }
-//                                    .frame(maxWidth: .infinity)
-//                                    .padding()
-//                                    .background(RoundedCorners(
-//                                        tl: 10,
-//                                        tr: 10,
-//                                        bl: 10,
-//                                        br: 10
-//                                    ).fill(Color(hex: "#F75555")))
-                                    ChatHistoryCard(message: "\(chat.sessionID) - \(String(describing: chat.message))", date: Utilities.formatDate(chat.createdAt ?? Date()) )
+                                    ChatHistoryCard(message: "\(chat.sessionID) - \(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
                                 }
                             }
                         }

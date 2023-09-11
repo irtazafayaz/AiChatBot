@@ -222,7 +222,7 @@ struct ChatView: View {
                     let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(self.viewModel.currentInput), createdAt: Date(), role: .user)
                     addToCoreData(message: newMessage)
                     viewModel.sendMessageApi { success in
-
+                        
                         let newMessageServer = MessageWithImages(id: UUID().uuidString, content: .text("NaN"), createdAt: Date(), role: .assistant)
                         viewModel.msgsArr.append(newMessageServer)
                         addToCoreData(message: newMessageServer)
@@ -408,25 +408,25 @@ struct ChatView: View {
         try? moc.save()
     }
     
-        func addToCoreData(message: MessageWithImages) {
-            if viewModel.updateSessionID {
-                if viewModel.msgsArr.isEmpty {
-                    UserDefaults.standard.sessionID += 1
-                }
-                viewModel.updateSessionID = false
+    func addToCoreData(message: MessageWithImages) {
+        if viewModel.updateSessionID {
+            if viewModel.msgsArr.isEmpty {
+                UserDefaults.standard.sessionID += 1
             }
-            let chat = ChatHistory(context: moc)
-            chat.id = UUID()
-            if case .text(let text) = message.content {
-                chat.message = text
-            } else if case .image(let imageData) = message.content {
-                chat.imageData = imageData
-            }
-            chat.role = message.role.rawValue
-            chat.createdAt = Date()
-            chat.sessionID = Double(UserDefaults.standard.sessionID)
-            try? moc.save()
+            viewModel.updateSessionID = false
         }
+        let chat = ChatHistory(context: moc)
+        chat.id = UUID()
+        if case .text(let text) = message.content {
+            chat.message = text
+        } else if case .image(let imageData) = message.content {
+            chat.imageData = imageData
+        }
+        chat.role = message.role.rawValue
+        chat.createdAt = Date()
+        chat.sessionID = Double(UserDefaults.standard.sessionID)
+        try? moc.save()
+    }
     
     func generatePDF() {
         isShowingDocumentPicker = true

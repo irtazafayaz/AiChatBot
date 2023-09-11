@@ -21,7 +21,9 @@ class ChatVM: ObservableObject {
     
     @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
     private let openAIService = OpenAIService()
-
+    
+    private let service = BaseService.shared
+    
     init(with text: String, messages: [MessageWithImages] = []) {
         currentInput = text
         self.msgsArr = messages
@@ -36,7 +38,7 @@ class ChatVM: ObservableObject {
             }
         }
     }
-
+    
     
     func sendMessage(completion: @escaping (Bool) -> Void) {
         if currentInput.isEmpty {
@@ -88,7 +90,7 @@ class ChatVM: ObservableObject {
             return streamResponse
         }
     }
-
+    
     func getMessageObject() {
         if updateSessionID {
             if msgsArr.isEmpty {
@@ -97,7 +99,20 @@ class ChatVM: ObservableObject {
             updateSessionID = false
         }
     }
-
-
+    
+    func sendImage(image: UIImage, completion: @escaping (MessageWithImages?) -> Void) {
+        service.ocrWithImage(from: .ocr, image: image, completion: { [weak self] response in
+            print(response)
+            guard let self = self else { return }
+            switch response {
+            case .success(let response):
+                completion(MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant))
+            case .failure(let error):
+                print("GPT ERROR \(error)")
+                completion(nil)
+            }
+        })
+    }
+    
     
 }

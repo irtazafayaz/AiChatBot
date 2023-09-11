@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol BaseActions {
     
@@ -25,6 +26,12 @@ protocol BaseActions {
         from movieEndPoint: ApiServiceEndPoint,
         refreshToken: String,
         completion: @escaping (Result<RegisterResponse, ApiError>) -> ()
+    )
+    
+    func ocrWithImage(
+        from movieEndPoint: ApiServiceEndPoint,
+        image: UIImage,
+        completion: @escaping (Result<OCRResponse, ApiError>) -> ()
     )
     
 }

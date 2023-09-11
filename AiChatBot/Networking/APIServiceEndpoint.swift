@@ -13,6 +13,7 @@ enum ApiServiceEndPoint: String, CaseIterable, Identifiable {
     case register = "signup"
     case login = ""
     case logout = "logout"
+    case ocr = "ocr"
     
     var id: String { rawValue }
     var description: String {
@@ -23,6 +24,8 @@ enum ApiServiceEndPoint: String, CaseIterable, Identifiable {
             return "Login User"
         case .logout:
             return "Logout User"
+        case .ocr:
+            return "Image"
         }
     }
 }

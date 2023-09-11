@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
+import UIKit
 
 class BaseService: BaseActions {
     
@@ -25,7 +26,6 @@ class BaseService: BaseActions {
         completion: @escaping (Result<D, ApiError>) -> ()) {
             
             var headers: HTTPHeaders = ["Content-Type": "application/json"]
-            
             if let refreshToken = params["refresh_token"] {
                 headers["Authorization"] = "Bearer \(refreshToken)"
             }
@@ -35,17 +35,10 @@ class BaseService: BaseActions {
             }
             AF.request(url, method: method, parameters: p, encoding: method == .get ? URLEncoding.default : JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
-                .responseJSON { response in
+                .responseDecodable(of: D.self) { response in
                     switch response.result {
                     case .success(let value):
-                        do {
-                            let jsonData = try JSONSerialization.data(withJSONObject: value)
-                            let decodedResponse = try Utilities.jsonDecoder.decode(D.self, from: jsonData)
-                            completion(.success(decodedResponse))
-                        } catch {
-                            print("Error while decoding: \(error)")
-                            completion(.failure(.serializationError))
-                        }
+                        completion(.success(value))
                     case .failure(let error):
                         print("Request failed with error: \(error)")
                         if let data = response.data {
@@ -54,7 +47,6 @@ class BaseService: BaseActions {
                         completion(.failure(.apiError))
                     }
                 }
-            
         }
     
     
@@ -89,6 +81,33 @@ class BaseService: BaseActions {
         }
         self.loadAndDecode(url: url, params: ["refresh_token": refreshToken], method: .get, completion: completion)
     }
-
+    
+    func ocrWithImage(from movieEndPoint: ApiServiceEndPoint, image: UIImage, completion: @escaping (Result<OCRResponse, ApiError>) -> ()) {
+        if let imageData = image.jpegData(compressionQuality: 1.0) {
+            let url = URL(string: "http://127.0.0.1:5000/ocr")!
+            let headers: HTTPHeaders = [
+                "Content-Type": "multipart/form-data"
+            ]
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(imageData, withName: "image", fileName: "image.jpg", mimeType: "image/jpeg")
+            }, to: url, method: .post, headers: headers)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let ocrResponse = try JSONDecoder().decode(OCRResponse.self, from: data)
+                        completion(.success(ocrResponse))
+                    } catch {
+                        completion(.failure(.serializationError))
+                    }
+                case .failure(_):
+                    completion(.failure(.apiError))
+                }
+            }
+        }
+    }
+    
+    
+    
     
 }

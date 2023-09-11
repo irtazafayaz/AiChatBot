@@ -58,7 +58,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         } else if case .image(let imageData) = message.content {
             chat.imageData = imageData
         }
-        chat.role = "user"
+        chat.role = message.role.rawValue
         chat.createdAt = Date()
         chat.sessionID = Double(UserDefaults.standard.sessionID)
         try? self.picker.moc.save()
@@ -67,20 +67,19 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     func addImage(selectedImage: UIImage) {
         DispatchQueue.main.async {
             if let imageData = selectedImage.pngData() {
-                // Now 'imageData' contains the image data in PNG format
-                // You can add it to your 'messages' or perform any other operations
                 print("Image converted to data successfully.")
-                
-                // For example, if 'messages' is an array of Message objects:
                 let newImageMessage = MessageWithImages(id: UUID().uuidString, content: .image(imageData), createdAt: Date(), role: .user)
-//                self.msgsArr.append(newImageMessage)
                 self.addToCoreData(message: newImageMessage)
-//                // Perform the append operation on the main thread
+                self.picker.viewModel.sendImage(image: selectedImage) { msg in
+                    if let message = msg {
+                        self.addToCoreData(message: message)
+                        self.picker.viewModel.msgsArr.append(message)
+                    }
+                }
                 DispatchQueue.main.async {
                     self.picker.viewModel.msgsArr.append(newImageMessage)
                 }
             } else {
-                // Handle the case where the image couldn't be converted to data
                 print("Failed to convert image to data.")
             }
         }
