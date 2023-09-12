@@ -39,6 +39,21 @@ class ChatVM: ObservableObject {
         }
     }
     
+//    func sendMessageGpt(completion: @escaping (MessageWithImages?) -> Void) {
+//        
+//        service.askGPT(from: .gptText, history: msgsArr) { [weak self] response in
+//            guard let self = self else { return }
+//            switch response {
+//            case .success(let response):
+//                completion(MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant))
+//            case .failure(let error):
+//                print("GPT ERROR \(error)")
+//                completion(nil)
+//            }
+//        }
+//        
+//    }
+    
     
     func sendMessage(completion: @escaping (Bool) -> Void) {
         if currentInput.isEmpty {
@@ -113,6 +128,54 @@ class ChatVM: ObservableObject {
             }
         })
     }
+    
+    
+    func sendMessageUsingFirebase() {
+        if currentInput.isEmpty {
+            return
+        }
+        
+        currentInput = ""
+        
+        var filteredMsgs = mapToMessages(msgsArr)
+        let messagesDescription = filteredMsgs.map { message in
+            return message.description
+        }
+        let data = ["messages": messagesDescription]
+        
+        service.askGPT(from: .gptText, history: data) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let response):
+                print("")
+            case .failure(let error):
+                print("GPT ERROR \(error)")
+            }
+        }
+    }
+    
+    
+    func mapToMessages(_ messagesWithImages: [MessageWithImages]) -> [MessageData] {
+        return messagesWithImages.map { messageWithImages in
+            // Extract properties and create a Message instance
+            switch messageWithImages.content {
+            case .text(let textContent):
+                return MessageData(
+                    id: messageWithImages.id,
+                    role: messageWithImages.role,
+                    content: textContent
+                )
+            case .image:
+                // Handle image content if needed
+                return MessageData(
+                    id: messageWithImages.id,
+                    role: messageWithImages.role,
+                    content: "Image Content"
+                )
+            }
+        }
+    }
+    
     
     
 }

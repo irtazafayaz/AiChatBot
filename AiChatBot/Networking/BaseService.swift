@@ -21,7 +21,7 @@ class BaseService: BaseActions {
     
     func loadAndDecode<D: Decodable>(
         url: URL,
-        params: [String: String],
+        params: [String: Any],
         method: HTTPMethod = .post ,
         completion: @escaping (Result<D, ApiError>) -> ()) {
             
@@ -107,6 +107,37 @@ class BaseService: BaseActions {
         }
     }
     
+    func askGPT(from movieEndPoint: ApiServiceEndPoint, history: [String : [[String : Any]]], completion: @escaping (Result<GPTTextResponse, ApiError>) -> ()) {
+        guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+            completion(.failure(.invalidEndPoint))
+            return
+        }
+        self.loadAndDecode(url: url, params: history, completion: completion)
+    }
+    
+    func mapToMessages(_ messagesWithImages: [MessageWithImages]) -> [Message] {
+        return messagesWithImages.map { messageWithImages in
+            // Extract properties and create a Message instance
+            switch messageWithImages.content {
+            case .text(let textContent):
+                return Message(
+                    id: messageWithImages.id,
+                    content: textContent, // Extract the text content
+                    createdAt: messageWithImages.createdAt,
+                    role: messageWithImages.role
+                )
+            case .image:
+                // Handle image content if needed
+                return Message(
+                    id: messageWithImages.id,
+                    content: "Image Content", // Example placeholder for image content
+                    createdAt: messageWithImages.createdAt,
+                    role: messageWithImages.role
+                )
+            }
+        }
+    }
+
     
     
     

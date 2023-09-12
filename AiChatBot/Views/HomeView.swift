@@ -88,9 +88,12 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading, content: {
                     Image("ic_app_logo_small")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
                 })
                 ToolbarItem(placement: .principal, content: {
-                    Text("Chatty AI")
+                    Text("School AI")
                         .font(Font.custom(FontFamily.bold.rawValue, size: 24))
                         .foregroundColor(Color(hex: Colors.labelDark.rawValue))
                 })

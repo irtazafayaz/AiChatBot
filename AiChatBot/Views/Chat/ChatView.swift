@@ -223,12 +223,9 @@ struct ChatView: View {
                     }
                     let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(self.viewModel.currentInput), createdAt: Date(), role: .user)
                     addToCoreData(message: newMessage)
-                    viewModel.sendMessageApi { success in
-                        
-                        let newMessageServer = MessageWithImages(id: UUID().uuidString, content: .text("NaN"), createdAt: Date(), role: .assistant)
-                        viewModel.msgsArr.append(newMessageServer)
-                        addToCoreData(message: newMessageServer)
-                    }
+                    viewModel.msgsArr.append(newMessage)
+                    
+                    viewModel.sendMessageUsingFirebase()
                 }
             } label: {
                 Circle()

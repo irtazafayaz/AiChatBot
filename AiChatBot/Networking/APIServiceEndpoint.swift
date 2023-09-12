@@ -14,6 +14,7 @@ enum ApiServiceEndPoint: String, CaseIterable, Identifiable {
     case login = ""
     case logout = "logout"
     case ocr = "ocr"
+    case gptText = "chatgpt-text"
     
     var id: String { rawValue }
     var description: String {
@@ -26,6 +27,8 @@ enum ApiServiceEndPoint: String, CaseIterable, Identifiable {
             return "Logout User"
         case .ocr:
             return "Image"
+        case .gptText:
+            return "GPT text"
         }
     }
 }

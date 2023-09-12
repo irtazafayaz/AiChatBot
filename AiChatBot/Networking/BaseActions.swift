@@ -34,4 +34,10 @@ protocol BaseActions {
         completion: @escaping (Result<OCRResponse, ApiError>) -> ()
     )
     
+    func askGPT(
+        from movieEndPoint: ApiServiceEndPoint,
+        history: [String : [[String : Any]]],
+        completion: @escaping (Result<GPTTextResponse, ApiError>) -> ()
+    )
+    
 }

@@ -129,7 +129,13 @@ struct CompleteYourProfileView: View {
             PopupView(show: $viewModel.showPopUp)
 
         }
-        
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.alertTitle),
+                message: Text(viewModel.alertMsg),
+                dismissButton: .default(Text("OK"))
+            )
+        }
         
     }
 }

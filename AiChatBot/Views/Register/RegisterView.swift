@@ -10,7 +10,6 @@ import SwiftUI
 struct RegisterView: View {
     
     @ObservedObject private var viewModel: RegisterUserVM
-    @State private var isCompleteProfileOpen: Bool = false
     
     init(viewModel: RegisterUserVM) {
         self.viewModel = viewModel
@@ -97,13 +96,11 @@ struct RegisterView: View {
                         Image(viewModel.isAgreed ? "ic_checkbox_filled" : "ic_checkbox")
                             .foregroundColor(viewModel.isAgreed ? .green : .gray)
                     }
-                    Text("I agree to ChattyAI Public Agreement, Terms, & Privacy Policy.")
+                    Text("I agree to School AI Public Agreement, Terms, & Privacy Policy.")
                         .font(.system(size: 14))
                         .foregroundColor(.black)
                         .lineLimit(3)
                         .onTapGesture {
-                            // Open the link here
-                            //openLink()
                         }
                 }
                 .padding(.top, 10)
@@ -126,7 +123,7 @@ struct RegisterView: View {
                 
             }
             Button(action: {
-                isCompleteProfileOpen.toggle()
+                viewModel.moveToCompleteProfile()
             }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
@@ -150,9 +147,16 @@ struct RegisterView: View {
         .padding(.top)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
-        .navigationDestination(isPresented: $isCompleteProfileOpen, destination: {
+        .navigationDestination(isPresented: $viewModel.isCompleteProfileOpen, destination: {
             CompleteYourProfileView(viewModel: viewModel)
         })
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.alertTitle),
+                message: Text(viewModel.alertMsg),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
 

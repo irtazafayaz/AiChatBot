@@ -39,6 +39,27 @@ struct OpenAIChatChoice: Decodable {
     let message: OpenAIChatMessage
 }
 
+struct MessageData: Codable {
+    let id: String
+    let role: SenderRole
+    let content: String
+    
+    var description: [String: Any] {
+        let dictionary: [String: Any] = [
+            "role": role.rawValue,
+            "content": content
+        ]
+        return dictionary
+    }
+}
+
+enum Role: String, Codable {
+    case system
+    case user
+    case assistant
+    case paywall
+}
+
 struct Message: Decodable {
     let id: String
     let content: String

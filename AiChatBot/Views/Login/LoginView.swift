@@ -10,7 +10,8 @@ import SwiftUI
 struct LoginView: View {
     
     @ObservedObject private var viewModel: LoginVM
-    
+    @State private var isEmailValid: Bool = true
+
     init(viewModel: LoginVM) {
         self.viewModel = viewModel
     }
@@ -115,7 +116,7 @@ struct LoginView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 20)
- 
+                        
                     }
                     
                     Button(action: {
@@ -148,7 +149,14 @@ struct LoginView: View {
             }
             PopupView(show: $viewModel.showPopUp)
         }
-
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.alertTitle),
+                message: Text(viewModel.alertMsg),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        
     }
     
 }

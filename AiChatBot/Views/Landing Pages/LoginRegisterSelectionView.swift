@@ -11,13 +11,17 @@ struct LoginRegisterSelectionView: View {
     var body: some View {
         VStack {
             Image(AppImages.logo.rawValue)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
             
             VStack {
                 Text("Welcome to")
                     .font(Font.custom(FontFamily.bold.rawValue, size: 40))
                     .foregroundColor(Color(hex: Colors.labelDark.rawValue))
+                    .padding(.top, 20)
                 
-                Text("ChattyAI 👋")
+                Text("School AI 👋")
                     .font(Font.custom(FontFamily.bold.rawValue, size: 40))
                     .foregroundColor(Color(hex: Colors.primary.rawValue))
             }
