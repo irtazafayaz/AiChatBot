@@ -21,9 +21,9 @@ struct DividerWithLabel: View {
     init(
         label: String,
         padding: CGFloat = 0,
-        dividerColor: Color = Color(hex: "#EEEEEE"),
+        dividerColor: Color = Color(hex: Colors.divider.rawValue),
         labelColor: Color = Color(hex: "#616161"),
-        fontName: String = "Urbanist-Medium",
+        fontName: String = FontFamily.medium.rawValue,
         fontSize: CGFloat = 18
     ) {
         self.label = label

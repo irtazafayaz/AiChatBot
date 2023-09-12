@@ -16,7 +16,7 @@ struct UnderlinedTextField: ViewModifier {
             .overlay(
                 RoundedRectangle(cornerRadius: 1)
                     .frame(height: 1)
-                    .foregroundColor(Color(hex: "#17CE92"))
+                    .foregroundColor(Color(hex: Colors.primary.rawValue))
                     .padding(.top, 20)
             )
     }

@@ -19,11 +19,11 @@ struct ResetPasswordView: View {
     var body: some View {
         VStack (alignment: .leading) {
             Text("Reset your password 🔑")
-                .font(Font.custom("Urbanist-Bold", size: 32))
+                .font(Font.custom(FontFamily.bold.rawValue, size: 32))
                 .frame(alignment: .leading)
             
             Text("Please enter your email and we will send an OTP code in the next step to reset your password.")
-                .font(Font.custom("Urbanist-Regular", size: 18))
+                .font(Font.custom(FontFamily.regular.rawValue, size: 18))
                 .multilineTextAlignment(.leading)
                 .padding(.top, 10)
                 .lineLimit(3)
@@ -49,7 +49,7 @@ struct ResetPasswordView: View {
             }, label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
-                        .foregroundColor(Color(hex: "#17CE92"))
+                        .foregroundColor(Color(hex: Colors.primary.rawValue))
                         .shadow(color: Color.green.opacity(0.25), radius: 24, x: 4, y: 8)
                         .frame(height: 65)
                         .padding()

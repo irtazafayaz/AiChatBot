@@ -1,0 +1,24 @@
+{
+  "images" : [
+    {
+      "filename" : "Send.png",
+      "idiom" : "universal"
+    },
+    {
+      "filename" : "Auto Layout Horizontal-2.png",
+      "idiom" : "universal",
+      "scale" : "2x",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Auto Layout Horizontal-3.png",
+      "idiom" : "universal",
+      "scale" : "3x",
+      "unassigned" : true
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

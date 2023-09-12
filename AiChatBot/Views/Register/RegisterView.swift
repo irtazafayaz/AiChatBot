@@ -10,6 +10,7 @@ import SwiftUI
 struct RegisterView: View {
     
     @ObservedObject private var viewModel: RegisterUserVM
+    @State private var isCompleteProfileOpen: Bool = false
     
     init(viewModel: RegisterUserVM) {
         self.viewModel = viewModel
@@ -19,13 +20,13 @@ struct RegisterView: View {
         VStack(alignment: .leading) {
             
             Text("Hello There 👋")
-                .font(Font.custom("Urbanist-Bold", size: 32))
+                .font(Font.custom(FontFamily.bold.rawValue, size: 32))
                 .frame(alignment: .leading)
             
             ScrollView {
                 
                 Text("Please enter your email & password to create an account.")
-                    .font(Font.custom("Urbanist-Regular", size: 18))
+                    .font(Font.custom(FontFamily.regular.rawValue, size: 18))
                     .multilineTextAlignment(.leading)
                     .padding(.top, 10)
                     .lineLimit(2)
@@ -58,7 +59,29 @@ struct RegisterView: View {
                             viewModel.isPasswordVisible.toggle()
                         }) {
                             Image(systemName: viewModel.isPasswordVisible ? "eye.fill" : "eye.slash.fill")
-                                .foregroundColor(Color(hex: "#17CE92"))
+                                .foregroundColor(Color(hex: Colors.primary.rawValue))
+                        }
+                    }
+                    .padding(.bottom, 20)
+                    .underlinedTextFieldStyle()
+                }
+                .padding(.top, 10)
+                
+                // MARK: Confirm Password Text Field
+                VStack(alignment: .leading) {
+                    Text("Confirm Password")
+                        .font(.headline)
+                    HStack {
+                        if viewModel.isConfirmPasswordVisible {
+                            TextField("Password", text: $viewModel.confirmPassword)
+                        } else {
+                            SecureField("Password", text: $viewModel.confirmPassword)
+                        }
+                        Button(action: {
+                            viewModel.isConfirmPasswordVisible.toggle()
+                        }) {
+                            Image(systemName: viewModel.isConfirmPasswordVisible ? "eye.fill" : "eye.slash.fill")
+                                .foregroundColor(Color(hex: Colors.primary.rawValue))
                         }
                     }
                     .padding(.bottom, 20)
@@ -91,32 +114,23 @@ struct RegisterView: View {
                 NavigationLink(destination: LoginView(viewModel: LoginVM())) {
                     HStack(alignment: .center) {
                         Text("Already Have an account?")
-                            .font(Font.custom("Urbanist-Medium", fixedSize: 16))
-                            .foregroundColor(Color(hex: "#212121"))
+                            .font(Font.custom(FontFamily.medium.rawValue, fixedSize: 16))
+                            .foregroundColor(Color(hex: Colors.labelDark.rawValue))
                         Text("Login")
-                            .font(Font.custom("Urbanist-Bold", fixedSize: 16))
-                            .foregroundColor(Color(hex: "#17CE92"))
+                            .font(Font.custom(FontFamily.bold.rawValue, fixedSize: 16))
+                            .foregroundColor(Color(hex: Colors.primary.rawValue))
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top, 20)
                 }
                 
-                DividerWithLabel(label: "or continue with")
-                    .padding(.top, 20)
-                
-                
-                HStack(alignment: .center) {
-                    Image("ic_facebook")
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.top, 10)
-                
-                
             }
-            NavigationLink(destination: CompleteYourProfileView(viewModel: viewModel)) {
+            Button(action: {
+                isCompleteProfileOpen.toggle()
+            }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)
-                        .foregroundColor(Color(hex: "#17CE92"))
+                        .foregroundColor(Color(hex: Colors.primary.rawValue))
                         .shadow(color: Color.green.opacity(0.25), radius: 24, x: 4, y: 8)
                         .frame(height: 65)
                         .padding()
@@ -136,6 +150,9 @@ struct RegisterView: View {
         .padding(.top)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
+        .navigationDestination(isPresented: $isCompleteProfileOpen, destination: {
+            CompleteYourProfileView(viewModel: viewModel)
+        })
     }
 }
 

@@ -10,16 +10,39 @@ import SwiftUI
 
 class LoginVM: ObservableObject {
     
-    @Published var email: String = ""
-    @Published var password: String = ""
+    @Published var email: String = "irtaza@gmail.com"
+    @Published var password: String = "12345678"
     @Published var isPasswordVisible = false
     @Published var isAgreed = false
     @Published var loginActionSuccess: Bool = false
+    @Published var showPopUp: Bool = false
+    
+    private let service = BaseService.shared
+    
+    func createParams() -> [String: String] {
+        var params = [String: String]()
+        params["email"] = email.lowercased()
+        params["password"] = password
+        return params
+    }
     
     func login() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) {
-            self.loginActionSuccess = true
+        showPopUp.toggle()
+        service.login(from: .login, params: createParams()) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let response):
+                print("API RESPONSE \(response)")
+                showPopUp.toggle()
+                UserDefaults.standard.refreshToken = response.refreshToken
+                self.loginActionSuccess = true
+            case .failure(let error):
+                print("API ERROR \(error)")
+                showPopUp.toggle()
+            }
         }
     }
-
+    
+    
+    
 }

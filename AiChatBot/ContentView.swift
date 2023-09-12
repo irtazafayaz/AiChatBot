@@ -6,15 +6,11 @@
 //
 
 import SwiftUI
+import PDFKit
+import UIKit
 
 struct ContentView: View {
     var body: some View {
         LoginIntroView()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

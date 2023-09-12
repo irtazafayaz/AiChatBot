@@ -15,7 +15,7 @@ struct LoginIntroView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Image("ic_loginintro")
+                Image(AppImages.loginIntro.rawValue)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 400)
@@ -31,12 +31,12 @@ struct LoginIntroView: View {
                     )
                 
                 Text("The best AI Chatbot app in this century")
-                    .font(Font.custom("Urbanist-Bold", size: 32))
+                    .font(Font.custom(FontFamily.bold.rawValue, size: 32))
                     .multilineTextAlignment(.center)
                     .padding()
                 
                 Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...")
-                    .font(Font.custom("Urbanist-Regular", size: 18))
+                    .font(Font.custom(FontFamily.regular.rawValue, size: 18))
                     .multilineTextAlignment(.center)
                     .padding()
                 
@@ -45,7 +45,7 @@ struct LoginIntroView: View {
                 NavigationLink(destination: LoginRegisterSelectionView()) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 100)
-                            .foregroundColor(Color(hex: "#17CE92"))
+                            .foregroundColor(Color(hex: Colors.primary.rawValue))
                             .shadow(color: Color.green.opacity(0.25), radius: 24, x: 4, y: 8)
                             .frame(height: 65)
                             .padding()
