@@ -45,6 +45,7 @@ class LoginVM: ObservableObject {
                     print("API RESPONSE \(response)")
                     showPopUp.toggle()
                     UserDefaults.standard.refreshToken = response.refreshToken
+                    UserDefaults.standard.rememberMe = isAgreed
                     self.loginActionSuccess = true
                 case .failure(let error):
                     print("API ERROR \(error)")

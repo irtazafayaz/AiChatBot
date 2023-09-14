@@ -18,7 +18,6 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            NavigationStack {
                 VStack(alignment: .leading) {
                     
                     Text("Welcome back 👋")
@@ -146,7 +145,7 @@ struct LoginView: View {
                 .navigationDestination(isPresented: $viewModel.loginActionSuccess, destination: {
                     HomeView(viewModel: HomeVM())
                 })
-            }
+            
             PopupView(show: $viewModel.showPopUp)
         }
         .alert(isPresented: $viewModel.showAlert) {

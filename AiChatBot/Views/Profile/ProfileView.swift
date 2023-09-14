@@ -123,6 +123,7 @@ struct ProfileView: View {
                     viewModel.logout { success in
                         if success {
                             presentationMode.wrappedValue.dismiss()
+                            viewModel.goToLogin.toggle()
                         }
                     }
                 } label: {
@@ -145,6 +146,9 @@ struct ProfileView: View {
             .padding()
             .navigationDestination(isPresented: $isPaywallPresented, destination: {
                 PaywallView(isPaywallPresented: $isPaywallPresented)
+            })
+            .navigationDestination(isPresented: $viewModel.goToLogin, destination: {
+                LoginRegisterSelectionView()
             })
             .sheet(isPresented: $showTerms, content: {
                 SharedWebView(pageType: .terms)

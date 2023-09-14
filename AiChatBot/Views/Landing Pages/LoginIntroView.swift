@@ -13,7 +13,6 @@ struct LoginIntroView: View {
     @State private var showLoginPage: Bool = false
     
     var body: some View {
-        NavigationStack {
             VStack {
                 Image(AppImages.loginIntro.rawValue)
                     .resizable()
@@ -59,7 +58,7 @@ struct LoginIntroView: View {
                 
             }
             .background(Color.white)
-        }
+        
     }
 }
 

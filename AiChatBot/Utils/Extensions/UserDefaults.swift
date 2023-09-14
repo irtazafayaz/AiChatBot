@@ -70,5 +70,13 @@ extension UserDefaults {
         }
     }
     
+    var rememberMe: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "remember_me")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "remember_me")
+        }
+    }
     
 }
