@@ -225,7 +225,10 @@ struct ChatView: View {
                     addToCoreData(message: newMessage)
                     viewModel.msgsArr.append(newMessage)
                     
-                    viewModel.sendMessageUsingFirebase()
+                    viewModel.sendMessageUsingFirebase { success in
+                        guard let resp = success else { return }
+                        addToCoreData(message: resp)
+                    }
                 }
             } label: {
                 Circle()

@@ -115,30 +115,4 @@ class BaseService: BaseActions {
         self.loadAndDecode(url: url, params: history, completion: completion)
     }
     
-    func mapToMessages(_ messagesWithImages: [MessageWithImages]) -> [Message] {
-        return messagesWithImages.map { messageWithImages in
-            // Extract properties and create a Message instance
-            switch messageWithImages.content {
-            case .text(let textContent):
-                return Message(
-                    id: messageWithImages.id,
-                    content: textContent, // Extract the text content
-                    createdAt: messageWithImages.createdAt,
-                    role: messageWithImages.role
-                )
-            case .image:
-                // Handle image content if needed
-                return Message(
-                    id: messageWithImages.id,
-                    content: "Image Content", // Example placeholder for image content
-                    createdAt: messageWithImages.createdAt,
-                    role: messageWithImages.role
-                )
-            }
-        }
-    }
-
-    
-    
-    
 }

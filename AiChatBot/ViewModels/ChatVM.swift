@@ -21,7 +21,6 @@ class ChatVM: ObservableObject {
     
     @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
     private let openAIService = OpenAIService()
-    
     private let service = BaseService.shared
     
     init(with text: String, messages: [MessageWithImages] = []) {
@@ -38,22 +37,6 @@ class ChatVM: ObservableObject {
             }
         }
     }
-    
-//    func sendMessageGpt(completion: @escaping (MessageWithImages?) -> Void) {
-//        
-//        service.askGPT(from: .gptText, history: msgsArr) { [weak self] response in
-//            guard let self = self else { return }
-//            switch response {
-//            case .success(let response):
-//                completion(MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant))
-//            case .failure(let error):
-//                print("GPT ERROR \(error)")
-//                completion(nil)
-//            }
-//        }
-//        
-//    }
-    
     
     func sendMessage(completion: @escaping (Bool) -> Void) {
         if currentInput.isEmpty {
@@ -94,7 +77,6 @@ class ChatVM: ObservableObject {
         }
     }
     
-    
     func parseStreamData(_ data: String) -> [ChatStreamCompletionResponse] {
         let responseString = data.split(separator: "data:").map({$0.trimmingCharacters(in: .whitespacesAndNewlines)}).filter({!$0.isEmpty})
         let jsonDecoder = JSONDecoder()
@@ -118,7 +100,7 @@ class ChatVM: ObservableObject {
     func sendImage(image: UIImage, completion: @escaping (MessageWithImages?) -> Void) {
         service.ocrWithImage(from: .ocr, image: image, completion: { [weak self] response in
             print(response)
-            guard let self = self else { return }
+            guard self != nil else { return }
             switch response {
             case .success(let response):
                 completion(MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant))
@@ -130,26 +112,25 @@ class ChatVM: ObservableObject {
     }
     
     
-    func sendMessageUsingFirebase() {
+    func sendMessageUsingFirebase(completion: @escaping (MessageWithImages?) -> Void) {
         if currentInput.isEmpty {
             return
         }
-        
-        currentInput = ""
-        
-        var filteredMsgs = mapToMessages(msgsArr)
+        let filteredMsgs = mapToMessages(msgsArr)
         let messagesDescription = filteredMsgs.map { message in
             return message.description
         }
-        let data = ["messages": messagesDescription]
-        
+        let data = ["chat_history": messagesDescription]
         service.askGPT(from: .gptText, history: data) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let response):
-                print("")
+                let msg = MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant)
+                self.msgsArr.append(msg)
+                completion(msg)
             case .failure(let error):
-                print("GPT ERROR \(error)")
+                print("> GPT ERROR \(error)")
+                completion(nil)
             }
         }
     }
@@ -157,7 +138,6 @@ class ChatVM: ObservableObject {
     
     func mapToMessages(_ messagesWithImages: [MessageWithImages]) -> [MessageData] {
         return messagesWithImages.map { messageWithImages in
-            // Extract properties and create a Message instance
             switch messageWithImages.content {
             case .text(let textContent):
                 return MessageData(
@@ -166,7 +146,6 @@ class ChatVM: ObservableObject {
                     content: textContent
                 )
             case .image:
-                // Handle image content if needed
                 return MessageData(
                     id: messageWithImages.id,
                     role: messageWithImages.role,
