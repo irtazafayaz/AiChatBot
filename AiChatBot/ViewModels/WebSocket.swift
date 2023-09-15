@@ -47,7 +47,7 @@ class WebSocket: ObservableObject {
     }
     
     func sendMessage(_ message: String) {
-        guard let data = message.data(using: .utf8) else { return }
+        guard message.data(using: .utf8) != nil else { return }
         webSocketTask?.send(.string(message)) { error in
             if let error = error {
                 print(error.localizedDescription)

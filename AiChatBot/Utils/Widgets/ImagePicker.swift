@@ -60,7 +60,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         }
         chat.role = message.role.rawValue
         chat.createdAt = Date()
-        chat.sessionID = Double(UserDefaults.standard.sessionID)
+        chat.sessionID = message.sessionID
         try? self.picker.moc.save()
     }
     
@@ -68,7 +68,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         DispatchQueue.main.async {
             if let imageData = selectedImage.pngData() {
                 print("Image converted to data successfully.")
-                let newImageMessage = MessageWithImages(id: UUID().uuidString, content: .image(imageData), createdAt: Date(), role: .user)
+                let newImageMessage = MessageWithImages(id: UUID().uuidString, content: .image(imageData), createdAt: Date(), role: .user, sessionID: self.picker.viewModel.getSession())
                 self.addToCoreData(message: newImageMessage)
                 self.picker.viewModel.sendImage(image: selectedImage) { msg in
                     if let message = msg {

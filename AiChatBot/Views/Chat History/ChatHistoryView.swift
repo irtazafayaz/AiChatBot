@@ -47,7 +47,8 @@ struct ChatHistoryView: View {
                     id: UUID().uuidString,
                     content: ($0.message != nil) ? .text($0.message ?? "NaN") : .image($0.imageData!),
                     createdAt: $0.createdAt ?? Date(),
-                    role: SenderRole(rawValue: $0.role ?? "NaN") ?? .paywall
+                    role: SenderRole(rawValue: $0.role ?? "NaN") ?? .paywall,
+                    sessionID: $0.sessionID
                 )
             }
         }
@@ -64,7 +65,7 @@ struct ChatHistoryView: View {
                                 moveToChatScreen.toggle()
                             } label: {
                                 ZStack {
-                                    ChatHistoryCard(message: "\(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
+                                    ChatHistoryCard(message: "\(group) - \(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
                                 }
                             }
                         }

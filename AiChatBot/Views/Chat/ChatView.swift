@@ -221,7 +221,7 @@ struct ChatView: View {
                     if proxy != nil {
                         scrollToBottom(proxy: proxy!)
                     }
-                    let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(self.viewModel.currentInput), createdAt: Date(), role: .user)
+                    let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(self.viewModel.currentInput), createdAt: Date(), role: .user, sessionID: viewModel.getSession())
                     addToCoreData(message: newMessage)
                     viewModel.msgsArr.append(newMessage)
                     
@@ -375,48 +375,7 @@ struct ChatView: View {
         proxy.scrollTo(id, anchor: .bottomTrailing)
     }
     
-    func sendImageToServer() {
-        if let image = selectedImage, let imageData = image.jpegData(compressionQuality: 1.0) {
-            let url = URL(string: "https://yourserver.com/upload")!
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.httpBody = imageData
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("Error: \(error)")
-                } else if let data = data {
-                    // Handle the response from the server if necessary
-                    let responseString = String(data: data, encoding: .utf8)
-                    print("Response: \(responseString ?? "")")
-                }
-            }
-            task.resume()
-        }
-    }
-    
-    func addHistory(message: String, role: String) {
-        if viewModel.updateSessionID {
-            if viewModel.messages.isEmpty {
-                UserDefaults.standard.sessionID += 1
-            }
-            viewModel.updateSessionID = false
-        }
-        let chat = ChatHistory(context: moc)
-        chat.id = UUID()
-        chat.message = message
-        chat.role = role
-        chat.createdAt = Date()
-        chat.sessionID = Double(UserDefaults.standard.sessionID)
-        try? moc.save()
-    }
-    
     func addToCoreData(message: MessageWithImages) {
-        if viewModel.updateSessionID {
-            if viewModel.msgsArr.isEmpty {
-                UserDefaults.standard.sessionID += 1
-            }
-            viewModel.updateSessionID = false
-        }
         let chat = ChatHistory(context: moc)
         chat.id = UUID()
         if case .text(let text) = message.content {
@@ -426,7 +385,7 @@ struct ChatView: View {
         }
         chat.role = message.role.rawValue
         chat.createdAt = Date()
-        chat.sessionID = Double(UserDefaults.standard.sessionID)
+        chat.sessionID = message.sessionID
         try? moc.save()
     }
     

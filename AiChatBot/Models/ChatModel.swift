@@ -72,6 +72,16 @@ struct MessageWithImages {
     let content: MessageContent
     let createdAt: Date
     let role: SenderRole
+    let sessionID: Double
+    
+    init(id: String, content: MessageContent, createdAt: Date, role: SenderRole, sessionID: Double) {
+        self.id = id
+        self.content = content
+        self.createdAt = createdAt
+        self.role = role
+        self.sessionID = sessionID
+    }
+    
 }
 
 enum MessageContent: Equatable {
