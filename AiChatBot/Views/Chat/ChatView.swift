@@ -59,7 +59,7 @@ struct ChatView: View {
             ToolbarItem(placement: .navigationBarLeading, content: {
                 HStack {
                     CustomBackButton()
-                    Text("BROO")
+                    Text("School AI")
                         .font(Font.custom(FontFamily.bold.rawValue, size: 24))
                         .foregroundColor(Color(hex: "#FFFFFF"))
                 }
@@ -67,9 +67,6 @@ struct ChatView: View {
         }
         .sheet(isPresented: self.$isImagePickerDisplay) {
             ImagePicker(selectedImage: self.$selectedImage, sourceType: self.sourceType, viewModel: viewModel)
-        }
-        .onAppear {
-            print("Helllo - \(viewModel.updateSessionID)")
         }
     }
     

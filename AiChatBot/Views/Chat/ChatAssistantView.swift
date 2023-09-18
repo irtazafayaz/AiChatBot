@@ -196,7 +196,7 @@ struct ChatAssistantView: View {
             ToolbarItem(placement: .navigationBarLeading, content: {
                 HStack {
                     CustomBackButton()
-                    Text("BROO")
+                    Text("School AI")
                         .font(Font.custom(FontFamily.bold.rawValue, size: 24))
                         .foregroundColor(Color(hex: "#FFFFFF"))
                 }

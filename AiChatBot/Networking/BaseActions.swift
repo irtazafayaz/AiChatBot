@@ -40,4 +40,10 @@ protocol BaseActions {
         completion: @escaping (Result<GPTTextResponse, ApiError>) -> ()
     )
     
+    func forgotPassword(
+        from movieEndPoint: ApiServiceEndPoint,
+        params: [String: String],
+        completion: @escaping (Result<RegisterResponse, ApiError>) -> ()
+    )
+    
 }

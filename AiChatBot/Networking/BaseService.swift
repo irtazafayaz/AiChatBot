@@ -22,7 +22,7 @@ class BaseService: BaseActions {
     func loadAndDecode<D: Decodable>(
         url: URL,
         params: [String: Any],
-        method: HTTPMethod = .post ,
+        method: HTTPMethod = .post,
         completion: @escaping (Result<D, ApiError>) -> ()) {
             
             var headers: HTTPHeaders = ["Content-Type": "application/json"]
@@ -53,66 +53,99 @@ class BaseService: BaseActions {
     func executeCompletionHandlerInMainThread<D: Decodable>(
         with result: Result<D, ApiError>,
         completion: @escaping (Result<D, ApiError>) -> ()) {
+            
             DispatchQueue.main.async {
                 completion(result)
             }
         }
     
-    func registerUser(from movieEndPoint: ApiServiceEndPoint, params: [String: String], completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
-        guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
-            completion(.failure(.invalidEndPoint))
-            return
+    func registerUser(
+        from movieEndPoint: ApiServiceEndPoint,
+        params: [String: String],
+        completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
+            
+            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+                completion(.failure(.invalidEndPoint))
+                return
+            }
+            self.loadAndDecode(url: url, params: params, completion: completion)
         }
-        self.loadAndDecode(url: url, params: params, completion: completion)
-    }
     
-    func login(from movieEndPoint: ApiServiceEndPoint, params: [String: String], completion: @escaping (Result<LoginResponse, ApiError>) -> ()) {
-        guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
-            completion(.failure(.invalidEndPoint))
-            return
+    func login(
+        from movieEndPoint: ApiServiceEndPoint,
+        params: [String: String],
+        completion: @escaping (Result<LoginResponse, ApiError>) -> ()) {
+            
+            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+                completion(.failure(.invalidEndPoint))
+                return
+            }
+            self.loadAndDecode(url: url, params: params, completion: completion)
         }
-        self.loadAndDecode(url: url, params: params, completion: completion)
-    }
     
-    func logout(from movieEndPoint: ApiServiceEndPoint, refreshToken: String, completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
-        guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
-            completion(.failure(.invalidEndPoint))
-            return
+    func logout(
+        from movieEndPoint: ApiServiceEndPoint,
+        refreshToken: String,
+        completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
+            
+            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+                completion(.failure(.invalidEndPoint))
+                return
+            }
+            self.loadAndDecode(url: url, params: ["refresh_token": refreshToken], method: .get, completion: completion)
         }
-        self.loadAndDecode(url: url, params: ["refresh_token": refreshToken], method: .get, completion: completion)
-    }
     
-    func ocrWithImage(from movieEndPoint: ApiServiceEndPoint, image: UIImage, completion: @escaping (Result<OCRResponse, ApiError>) -> ()) {
-        if let imageData = image.jpegData(compressionQuality: 1.0) {
-            let url = URL(string: "http://127.0.0.1:5000/ocr")!
-            let headers: HTTPHeaders = [
-                "Content-Type": "multipart/form-data"
-            ]
-            AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(imageData, withName: "image", fileName: "image.jpg", mimeType: "image/jpeg")
-            }, to: url, method: .post, headers: headers)
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    do {
-                        let ocrResponse = try JSONDecoder().decode(OCRResponse.self, from: data)
-                        completion(.success(ocrResponse))
-                    } catch {
-                        completion(.failure(.serializationError))
+    func ocrWithImage(
+        from movieEndPoint: ApiServiceEndPoint,
+        image: UIImage,
+        completion: @escaping (Result<OCRResponse, ApiError>) -> ()) {
+            
+            if let imageData = image.jpegData(compressionQuality: 1.0) {
+                let url = URL(string: "http://127.0.0.1:5000/ocr")!
+                let headers: HTTPHeaders = [
+                    "Content-Type": "multipart/form-data"
+                ]
+                AF.upload(multipartFormData: { multipartFormData in
+                    multipartFormData.append(imageData, withName: "image", fileName: "image.jpg", mimeType: "image/jpeg")
+                }, to: url, method: .post, headers: headers)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        do {
+                            let ocrResponse = try JSONDecoder().decode(OCRResponse.self, from: data)
+                            completion(.success(ocrResponse))
+                        } catch {
+                            completion(.failure(.serializationError))
+                        }
+                    case .failure(_):
+                        completion(.failure(.apiError))
                     }
-                case .failure(_):
-                    completion(.failure(.apiError))
                 }
             }
         }
-    }
     
-    func askGPT(from movieEndPoint: ApiServiceEndPoint, history: [String : [[String : Any]]], completion: @escaping (Result<GPTTextResponse, ApiError>) -> ()) {
-        guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
-            completion(.failure(.invalidEndPoint))
-            return
+    func askGPT(
+        from movieEndPoint: ApiServiceEndPoint,
+        history: [String : [[String : Any]]],
+        completion: @escaping (Result<GPTTextResponse, ApiError>) -> ()) {
+            
+            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+                completion(.failure(.invalidEndPoint))
+                return
+            }
+            self.loadAndDecode(url: url, params: history, completion: completion)
         }
-        self.loadAndDecode(url: url, params: history, completion: completion)
-    }
+    
+    func forgotPassword(
+        from movieEndPoint: ApiServiceEndPoint,
+        params: [String : String],
+        completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
+            
+            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+                completion(.failure(.invalidEndPoint))
+                return
+            }
+            self.loadAndDecode(url: url, params: params, completion: completion)
+        }
     
 }

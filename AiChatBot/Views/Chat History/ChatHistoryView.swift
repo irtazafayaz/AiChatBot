@@ -65,7 +65,7 @@ struct ChatHistoryView: View {
                                 moveToChatScreen.toggle()
                             } label: {
                                 ZStack {
-                                    ChatHistoryCard(message: "\(group) - \(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
+                                    ChatHistoryCard(message: "\(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
                                 }
                             }
                         }
