@@ -79,4 +79,22 @@ extension UserDefaults {
         }
     }
     
+    var loggedInEmail: String {
+        get {
+            UserDefaults.standard.string(forKey: "logged_in_email") ?? "NaN"
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "logged_in_email")
+        }
+    }
+    
+    var fullName: String {
+        get {
+            UserDefaults.standard.string(forKey: "full_name") ?? "NaN"
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "full_name")
+        }
+    }
+    
 }

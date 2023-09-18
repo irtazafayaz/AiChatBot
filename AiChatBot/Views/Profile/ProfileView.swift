@@ -14,7 +14,7 @@ struct ProfileView: View {
     @State private var showPrivacy = false
     @ObservedObject private var viewModel: ProfileVM
     @Environment(\.presentationMode) var presentationMode
-
+    
     init () {
         self.viewModel = ProfileVM()
     }
@@ -24,13 +24,20 @@ struct ProfileView: View {
         ZStack {
             VStack(alignment: .leading) {
                 
-                Text("Irtaza Fiaz")
-                    .font(Font.custom(FontFamily.bold.rawValue, size: 20))
-                    .foregroundColor(Color(hex: "#212121"))
-                Text("sss@yourdomain")
-                    .font(Font.custom(FontFamily.medium.rawValue, size: 14))
-                    .foregroundColor(Color(hex: "#616161"))
-                    .padding(.top, 5)
+                HStack {
+                    Image("ic_profile")
+                        .foregroundColor(.gray)
+                    VStack(alignment: .leading) {
+                        Text(UserDefaults.standard.fullName)
+                            .font(Font.custom(FontFamily.bold.rawValue, size: 20))
+                            .foregroundColor(Color(hex: "#212121"))
+                        Text(UserDefaults.standard.loggedInEmail)
+                            .font(Font.custom(FontFamily.medium.rawValue, size: 14))
+                            .foregroundColor(Color(hex: "#616161"))
+                    }
+                }
+                
+                
                 
                 Button {
                     isPaywallPresented.toggle()

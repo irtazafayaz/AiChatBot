@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import JWTDecode
 
 class LoginVM: ObservableObject {
     
@@ -42,10 +43,10 @@ class LoginVM: ObservableObject {
                 guard let self = self else { return }
                 switch result {
                 case .success(let response):
-                    print("API RESPONSE \(response)")
                     showPopUp.toggle()
                     UserDefaults.standard.refreshToken = response.refreshToken
                     UserDefaults.standard.rememberMe = isAgreed
+                    decodeFromJWTToken(token: response.accessToken)
                     self.loginActionSuccess = true
                 case .failure(let error):
                     print("API ERROR \(error)")
@@ -55,7 +56,45 @@ class LoginVM: ObservableObject {
                 }
             }
         }
-
     }
     
+    func decodeFromJWTToken(token: String) {
+        do {
+            let jwt = try decode(jwt: token)
+            if let userJSON = jwt.body["user"] {
+                let jsonString = "\(userJSON)"
+                if let jsonData = jsonString.data(using: .utf8) {
+                    do {
+                        let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                        if let userJSON = jsonObject as? [String: Any] {
+                            if let email = userJSON["email"] as? String {
+                                UserDefaults.standard.loggedInEmail = email
+                            }
+                            if let email = userJSON["full_name"] as? String {
+                                UserDefaults.standard.fullName = email
+                            }
+                        } else {
+                            print("JSON data is not a valid dictionary.")
+                        }
+                    } catch {
+                        print("Error parsing JSON: \(error)")
+                    }
+                } else {
+                    print("Failed to convert JSON string to data.")
+                }
+            } else {
+                print("jwt.body['user'] is not a valid JSON object.")
+            }
+        } catch let e {
+            print(e)
+        }
+    }
+    
+    
+}
+
+extension JWT {
+    var myClaim: String? {
+        return self["my_claim"].string
+    }
 }
