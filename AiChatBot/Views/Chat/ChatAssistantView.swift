@@ -10,16 +10,24 @@ import SwiftUI
 struct ChatAssistantView: View {
     
     @State private var selectedText: String = ""
+    @State private var selectedMessages: [MessageWithImages] = []
     @State private var moveToChatScreen: Bool = false
     @Environment(\.managedObjectContext) var moc
-
+    
     var body: some View {
         
         VStack {
             ScrollView {
                 HStack(spacing: 20) {
                     Button {
-                        selectedText = "Act as a writer."
+                        UserDefaults.standard.sessionID += 1
+                        selectedMessages = [MessageWithImages(
+                            id: UUID().uuidString,
+                            content: .text("Act as a writer who excels in writing on articles."),
+                            createdAt: Date(),
+                            role: .system,
+                            sessionID: Double(UserDefaults.standard.sessionID)
+                        )]
                         moveToChatScreen.toggle()
                     } label: {
                         VStack(alignment: .leading) {
@@ -45,7 +53,14 @@ struct ChatAssistantView: View {
                         ).fill(Color(hex: Colors.chatBG.rawValue)))
                     }
                     Button {
-                        selectedText = "Act as a writer."
+                        UserDefaults.standard.sessionID += 1
+                        selectedMessages = [MessageWithImages(
+                            id: UUID().uuidString,
+                            content: .text("Act as a writer"),
+                            createdAt: Date(),
+                            role: .system,
+                            sessionID: Double(UserDefaults.standard.sessionID)
+                        )]
                         moveToChatScreen.toggle()
                     } label: {
                         VStack(alignment: .leading) {
@@ -75,7 +90,14 @@ struct ChatAssistantView: View {
                 
                 HStack(spacing: 20) {
                     Button {
-                        selectedText = "Act as a phographer."
+                        UserDefaults.standard.sessionID += 1
+                        selectedMessages = [MessageWithImages(
+                            id: UUID().uuidString,
+                            content: .text("Act as a writer"),
+                            createdAt: Date(),
+                            role: .system,
+                            sessionID: Double(UserDefaults.standard.sessionID)
+                        )]
                         moveToChatScreen.toggle()
                     } label: {
                         VStack(alignment: .leading) {
@@ -104,7 +126,14 @@ struct ChatAssistantView: View {
                     }
                     
                     Button {
-                        selectedText = "Act as a writer."
+                        UserDefaults.standard.sessionID += 1
+                        selectedMessages = [MessageWithImages(
+                            id: UUID().uuidString,
+                            content: .text("Act as a writer"),
+                            createdAt: Date(),
+                            role: .system,
+                            sessionID: Double(UserDefaults.standard.sessionID)
+                        )]
                         moveToChatScreen.toggle()
                     } label: {
                         VStack(alignment: .leading) {
@@ -134,7 +163,14 @@ struct ChatAssistantView: View {
                 
                 HStack(spacing: 20) {
                     Button {
-                        selectedText = "Act as a writer."
+                        UserDefaults.standard.sessionID += 1
+                        selectedMessages = [MessageWithImages(
+                            id: UUID().uuidString,
+                            content: .text("Act as a writer"),
+                            createdAt: Date(),
+                            role: .system,
+                            sessionID: Double(UserDefaults.standard.sessionID)
+                        )]
                         moveToChatScreen.toggle()
                     } label: {
                         VStack(alignment: .leading) {
@@ -162,7 +198,14 @@ struct ChatAssistantView: View {
                     .frame(height: 226.0)
                     
                     Button {
-                        selectedText = "Act as a writer."
+                        UserDefaults.standard.sessionID += 1
+                        selectedMessages = [MessageWithImages(
+                            id: UUID().uuidString,
+                            content: .text("Act as a writer"),
+                            createdAt: Date(),
+                            role: .system,
+                            sessionID: Double(UserDefaults.standard.sessionID)
+                        )]
                         moveToChatScreen.toggle()
                     } label: {
                         VStack(alignment: .leading) {
@@ -203,7 +246,7 @@ struct ChatAssistantView: View {
             })
         }
         .navigationDestination(isPresented: $moveToChatScreen, destination: {
-            ChatView()
+            ChatView(messagesArr: selectedMessages)
         })
         
     }
