@@ -57,6 +57,7 @@ class ChatVM: ObservableObject {
             guard let self = self else { return }
             switch response {
             case .success(let response):
+                _ = msgsArr.popLast()
                 let msg = MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant, sessionID: msgsArr[0].sessionID)
                 self.msgsArr.append(msg)
                 completion(msg)
@@ -104,6 +105,15 @@ class ChatVM: ObservableObject {
         } else {
             return msgsArr[0].sessionID
         }
+    }
+    
+    func addUserMsg() -> MessageWithImages {
+        let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(currentInput), createdAt: Date(), role: .user, sessionID: getSession())
+        msgsArr.append(newMessage)
+        UserDefaults.standard.maxTries += 1
+        let typingMsg = MessageWithImages(id: UUID().uuidString, content: .text("typing..."), createdAt: Date(), role: .assistant, sessionID: getSession())
+        msgsArr.append(typingMsg)
+        return newMessage
     }
     
 }

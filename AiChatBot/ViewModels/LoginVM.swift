@@ -64,20 +64,16 @@ class LoginVM: ObservableObject {
             if let userJSON = jwt.body["user"] {
                 let jsonString = "\(userJSON)"
                 if let jsonData = jsonString.data(using: .utf8) {
-                    do {
-                        let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
-                        if let userJSON = jsonObject as? [String: Any] {
-                            if let email = userJSON["email"] as? String {
-                                UserDefaults.standard.loggedInEmail = email
-                            }
-                            if let email = userJSON["full_name"] as? String {
-                                UserDefaults.standard.fullName = email
-                            }
-                        } else {
-                            print("JSON data is not a valid dictionary.")
+                    let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                    if let userJSON = jsonObject as? [String: Any] {
+                        if let email = userJSON["email"] as? String {
+                            UserDefaults.standard.loggedInEmail = email
                         }
-                    } catch {
-                        print("Error parsing JSON: \(error)")
+                        if let email = userJSON["full_name"] as? String {
+                            UserDefaults.standard.fullName = email
+                        }
+                    } else {
+                        print("JSON data is not a valid dictionary.")
                     }
                 } else {
                     print("Failed to convert JSON string to data.")

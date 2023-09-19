@@ -97,4 +97,13 @@ extension UserDefaults {
         }
     }
     
+    var maxTries: Int {
+        get {
+            UserDefaults.standard.integer(forKey: "max_tries")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "max_tries")
+        }
+    }
+    
 }

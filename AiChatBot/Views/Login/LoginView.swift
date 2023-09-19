@@ -40,7 +40,7 @@ struct LoginView: View {
                             HStack {
                                 TextField("Email", text: $viewModel.email)
                                 Image("ic_dropdown")
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color(hex: Colors.primary.rawValue))
                             }
                             .padding(.bottom, 20)
                             .underlinedTextFieldStyle()

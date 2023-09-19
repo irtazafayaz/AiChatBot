@@ -128,7 +128,7 @@ struct ChatView: View {
             bottomView(image: "profile", proxy: nil)
         }
     }
-        
+    
     var chatListWithImagesView: some View {
         ScrollViewReader { proxy in
             VStack(spacing: 0) {
@@ -196,13 +196,12 @@ struct ChatView: View {
                     if proxy != nil {
                         scrollToBottom(proxy: proxy!)
                     }
-                    let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(self.viewModel.currentInput), createdAt: Date(), role: .user, sessionID: viewModel.getSession())
-                    addToCoreData(message: newMessage)
-                    viewModel.msgsArr.append(newMessage)
-                    
-                    viewModel.sendMessageUsingFirebase { success in
-                        guard let resp = success else { return }
-                        addToCoreData(message: resp)
+                    if UserDefaults.standard.maxTries <= 3 || UserDefaults.standard.isProMemeber {
+                        addToCoreData(message: viewModel.addUserMsg())
+                        viewModel.sendMessageUsingFirebase { success in
+                            guard let resp = success else { return }
+                            addToCoreData(message: resp)
+                        }
                     }
                 }
             } label: {
@@ -222,7 +221,7 @@ struct ChatView: View {
         }
         .padding(.top, 12)
     }
-        
+    
     func getMessageViewWithImage(_ message: MessageWithImages) -> some View {
         HStack {
             if message.role == .user {
