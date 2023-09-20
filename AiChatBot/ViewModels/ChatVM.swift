@@ -31,6 +31,7 @@ class ChatVM: ObservableObject {
     // MARK: Send Message APIs
     
     func sendImage(image: UIImage, completion: @escaping (MessageWithImages?) -> Void) {
+        UserDefaults.standard.maxTries += 1
         service.ocrWithImage(from: .ocr, image: image, completion: { [weak self] response in
             print(response)
             guard let self = self else { return }
@@ -45,9 +46,6 @@ class ChatVM: ObservableObject {
     
     
     func sendMessageUsingFirebase(completion: @escaping (MessageWithImages?) -> Void) {
-        if currentInput.isEmpty {
-            return
-        }
         let filteredMsgs = mapToMessages(msgsArr)
         let messagesDescription = filteredMsgs.map { message in
             return message.description
@@ -109,6 +107,7 @@ class ChatVM: ObservableObject {
     
     func addUserMsg() -> MessageWithImages {
         let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(currentInput), createdAt: Date(), role: .user, sessionID: getSession())
+        currentInput = ""
         msgsArr.append(newMessage)
         UserDefaults.standard.maxTries += 1
         let typingMsg = MessageWithImages(id: UUID().uuidString, content: .text("typing..."), createdAt: Date(), role: .assistant, sessionID: getSession())

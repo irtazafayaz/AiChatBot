@@ -39,7 +39,6 @@ struct ChatHistoryView: View {
     }
     
     func convertDataToMessagesArray(forGroup group: Double) {
-        
         let chatArr = chatHistory.filter { $0.sessionID == group }
         if !chatArr.isEmpty {
             selectedMessages = chatArr.map {
@@ -56,23 +55,29 @@ struct ChatHistoryView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(uniqueGroups, id: \.self) { group in
-                        if let chat = representativeItem(forGroup: group) {
-                            Button {
-                                convertDataToMessagesArray(forGroup: group)
-                                moveToChatScreen.toggle()
-                            } label: {
-                                ZStack {
-                                    ChatHistoryCard(message: "\(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
+            if uniqueGroups.count == 0 {
+                VStack(alignment: .center) {
+                    Text("No History Found")
+                }
+            } else {
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(uniqueGroups, id: \.self) { group in
+                            if let chat = representativeItem(forGroup: group) {
+                                Button {
+                                    convertDataToMessagesArray(forGroup: group)
+                                    moveToChatScreen.toggle()
+                                } label: {
+                                    ZStack {
+                                        ChatHistoryCard(message: "\(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                .padding(.top, 20)
             }
-            .padding(.top, 20)
         }
         .padding(.horizontal, 10)
         .navigationBarBackButtonHidden(true)

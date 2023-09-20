@@ -35,11 +35,6 @@ struct CompleteYourProfileView: View {
                         .padding(.top, 10)
                         .lineLimit(5)
                     
-                    HStack (alignment: .center) {
-                        RoundedIconWithEditButton(imageName: "ic_avatar")
-                    }
-                    .frame(maxWidth: .infinity)
-                    
                     // MARK: Full Name Text Field
                     
                     VStack(alignment: .leading) {

@@ -42,9 +42,9 @@ class RegisterUserVM: ObservableObject {
         params["password"] = password
         params["phone_number"] = phoneNumber
         params["full_name"] = fullName
+        params["gender"] = selectedGender
         return params
     }
-    
     
     func registerUser() {
         if fullName.isEmpty {

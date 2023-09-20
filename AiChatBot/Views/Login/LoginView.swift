@@ -103,7 +103,6 @@ struct LoginView: View {
                                 .font(Font.custom(FontFamily.bold.rawValue, size: 18))
                         }
                         
-                        
                         HStack(alignment: .center) {
                             Text("Don't have an account?")
                                 .font(Font.custom(FontFamily.medium.rawValue, size: 16))

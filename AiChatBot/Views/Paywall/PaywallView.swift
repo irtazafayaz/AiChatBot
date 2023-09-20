@@ -41,12 +41,13 @@ struct PaywallView: View {
     var body: some View {
         
         NavigationStack {
+            
             VStack (alignment: .leading, spacing: 20) {
-                
                 Text("Unlock Unlimited Access")
                     .font(Font.custom(FontFamily.bold.rawValue, size: 30))
                     .foregroundColor(.black)
-                    .padding(.top, 30)
+                    .padding(.top, 10)
+                    .frame(maxWidth: .infinity)
                 
                 VStack(alignment: .leading, spacing: 20) {
                     HStack(alignment: .center) {
@@ -61,6 +62,7 @@ struct PaywallView: View {
                                 .foregroundColor(.black)
                         }
                     }
+                    
                     HStack(alignment: .center) {
                         Image(systemName: "checkmark.icloud")
                             .foregroundColor(.black)
@@ -73,6 +75,7 @@ struct PaywallView: View {
                                 .foregroundColor(.black)
                         }
                     }
+
                     HStack(alignment: .center) {
                         Image(systemName: "shareplay")
                             .foregroundColor(.black)
@@ -99,7 +102,6 @@ struct PaywallView: View {
                     }
                 }
                 .padding()
-                .frame(maxWidth: .infinity)
                 
                 if isHideLoader {
                     if currentOffering != nil {
@@ -135,6 +137,7 @@ struct PaywallView: View {
                                         )
                                 )
                                 .cornerRadius(10)
+                                .padding(.horizontal, 20)
                             }
                         }
                     }
@@ -192,9 +195,6 @@ struct PaywallView: View {
                             Image("ic_back_arrow")
                                 .foregroundColor(.black)
                         }
-                        Text("School AI")
-                            .font(Font.custom(FontFamily.bold.rawValue, size: 24))
-                            .foregroundColor(.black)
                     }
                 })
             }

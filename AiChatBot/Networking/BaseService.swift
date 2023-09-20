@@ -15,7 +15,6 @@ class BaseService: BaseActions {
     private init() {}
     static let shared = BaseService()
     
-    private let baseAPIUrl = "http://127.0.0.1:5000/"
     private let urlSession = URLSession.shared
     private let jsonDecoder = Utilities.jsonDecoder
     
@@ -49,7 +48,6 @@ class BaseService: BaseActions {
                 }
         }
     
-    
     func executeCompletionHandlerInMainThread<D: Decodable>(
         with result: Result<D, ApiError>,
         completion: @escaping (Result<D, ApiError>) -> ()) {
@@ -64,7 +62,7 @@ class BaseService: BaseActions {
         params: [String: String],
         completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
             
-            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+            guard let url = URL(string: "\(URLs.baseURL)\(movieEndPoint.rawValue)") else {
                 completion(.failure(.invalidEndPoint))
                 return
             }
@@ -76,7 +74,7 @@ class BaseService: BaseActions {
         params: [String: String],
         completion: @escaping (Result<LoginResponse, ApiError>) -> ()) {
             
-            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+            guard let url = URL(string: "\(URLs.baseURL)\(movieEndPoint.rawValue)") else {
                 completion(.failure(.invalidEndPoint))
                 return
             }
@@ -88,7 +86,7 @@ class BaseService: BaseActions {
         refreshToken: String,
         completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
             
-            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+            guard let url = URL(string: "\(URLs.baseURL)\(movieEndPoint.rawValue)") else {
                 completion(.failure(.invalidEndPoint))
                 return
             }
@@ -101,7 +99,7 @@ class BaseService: BaseActions {
         completion: @escaping (Result<OCRResponse, ApiError>) -> ()) {
             
             if let imageData = image.jpegData(compressionQuality: 1.0) {
-                let url = URL(string: "http://127.0.0.1:5000/ocr")!
+                let url = URL(string: "\(URLs.baseURL)ocr")!
                 let headers: HTTPHeaders = [
                     "Content-Type": "multipart/form-data"
                 ]
@@ -129,7 +127,7 @@ class BaseService: BaseActions {
         history: [String : [[String : Any]]],
         completion: @escaping (Result<GPTTextResponse, ApiError>) -> ()) {
             
-            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+            guard let url = URL(string: "\(URLs.baseURL)\(movieEndPoint.rawValue)") else {
                 completion(.failure(.invalidEndPoint))
                 return
             }
@@ -141,7 +139,7 @@ class BaseService: BaseActions {
         params: [String : String],
         completion: @escaping (Result<RegisterResponse, ApiError>) -> ()) {
             
-            guard let url = URL(string: "\(baseAPIUrl)\(movieEndPoint.rawValue)") else {
+            guard let url = URL(string: "\(URLs.baseURL)\(movieEndPoint.rawValue)") else {
                 completion(.failure(.invalidEndPoint))
                 return
             }

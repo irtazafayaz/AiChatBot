@@ -31,11 +31,13 @@ struct ChatView: View {
     @State private var renderedImage = Image(systemName: "photo")
     @Environment(\.displayScale) var displayScale
     @State private var isShowingDocumentPicker = false
+    @State private var hello: String = ""
     
     //MARK: Image Picker
-    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
+    @State private var openCameraDialogue = false
     
     @ObservedObject var webSocket = WebSocket()
     
@@ -47,6 +49,7 @@ struct ChatView: View {
     
     var body: some View {
         VStack {
+
             if !viewModel.msgsArr.isEmpty {
                 chatListWithImagesView
             } else {
@@ -67,6 +70,19 @@ struct ChatView: View {
         }
         .sheet(isPresented: self.$isImagePickerDisplay) {
             ImagePicker(selectedImage: self.$selectedImage, sourceType: self.sourceType, viewModel: viewModel)
+        }
+        .navigationDestination(isPresented: $isPaywallPresented, destination: {
+            PaywallView(isPaywallPresented: $isPaywallPresented)
+        })
+        .confirmationDialog("Open Camera Dialogue", isPresented: $openCameraDialogue) {
+            Button("Open Camera") {
+                self.sourceType = .camera
+                self.isImagePickerDisplay.toggle()
+            }
+            Button("Open Gallery") {
+                self.sourceType = .photoLibrary
+                self.isImagePickerDisplay.toggle()
+            }
         }
     }
     
@@ -174,8 +190,11 @@ struct ChatView: View {
             .ignoresSafeArea(.keyboard, edges: .bottom)
             
             Button {
-                self.sourceType = .photoLibrary
-                self.isImagePickerDisplay.toggle()
+                if UserDefaults.standard.maxTries <= 3 || UserDefaults.standard.isProMemeber {
+                    openCameraDialogue.toggle()
+                } else {
+                    isPaywallPresented.toggle()
+                }
             } label: {
                 Circle()
                     .fill(Color(hex: Colors.primary.rawValue))
@@ -200,8 +219,16 @@ struct ChatView: View {
                         addToCoreData(message: viewModel.addUserMsg())
                         viewModel.sendMessageUsingFirebase { success in
                             guard let resp = success else { return }
+                            switch resp.content {
+                            case .text(let textContent):
+                                hello = textContent
+                            case .image:
+                                break
+                            }
                             addToCoreData(message: resp)
                         }
+                    } else {
+                        isPaywallPresented.toggle()
                     }
                 }
             } label: {
@@ -220,6 +247,18 @@ struct ChatView: View {
             .disabled(viewModel.currentInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
         .padding(.top, 12)
+    }
+    
+    func sharePDF(_ pdfURL: URL) {
+        let activityViewController = UIActivityViewController(
+            activityItems: [pdfURL],
+            applicationActivities: nil
+        )
+        UIApplication.shared.windows.first?.rootViewController?.present(
+            activityViewController,
+            animated: true,
+            completion: nil
+        )
     }
     
     func getMessageViewWithImage(_ message: MessageWithImages) -> some View {
@@ -242,14 +281,11 @@ struct ChatView: View {
                         ).fill(message.role == .user ? Color(hex: Colors.primary.rawValue) : Color(hex: "#F5F5F5")))
                     if message.role == .assistant {
                         Button(action: {
-                            generatePDF()
+                            sharePDF(render(content))
                         }, label: {
                             Image("ic_copy")
                         })
                         .padding()
-                        .sheet(isPresented: $isShowingDocumentPicker) {
-                            DocumentPicker(isShowingPicker: $isShowingDocumentPicker, pdfData: createPDF(text: content))
-                        }
                     }
                 case .image(let data):
                     Image(uiImage: UIImage(data: data) ?? UIImage())
@@ -272,17 +308,6 @@ struct ChatView: View {
     }
     
     //MARK: - Render text to PDF -
-    
-    @MainActor func render(viewSize: CGSize) {
-        let renderer = ImageRenderer(
-            content: PDFView(text: "shgfdhasgfjd h fgjahdgsfhjdjgfjhsd hfgdsjhfgjdsfhgjsdfgfdhsgfjhsdgfj")
-                .frame(width: viewSize.width, height: viewSize.height, alignment: .center)
-        )
-        renderer.scale = displayScale
-        if let uiImage = renderer.uiImage {
-            renderedImage = Image(uiImage: uiImage)
-        }
-    }
     
     private func createPDF(text: String) -> Data {
         let pdfMetaData = [
@@ -308,6 +333,44 @@ struct ChatView: View {
         }
         return pdfData as Data
     }
+    
+    func render(_ content: String) -> URL {
+        // 1: Render Hello World with some modifiers
+        let renderer = ImageRenderer(content:
+            Text(content)
+                .font(.largeTitle)
+                .foregroundStyle(.black)
+                .padding()
+                .multilineTextAlignment(.center)
+        )
+
+        // 2: Save it to our documents directory
+        let url = URL.documentsDirectory.appending(path: "output.pdf")
+
+        // 3: Start the rendering process
+        renderer.render { size, context in
+            // 4: Tell SwiftUI our PDF should be the same size as the views we're rendering
+            var box = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+
+            // 5: Create the CGContext for our PDF pages
+            guard let pdf = CGContext(url as CFURL, mediaBox: &box, nil) else {
+                return
+            }
+
+            // 6: Start a new PDF page
+            pdf.beginPDFPage(nil)
+            
+            // 7: Render the SwiftUI view data onto the page
+            context(pdf)
+            
+            // 8: End the page and close the file
+            pdf.endPDFPage()
+            pdf.closePDF()
+        }
+
+        return url
+    }
+    
     
     //MARK: - Actions -
     
@@ -347,7 +410,6 @@ struct RenderView: View {
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
-            Spacer()
         }
         .frame(maxHeight: .infinity)
         .padding()
