@@ -27,37 +27,6 @@ struct HomeView: View {
     }
     
     var body: some View {
-            
-            /// This code will  be used in a separate file
-            
-            //            VStack {
-            //                if viewModel.texts.isEmpty {
-            //                    Text("Nothing Scanned Yet :D")
-            //                } else {
-            //                    List {
-            //                        ForEach(viewModel.texts) { text in
-            //                            NavigationLink(
-            //                                destination: ScrollView { Text(text.content) },
-            //                                label: { Text(text.content) }
-            //                            )
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //            .navigationBarBackButtonHidden(true)
-            //            .toolbar {
-            //                ToolbarItem(placement: .navigationBarTrailing) {
-            //                    Button(action: {
-            //                        viewModel.openCameraSheet = true
-            //                    }, label: {
-            //                        Image(systemName: "doc.text.viewfinder")
-            //                    })
-            //                    .sheet(isPresented: $viewModel.openCameraSheet, content: {
-            //                        makeScannerView()
-            //                    })
-            //                }
-            //            }
-            
             VStack(alignment: .center) {
                 TabView {
                     StartChatView()
@@ -88,11 +57,9 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading, content: {
                     Image("ic_app_logo_small")
-                })
-                ToolbarItem(placement: .principal, content: {
-                    Text("Chatty AI")
-                        .font(Font.custom(FontFamily.bold.rawValue, size: 24))
-                        .foregroundColor(Color(hex: Colors.labelDark.rawValue))
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
                 })
             }
     }

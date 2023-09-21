@@ -70,5 +70,49 @@ extension UserDefaults {
         }
     }
     
+    var accessToken: String? {
+        get {
+            UserDefaults.standard.string(forKey: "access_token")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "access_token")
+        }
+    }
+    
+    var rememberMe: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "remember_me")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "remember_me")
+        }
+    }
+    
+    var loggedInEmail: String {
+        get {
+            UserDefaults.standard.string(forKey: "logged_in_email") ?? "NaN"
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "logged_in_email")
+        }
+    }
+    
+    var fullName: String {
+        get {
+            UserDefaults.standard.string(forKey: "full_name") ?? "NaN"
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "full_name")
+        }
+    }
+    
+    var maxTries: Int {
+        get {
+            UserDefaults.standard.integer(forKey: "max_tries")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "max_tries")
+        }
+    }
     
 }

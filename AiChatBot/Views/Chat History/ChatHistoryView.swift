@@ -13,7 +13,8 @@ struct ChatHistoryView: View {
         entity: ChatHistory.entity(),
         sortDescriptors: [
             NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: true)
-        ]
+        ],
+        predicate: NSPredicate(format: "address == %@", UserDefaults.standard.loggedInEmail)
     ) var chatHistory: FetchedResults<ChatHistory>
     
     @Environment(\.managedObjectContext) var moc
@@ -39,7 +40,6 @@ struct ChatHistoryView: View {
     }
     
     func convertDataToMessagesArray(forGroup group: Double) {
-        
         let chatArr = chatHistory.filter { $0.sessionID == group }
         if !chatArr.isEmpty {
             selectedMessages = chatArr.map {
@@ -47,7 +47,8 @@ struct ChatHistoryView: View {
                     id: UUID().uuidString,
                     content: ($0.message != nil) ? .text($0.message ?? "NaN") : .image($0.imageData!),
                     createdAt: $0.createdAt ?? Date(),
-                    role: SenderRole(rawValue: $0.role ?? "NaN") ?? .paywall
+                    role: SenderRole(rawValue: $0.role ?? "NaN") ?? .paywall,
+                    sessionID: $0.sessionID
                 )
             }
         }
@@ -55,23 +56,29 @@ struct ChatHistoryView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(uniqueGroups, id: \.self) { group in
-                        if let chat = representativeItem(forGroup: group) {
-                            Button {
-                                convertDataToMessagesArray(forGroup: group)
-                                moveToChatScreen.toggle()
-                            } label: {
-                                ZStack {
-                                    ChatHistoryCard(message: "\(chat.sessionID) - \(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
+            if uniqueGroups.count == 0 {
+                VStack(alignment: .center) {
+                    Text("No History Found")
+                }
+            } else {
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(uniqueGroups, id: \.self) { group in
+                            if let chat = representativeItem(forGroup: group) {
+                                Button {
+                                    convertDataToMessagesArray(forGroup: group)
+                                    moveToChatScreen.toggle()
+                                } label: {
+                                    ZStack {
+                                        ChatHistoryCard(message: "\(chat.message ?? "Image")", date: Utilities.formatDate(chat.createdAt ?? Date()) )
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                .padding(.top, 20)
             }
-            .padding(.top, 20)
         }
         .padding(.horizontal, 10)
         .navigationBarBackButtonHidden(true)
@@ -90,17 +97,6 @@ struct ChatHistoryView: View {
         })
     }
     
-    func delete(at offsets: IndexSet) {
-        for index in offsets {
-            let language = chatHistory[index]
-            moc.delete(language)
-        }
-        do {
-            try moc.save()
-        } catch  {
-            print("> Error occured during deleting from core data")
-        }
-    }
 }
 
 struct ChatHistoryView_Previews: PreviewProvider {

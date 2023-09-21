@@ -10,14 +10,14 @@ import SwiftUI
 struct LoginView: View {
     
     @ObservedObject private var viewModel: LoginVM
-    
+    @State private var isEmailValid: Bool = true
+
     init(viewModel: LoginVM) {
         self.viewModel = viewModel
     }
     
     var body: some View {
         ZStack {
-            NavigationStack {
                 VStack(alignment: .leading) {
                     
                     Text("Welcome back 👋")
@@ -40,7 +40,7 @@ struct LoginView: View {
                             HStack {
                                 TextField("Email", text: $viewModel.email)
                                 Image("ic_dropdown")
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color(hex: Colors.primary.rawValue))
                             }
                             .padding(.bottom, 20)
                             .underlinedTextFieldStyle()
@@ -103,7 +103,6 @@ struct LoginView: View {
                                 .font(Font.custom(FontFamily.bold.rawValue, size: 18))
                         }
                         
-                        
                         HStack(alignment: .center) {
                             Text("Don't have an account?")
                                 .font(Font.custom(FontFamily.medium.rawValue, size: 16))
@@ -115,7 +114,7 @@ struct LoginView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 20)
- 
+                        
                     }
                     
                     Button(action: {
@@ -145,10 +144,17 @@ struct LoginView: View {
                 .navigationDestination(isPresented: $viewModel.loginActionSuccess, destination: {
                     HomeView(viewModel: HomeVM())
                 })
-            }
+            
             PopupView(show: $viewModel.showPopUp)
         }
-
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.alertTitle),
+                message: Text(viewModel.alertMsg),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        
     }
     
 }

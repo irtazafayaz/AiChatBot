@@ -14,7 +14,7 @@ struct ProfileView: View {
     @State private var showPrivacy = false
     @ObservedObject private var viewModel: ProfileVM
     @Environment(\.presentationMode) var presentationMode
-
+    
     init () {
         self.viewModel = ProfileVM()
     }
@@ -24,14 +24,18 @@ struct ProfileView: View {
         ZStack {
             VStack(alignment: .leading) {
                 
-                Text("Irtaza Fiaz")
-                    .font(Font.custom(FontFamily.bold.rawValue, size: 20))
-                    .foregroundColor(Color(hex: "#212121"))
-                Text("sss@yourdomain")
-                    .font(Font.custom(FontFamily.medium.rawValue, size: 14))
-                    .foregroundColor(Color(hex: "#616161"))
-                    .padding(.top, 5)
-                
+                HStack {
+                    Image("ic_profile")
+                        .foregroundColor(.gray)
+                    VStack(alignment: .leading) {
+                        Text(UserDefaults.standard.fullName)
+                            .font(Font.custom(FontFamily.bold.rawValue, size: 20))
+                            .foregroundColor(Color(hex: "#212121"))
+                        Text(UserDefaults.standard.loggedInEmail)
+                            .font(Font.custom(FontFamily.medium.rawValue, size: 14))
+                            .foregroundColor(Color(hex: "#616161"))
+                    }
+                }
                 Button {
                     isPaywallPresented.toggle()
                 } label: {
@@ -63,21 +67,25 @@ struct ProfileView: View {
                     .padding(.top, 20)
                 }
                 
-                
-                HStack(alignment: .center) {
-                    Image("ic_help_center")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 17, height: 20)
-                    Text("Help Center")
-                        .font(Font.custom(FontFamily.bold.rawValue, size: 18))
-                        .foregroundColor(Color(hex: Colors.labelDark.rawValue))
-                        .padding(.leading, 10)
-                    Spacer()
-                    Image("ic_arrow_right")
+                Button {
+                    showTerms.toggle()
+                } label: {
+                    HStack(alignment: .center) {
+                        Image("ic_help_center")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 17, height: 20)
+                        Text("Terms and Conditions")
+                            .font(Font.custom(FontFamily.bold.rawValue, size: 18))
+                            .foregroundColor(Color(hex: Colors.labelDark.rawValue))
+                            .padding(.leading, 10)
+                        Spacer()
+                        Image("ic_arrow_right")
+                            .foregroundColor(.black)
+                    }
+                    .padding(.top, 30)
+                    .padding(.horizontal)
                 }
-                .padding(.top, 20)
-                .padding(.horizontal)
                 
                 Button {
                     showPrivacy.toggle()
@@ -95,34 +103,14 @@ struct ProfileView: View {
                         Image("ic_arrow_right")
                             .foregroundColor(.black)
                     }
-                    .padding(.top, 10)
-                    .padding(.horizontal)
-                }
-                
-                Button {
-                    showTerms.toggle()
-                } label: {
-                    HStack(alignment: .center) {
-                        Image("ic_about")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 17, height: 20)
-                        Text("About School AI")
-                            .font(Font.custom(FontFamily.bold.rawValue, size: 18))
-                            .foregroundColor(Color(hex: Colors.labelDark.rawValue))
-                            .padding(.leading, 10)
-                        Spacer()
-                        Image("ic_arrow_right")
-                            .foregroundColor(.black)
-                    }
-                    .padding(.top, 10)
+                    .padding(.top, 20)
                     .padding(.horizontal)
                 }
                 
                 Button {
                     viewModel.logout { success in
                         if success {
-                            presentationMode.wrappedValue.dismiss()
+                            viewModel.goToLogin.toggle()
                         }
                     }
                 } label: {
@@ -137,7 +125,7 @@ struct ProfileView: View {
                             .padding(.leading, 10)
                         Spacer()
                     }
-                    .padding(.top, 10)
+                    .padding(.top, 20)
                     .padding(.horizontal)
                 }
                 Spacer()
@@ -145,6 +133,9 @@ struct ProfileView: View {
             .padding()
             .navigationDestination(isPresented: $isPaywallPresented, destination: {
                 PaywallView(isPaywallPresented: $isPaywallPresented)
+            })
+            .navigationDestination(isPresented: $viewModel.goToLogin, destination: {
+                LoginRegisterSelectionView()
             })
             .sheet(isPresented: $showTerms, content: {
                 SharedWebView(pageType: .terms)

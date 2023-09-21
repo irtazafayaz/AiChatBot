@@ -16,6 +16,9 @@ struct StartChatView: View {
         VStack {
             
             Image("ic_app_logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
                 .padding(.top, 30)
             
             Text("Welcome to")
@@ -23,11 +26,11 @@ struct StartChatView: View {
                 .foregroundColor(Color(hex: Colors.labelDark.rawValue))
                 .padding(.top, 20)
             
-            Text("ChattyAI 👋")
+            Text("School AI 👋")
                 .font(Font.custom(FontFamily.bold.rawValue, size: 40))
                 .foregroundColor(Color(hex: Colors.primary.rawValue))
             
-            Text("Start chatting with ChattyAI now.\nYou can ask me anything.")
+            Text("Start chatting with School AI now.\nYou can ask me anything.")
                 .font(Font.custom(FontFamily.regular.rawValue, size: 18))
                 .foregroundColor(Color(hex: Colors.labelGray.rawValue))
                 .multilineTextAlignment(.center)

@@ -35,11 +35,6 @@ struct CompleteYourProfileView: View {
                         .padding(.top, 10)
                         .lineLimit(5)
                     
-                    HStack (alignment: .center) {
-                        RoundedIconWithEditButton(imageName: "ic_avatar")
-                    }
-                    .frame(maxWidth: .infinity)
-                    
                     // MARK: Full Name Text Field
                     
                     VStack(alignment: .leading) {
@@ -129,7 +124,13 @@ struct CompleteYourProfileView: View {
             PopupView(show: $viewModel.showPopUp)
 
         }
-        
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.alertTitle),
+                message: Text(viewModel.alertMsg),
+                dismissButton: .default(Text("OK"))
+            )
+        }
         
     }
 }

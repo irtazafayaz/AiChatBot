@@ -39,6 +39,27 @@ struct OpenAIChatChoice: Decodable {
     let message: OpenAIChatMessage
 }
 
+struct MessageData: Codable {
+    let id: String
+    let role: SenderRole
+    let content: String
+    
+    var description: [String: Any] {
+        let dictionary: [String: Any] = [
+            "role": role.rawValue,
+            "content": content
+        ]
+        return dictionary
+    }
+}
+
+enum Role: String, Codable {
+    case system
+    case user
+    case assistant
+    case paywall
+}
+
 struct Message: Decodable {
     let id: String
     let content: String
@@ -51,6 +72,16 @@ struct MessageWithImages {
     let content: MessageContent
     let createdAt: Date
     let role: SenderRole
+    let sessionID: Double
+    
+    init(id: String, content: MessageContent, createdAt: Date, role: SenderRole, sessionID: Double) {
+        self.id = id
+        self.content = content
+        self.createdAt = createdAt
+        self.role = role
+        self.sessionID = sessionID
+    }
+    
 }
 
 enum MessageContent: Equatable {

@@ -26,6 +26,11 @@ class RegisterUserVM: ObservableObject {
     @Published var selectedDate = Date()
     @Published var showPopUp: Bool = false
 
+    @Published var showAlert: Bool = false
+    @Published var alertTitle: String = "Error"
+    @Published var alertMsg: String = ""
+    @Published var isCompleteProfileOpen: Bool = false
+
     let genders = ["Male", "Female", "Other"]
     
     private let service = BaseService.shared
@@ -37,23 +42,48 @@ class RegisterUserVM: ObservableObject {
         params["password"] = password
         params["phone_number"] = phoneNumber
         params["full_name"] = fullName
+        params["gender"] = selectedGender
         return params
     }
     
-    
     func registerUser() {
-        showPopUp.toggle()
-        service.registerUser(from: .register, params: createParams()) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let response):
-                print("API RESPONSE \(response)")
-                showPopUp.toggle()
-                self.registerActionSuccess = true
-            case .failure(let error):
-                print("API ERROR \(error)")
-                showPopUp.toggle()
+        if fullName.isEmpty {
+            alertMsg = "Name cannot be empty"
+            showAlert.toggle()
+        } else if phoneNumber.isEmpty {
+            alertMsg = "Phone Number cannot be empty"
+            showAlert.toggle()
+        } else {
+            showPopUp.toggle()
+            service.registerUser(from: .register, params: createParams()) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    print("API RESPONSE \(response)")
+                    showPopUp.toggle()
+                    self.registerActionSuccess = true
+                case .failure(let error):
+                    print("API ERROR \(error)")
+                    showPopUp.toggle()
+                    alertMsg = "\(error)"
+                    showAlert.toggle()
+                }
             }
+        }
+    }
+    
+    func moveToCompleteProfile() {
+        if !Utilities.isValidEmail(email) {
+            alertMsg = "Invalid Email"
+            showAlert.toggle()
+        } else if password.count < 8 {
+            alertMsg = "Password should be 8 characters long"
+            showAlert.toggle()
+        } else if confirmPassword != password {
+            alertMsg = "Password should be equal to confirm password"
+            showAlert.toggle()
+        } else {
+            isCompleteProfileOpen.toggle()
         }
     }
     

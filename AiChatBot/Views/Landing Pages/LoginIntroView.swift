@@ -13,7 +13,6 @@ struct LoginIntroView: View {
     @State private var showLoginPage: Bool = false
     
     var body: some View {
-        NavigationStack {
             VStack {
                 Image(AppImages.loginIntro.rawValue)
                     .resizable()
@@ -32,11 +31,6 @@ struct LoginIntroView: View {
                 
                 Text("The best AI Chatbot app in this century")
                     .font(Font.custom(FontFamily.bold.rawValue, size: 32))
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...")
-                    .font(Font.custom(FontFamily.regular.rawValue, size: 18))
                     .multilineTextAlignment(.center)
                     .padding()
                 
@@ -59,7 +53,7 @@ struct LoginIntroView: View {
                 
             }
             .background(Color.white)
-        }
+        
     }
 }
 

@@ -14,11 +14,11 @@ struct SplashView: View {
                 .scaledToFit()
                 .frame(width: 160, height: 160)
             
-            Text("ChattyAI")
+            Text("SchoolAI")
                 .font(Font.custom(FontFamily.bold.rawValue, size: 40))
                 .foregroundColor(Color(hex: Colors.labelDark.rawValue))
                 .multilineTextAlignment(.center)
-                .frame(width: 164, height: 64)
+                .lineLimit(2)
             
             Spacer()
             

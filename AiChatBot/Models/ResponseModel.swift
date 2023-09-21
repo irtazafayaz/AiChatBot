@@ -31,3 +31,10 @@ struct OCRResponse: Decodable {
     }
 }
 
+struct GPTTextResponse: Decodable {
+    let gptResponse: String
+
+    enum CodingKeys: String, CodingKey {
+        case gptResponse = "ChatGPT Response"
+    }
+}

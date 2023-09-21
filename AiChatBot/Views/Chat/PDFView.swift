@@ -7,32 +7,6 @@
 
 import SwiftUI
 
-struct PDFView: View {
-    
-    let text: String
-    
-    var body: some View {
-        
-        VStack {
-            Text("School AI")
-                .foregroundColor(.black)
-            Text(text)
-                .font(.largeTitle)
-                .multilineTextAlignment(.center)
-                .lineLimit(.max)
-                .padding(.top)
-                .padding(.horizontal, 30)
-        }
-        .padding()
-    }
-}
-
-struct PDFView_Previews: PreviewProvider {
-    static var previews: some View {
-        PDFView(text: "assadjnsadjas dajshdkjashdkja dhasjkhdjkasgkd")
-    }
-}
-
 struct DocumentPicker: UIViewControllerRepresentable {
     @Binding var isShowingPicker: Bool
     let pdfData: Data
@@ -84,7 +58,7 @@ struct PDFPageInfo {
             .font: textFont
         ]
 
-        let textRect = CGRect(x: 0, y: 0, width: 200, height: 100) // Modify as needed
+        let textRect = CGRect(x: 0, y: 0, width: 200, height: 300) // Modify as needed
         let attributedText = NSAttributedString(string: text, attributes: textAttributes)
 
         // Save the current graphics state to apply transformations

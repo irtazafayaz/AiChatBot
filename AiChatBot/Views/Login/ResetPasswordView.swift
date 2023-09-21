@@ -44,8 +44,11 @@ struct ResetPasswordView: View {
             Spacer()
             
             Button(action: {
-                viewModel.resetPassword()
-                presentationMode.wrappedValue.dismiss()
+                viewModel.resetPassword { success in
+                    if success {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
             }, label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 100)

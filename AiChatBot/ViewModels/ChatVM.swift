@@ -21,7 +21,6 @@ class ChatVM: ObservableObject {
     
     @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
     private let openAIService = OpenAIService()
-    
     private let service = BaseService.shared
     
     init(with text: String, messages: [MessageWithImages] = []) {
@@ -29,65 +28,62 @@ class ChatVM: ObservableObject {
         self.msgsArr = messages
     }
     
-    func sendMessageApi(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
-            let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(self.currentInput), createdAt: Date(), role: .user)
-            DispatchQueue.main.async {
-                self.msgsArr.append(newMessage)
-                completion(true)
-            }
-        }
-    }
+    // MARK: Send Message APIs
     
-    
-    func sendMessage(completion: @escaping (Bool) -> Void) {
-        if currentInput.isEmpty {
-            return
-        }
-        let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(currentInput), createdAt: Date(), role: .user)
-        msgsArr.append(newMessage)
-        openAIService.sendStreamMessages(messages: messages).responseStreamString { [weak self] stream in
+    func sendImage(image: UIImage, completion: @escaping (MessageWithImages?) -> Void) {
+        UserDefaults.standard.maxTries += 1
+        service.ocrWithImage(from: .ocr, image: image, completion: { [weak self] response in
+            print(response)
             guard let self = self else { return }
-            switch stream.event {
-            case .stream(let response):
-                switch response {
-                case .success(let string):
-                    let streamResponse = self.parseStreamData(string)
-                    print(streamResponse)
-                    print(self.messages)
-                    streamResponse.forEach { newMessageResponse in
-                        guard let messageContent = newMessageResponse.choices.first?.delta.content else {
-                            return
-                        }
-                        guard let existingMessageIndex = self.messages.lastIndex(where: {$0.id == newMessageResponse.id}) else {
-                            let newMessage = MessageWithImages(id: newMessageResponse.id, content: .text(messageContent), createdAt: Date(), role: .assistant)
-                            self.msgsArr.append(newMessage)
-                            return
-                        }
-                        let newMessage = MessageWithImages(id: newMessageResponse.id, content: .text(self.messages[existingMessageIndex].content + messageContent), createdAt: Date(), role: .assistant)
-                        self.msgsArr[existingMessageIndex] = newMessage
-                    }
-                case .failure(_):
-                    print("/ChatVM/sendMessage/sendStreamMessage/Failure")
-                    completion(false)
-                }
-            case .complete(_):
-                print("COMPLETE")
-                scrollToTop.toggle()
-                completion(true)
+            switch response {
+            case .success(let response):
+                completion(MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant, sessionID: self.getSession()))
+            case .failure(_):
+                completion(nil)
+            }
+        })
+    }
+    
+    
+    func sendMessageUsingFirebase(completion: @escaping (MessageWithImages?) -> Void) {
+        let filteredMsgs = mapToMessages(msgsArr)
+        let messagesDescription = filteredMsgs.map { message in
+            return message.description
+        }
+        let data = ["chat_history": messagesDescription]
+        service.askGPT(from: .gptText, history: data) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let response):
+                _ = msgsArr.popLast()
+                let msg = MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant, sessionID: msgsArr[0].sessionID)
+                self.msgsArr.append(msg)
+                completion(msg)
+            case .failure(let error):
+                print("> GPT ERROR \(error)")
+                completion(nil)
             }
         }
     }
     
+    // MARK: HELPER FUNCTIONS
     
-    func parseStreamData(_ data: String) -> [ChatStreamCompletionResponse] {
-        let responseString = data.split(separator: "data:").map({$0.trimmingCharacters(in: .whitespacesAndNewlines)}).filter({!$0.isEmpty})
-        let jsonDecoder = JSONDecoder()
-        return responseString.compactMap { jsonString in
-            guard let jsonData = jsonString.data(using: .utf8), let streamResponse = try? jsonDecoder.decode(ChatStreamCompletionResponse.self, from: jsonData) else {
-                return nil
+    func mapToMessages(_ messagesWithImages: [MessageWithImages]) -> [MessageData] {
+        return messagesWithImages.map { messageWithImages in
+            switch messageWithImages.content {
+            case .text(let textContent):
+                return MessageData(
+                    id: messageWithImages.id,
+                    role: messageWithImages.role,
+                    content: textContent
+                )
+            case .image:
+                return MessageData(
+                    id: messageWithImages.id,
+                    role: messageWithImages.role,
+                    content: "Image Content"
+                )
             }
-            return streamResponse
         }
     }
     
@@ -100,19 +96,23 @@ class ChatVM: ObservableObject {
         }
     }
     
-    func sendImage(image: UIImage, completion: @escaping (MessageWithImages?) -> Void) {
-        service.ocrWithImage(from: .ocr, image: image, completion: { [weak self] response in
-            print(response)
-            guard let self = self else { return }
-            switch response {
-            case .success(let response):
-                completion(MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant))
-            case .failure(let error):
-                print("GPT ERROR \(error)")
-                completion(nil)
-            }
-        })
+    func getSession() -> Double {
+        if msgsArr.isEmpty {
+            UserDefaults.standard.sessionID += 1
+            return Double(UserDefaults.standard.sessionID)
+        } else {
+            return msgsArr[0].sessionID
+        }
     }
     
+    func addUserMsg() -> MessageWithImages {
+        let newMessage = MessageWithImages(id: UUID().uuidString, content: .text(currentInput), createdAt: Date(), role: .user, sessionID: getSession())
+        currentInput = ""
+        msgsArr.append(newMessage)
+        UserDefaults.standard.maxTries += 1
+        let typingMsg = MessageWithImages(id: UUID().uuidString, content: .text("typing..."), createdAt: Date(), role: .assistant, sessionID: getSession())
+        msgsArr.append(typingMsg)
+        return newMessage
+    }
     
 }
