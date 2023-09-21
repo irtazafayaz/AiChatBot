@@ -34,11 +34,6 @@ struct LoginIntroView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...")
-                    .font(Font.custom(FontFamily.regular.rawValue, size: 18))
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
                 Spacer()
                 
                 NavigationLink(destination: LoginRegisterSelectionView()) {

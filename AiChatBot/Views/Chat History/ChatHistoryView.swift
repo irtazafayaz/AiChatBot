@@ -13,7 +13,8 @@ struct ChatHistoryView: View {
         entity: ChatHistory.entity(),
         sortDescriptors: [
             NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: true)
-        ]
+        ],
+        predicate: NSPredicate(format: "address == %@", UserDefaults.standard.loggedInEmail)
     ) var chatHistory: FetchedResults<ChatHistory>
     
     @Environment(\.managedObjectContext) var moc
@@ -96,17 +97,6 @@ struct ChatHistoryView: View {
         })
     }
     
-    func delete(at offsets: IndexSet) {
-        for index in offsets {
-            let language = chatHistory[index]
-            moc.delete(language)
-        }
-        do {
-            try moc.save()
-        } catch  {
-            print("> Error occured during deleting from core data")
-        }
-    }
 }
 
 struct ChatHistoryView_Previews: PreviewProvider {

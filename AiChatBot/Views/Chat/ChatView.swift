@@ -390,6 +390,7 @@ struct ChatView: View {
         chat.role = message.role.rawValue
         chat.createdAt = Date()
         chat.sessionID = message.sessionID
+        chat.address = UserDefaults.standard.loggedInEmail
         try? moc.save()
     }
     

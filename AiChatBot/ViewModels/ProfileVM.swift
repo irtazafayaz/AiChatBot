@@ -24,6 +24,8 @@ class ProfileVM: ObservableObject {
                 print("API RESPONSE \(response)")
                 showPopUp.toggle()
                 UserDefaults.standard.refreshToken = ""
+                UserDefaults.standard.accessToken = ""
+                UserDefaults.standard.loggedInEmail = ""
                 UserDefaults.standard.rememberMe = false
                 self.logoutActionSuccess = true
                 completion(true)

@@ -70,6 +70,15 @@ extension UserDefaults {
         }
     }
     
+    var accessToken: String? {
+        get {
+            UserDefaults.standard.string(forKey: "access_token")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "access_token")
+        }
+    }
+    
     var rememberMe: Bool {
         get {
             UserDefaults.standard.bool(forKey: "remember_me")

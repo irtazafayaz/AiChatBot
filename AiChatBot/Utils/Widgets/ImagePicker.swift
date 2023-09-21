@@ -61,6 +61,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         chat.role = message.role.rawValue
         chat.createdAt = Date()
         chat.sessionID = message.sessionID
+        chat.address = UserDefaults.standard.loggedInEmail
         try? self.picker.moc.save()
     }
     

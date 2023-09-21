@@ -45,6 +45,7 @@ class LoginVM: ObservableObject {
                 case .success(let response):
                     showPopUp.toggle()
                     UserDefaults.standard.refreshToken = response.refreshToken
+                    UserDefaults.standard.accessToken = response.accessToken
                     UserDefaults.standard.rememberMe = isAgreed
                     decodeFromJWTToken(token: response.accessToken)
                     self.loginActionSuccess = true
