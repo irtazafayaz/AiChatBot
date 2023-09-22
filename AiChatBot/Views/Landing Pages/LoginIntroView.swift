@@ -34,6 +34,11 @@ struct LoginIntroView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 
+                Text("Help Solve your HomeWork in minutes")
+                    .font(Font.custom(FontFamily.regular.rawValue, size: 18))
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
                 Spacer()
                 
                 NavigationLink(destination: LoginRegisterSelectionView()) {
@@ -44,7 +49,7 @@ struct LoginIntroView: View {
                             .frame(height: 65)
                             .padding()
                         
-                        Text("Next")
+                        Text("Continue")
                             .foregroundColor(.white)
                             .font(.system(size: 18, weight: .bold))
                     }

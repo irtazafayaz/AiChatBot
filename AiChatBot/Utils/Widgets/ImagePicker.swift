@@ -11,13 +11,13 @@ import SwiftUI
 
 
 struct ImagePicker: UIViewControllerRepresentable {
-
+    
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) var isPresented
     @Environment(\.managedObjectContext) var moc
     var sourceType: UIImagePickerController.SourceType
     @ObservedObject var viewModel: ChatVM
-
+    
     func makeUIViewController(context: Context) -> some UIViewController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = self.sourceType
@@ -30,7 +30,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
         return Coordinator(picker: self)
     }
-
+    
 }
 
 
@@ -70,16 +70,21 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             if let imageData = selectedImage.pngData() {
                 print("Image converted to data successfully.")
                 let newImageMessage = MessageWithImages(id: UUID().uuidString, content: .image(imageData), createdAt: Date(), role: .user, sessionID: self.picker.viewModel.getSession())
+                let typingMsg = MessageWithImages(id: UUID().uuidString, content: .text("typing..."), createdAt: Date(), role: .assistant, sessionID: self.picker.viewModel.getSession())
                 self.addToCoreData(message: newImageMessage)
+                self.picker.viewModel.msgsArr.append(newImageMessage)
+                self.picker.viewModel.msgsArr.append(typingMsg)
                 self.picker.viewModel.sendImage(image: selectedImage) { msg in
                     if let message = msg {
+                        _ = self.picker.viewModel.msgsArr.popLast()
                         self.addToCoreData(message: message)
-                        self.picker.viewModel.msgsArr.append(message)
+                        DispatchQueue.main.async {
+                            self.picker.viewModel.msgsArr.append(message)
+                        }
                     }
                 }
-                DispatchQueue.main.async {
-                    self.picker.viewModel.msgsArr.append(newImageMessage)
-                }
+                
+                
             } else {
                 print("Failed to convert image to data.")
             }

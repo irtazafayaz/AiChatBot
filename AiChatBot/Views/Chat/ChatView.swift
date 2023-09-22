@@ -38,9 +38,7 @@ struct ChatView: View {
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
     @State private var openCameraDialogue = false
-    
-    @ObservedObject var webSocket = WebSocket()
-    
+        
     //MARK: - Initialization Methods -
     
     init(messagesArr: [MessageWithImages] = []) {
@@ -169,7 +167,7 @@ struct ChatView: View {
     
     func bottomView(image: String, proxy: ScrollViewProxy?) -> some View {
         HStack(alignment: .top, spacing: 8) {
-            TextField("Message...", text: $viewModel.currentInput, onEditingChanged: { editing in
+            TextField("Ask me anything...", text: $viewModel.currentInput, onEditingChanged: { editing in
                 isEditing = editing
             })
             .foregroundColor(.black)
@@ -375,7 +373,7 @@ struct ChatView: View {
     //MARK: - Actions -
     
     private func scrollToBottom(proxy: ScrollViewProxy) {
-        guard let id = viewModel.messages.filter({$0.role != .system}).last?.id else { return }
+        guard let id = viewModel.msgsArr.filter({$0.role != .system}).last?.id else { return }
         proxy.scrollTo(id, anchor: .bottomTrailing)
     }
     

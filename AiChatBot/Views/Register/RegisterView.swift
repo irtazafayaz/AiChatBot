@@ -37,7 +37,10 @@ struct RegisterView: View {
                     HStack {
                         TextField("Email", text: $viewModel.email)
                         Image("ic_dropdown")
-                            .foregroundColor(.gray)
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(Color(hex: Colors.primary.rawValue))
+                            .frame(width: 20, height: 20)
                     }
                     .padding(.bottom, 20)
                     .underlinedTextFieldStyle()

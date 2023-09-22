@@ -101,7 +101,7 @@ struct CompleteYourProfileView: View {
                             RoundedRectangle(cornerRadius: 100)
                                 .foregroundColor(Color(hex: Colors.primary.rawValue))
                                 .shadow(color: Color.green.opacity(0.25), radius: 24, x: 4, y: 8)
-                                .frame(width: 140, height: 65)
+                                .frame(height: 65)
                                 .padding()
                             Text("Continue")
                                 .foregroundColor(.white)
