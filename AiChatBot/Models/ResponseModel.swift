@@ -22,12 +22,14 @@ struct LoginResponse: Decodable {
 }
 
 struct OCRResponse: Decodable {
-    let gptResponse: String
+    let gptResponse: String?
     let latexCode: String?
+    let error: String?
 
     enum CodingKeys: String, CodingKey {
         case gptResponse = "ChatGPT Response"
         case latexCode = "Latex Code"
+        case error = "error"
     }
 }
 

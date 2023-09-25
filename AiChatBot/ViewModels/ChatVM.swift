@@ -37,7 +37,13 @@ class ChatVM: ObservableObject {
             guard let self = self else { return }
             switch response {
             case .success(let response):
-                completion(MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant, sessionID: self.getSession()))
+                if let error = response.error {
+                    completion(MessageWithImages(id: UUID().uuidString, content: .text(error), createdAt: Date(), role: .assistant, sessionID: self.getSession()))
+                } else if let gpt = response.gptResponse {
+                    completion(MessageWithImages(id: UUID().uuidString, content: .text(gpt), createdAt: Date(), role: .assistant, sessionID: self.getSession()))
+                } else {
+                    completion(nil)
+                }
             case .failure(_):
                 completion(nil)
             }

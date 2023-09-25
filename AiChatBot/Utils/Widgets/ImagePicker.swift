@@ -67,7 +67,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
     func addImage(selectedImage: UIImage) {
         DispatchQueue.main.async {
-            if let imageData = selectedImage.pngData() {
+            if let imageData = selectedImage.jpegData(compressionQuality: 0.8) {
                 print("Image converted to data successfully.")
                 let newImageMessage = MessageWithImages(id: UUID().uuidString, content: .image(imageData), createdAt: Date(), role: .user, sessionID: self.picker.viewModel.getSession())
                 let typingMsg = MessageWithImages(id: UUID().uuidString, content: .text("typing..."), createdAt: Date(), role: .assistant, sessionID: self.picker.viewModel.getSession())
