@@ -18,12 +18,12 @@ struct ChatAssistantView: View {
         
         VStack {
             ScrollView {
-                HStack(spacing: 20) {
+                HStack(spacing: 10) {
                     Button {
                         UserDefaults.standard.sessionID += 1
                         selectedMessages = [MessageWithImages(
                             id: UUID().uuidString,
-                            content: .text("Act as a writer who excels in writing on articles."),
+                            content: .text("Act as an academic professor  and answer the questions in a detailed manner."),
                             createdAt: Date(),
                             role: .system,
                             sessionID: Double(UserDefaults.standard.sessionID)
@@ -33,17 +33,19 @@ struct ChatAssistantView: View {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_writing")
                                 .padding(.top, 10)
-                            Text("Write an Articles")
+                            Text("Scan Questions")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.black)
                                 .padding(.top, 10)
-                            Text("Generate well-written articles on any topic you want.")
+                            Text("Your instant access to AI-powered answers.")
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                                 .padding(.top, 1)
+                            Spacer()
                             
                         }
                         .frame(height: 226.0)
+                        .frame(minWidth: 0, maxWidth: .infinity) // Equal width
                         .padding()
                         .background(RoundedCorners(
                             tl: 10,
@@ -56,7 +58,7 @@ struct ChatAssistantView: View {
                         UserDefaults.standard.sessionID += 1
                         selectedMessages = [MessageWithImages(
                             id: UUID().uuidString,
-                            content: .text("Act as a writer"),
+                            content: .text("Solve the following latex code and give a detailed elaboration of the solution in human read able form"),
                             createdAt: Date(),
                             role: .system,
                             sessionID: Double(UserDefaults.standard.sessionID)
@@ -66,16 +68,19 @@ struct ChatAssistantView: View {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_academic")
                                 .padding(.top, 10)
-                            Text("Academic Writer")
+                            Text("Scan Math")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.black)
                                 .padding(.top, 10)
-                            Text("Generate educational writing such as essays, reports, etc.")
+                            Text("Your AI math tutor at your fingertips.")
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
+                                .padding(.top, 1)
+                            Spacer()
                             
                         }
                         .frame(height: 226.0)
+                        .frame(minWidth: 0, maxWidth: .infinity) // Equal width
                         .padding()
                         .background(RoundedCorners(
                             tl: 10,
@@ -88,12 +93,12 @@ struct ChatAssistantView: View {
                 }
                 .padding(.top, 40)
                 
-                HStack(spacing: 20) {
+                HStack(spacing: 10) {
                     Button {
                         UserDefaults.standard.sessionID += 1
                         selectedMessages = [MessageWithImages(
                             id: UUID().uuidString,
-                            content: .text("Act as a writer"),
+                            content: .text("Act as a geographer."),
                             createdAt: Date(),
                             role: .system,
                             sessionID: Double(UserDefaults.standard.sessionID)
@@ -103,18 +108,20 @@ struct ChatAssistantView: View {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_summarize")
                                 .padding(.top, 10)
-                            Text("Summarize (TL;DR)")
+                            Text("Geography")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                                 .padding(.top, 10)
-                            Text("Extract key points from long texts.")
+                            Text("Discover the world at your fingertips.")
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
-                                .padding(.top, 10)
+                                .padding(.top, 1)
+                            Spacer()
                             
                         }
                         .frame(height: 226.0)
+                        .frame(minWidth: 0, maxWidth: .infinity) // Equal width
                         .padding()
                         .background(RoundedCorners(
                             tl: 10,
@@ -129,7 +136,7 @@ struct ChatAssistantView: View {
                         UserDefaults.standard.sessionID += 1
                         selectedMessages = [MessageWithImages(
                             id: UUID().uuidString,
-                            content: .text("Act as a writer"),
+                            content: .text("Act as a physics expert."),
                             createdAt: Date(),
                             role: .system,
                             sessionID: Double(UserDefaults.standard.sessionID)
@@ -139,17 +146,19 @@ struct ChatAssistantView: View {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_world")
                                 .padding(.top, 10)
-                            Text("Translate Language")
+                            Text("Physics")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                                 .padding(.top, 10)
-                            Text("Translate from one language to another.")
+                            Text("Unravel the mysteries of the universe.")
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
-                                .padding(.top, 5)
+                                .padding(.top, 1)
+                            Spacer()
                         }
                         .frame(height: 226.0)
+                        .frame(minWidth: 0, maxWidth: .infinity) // Equal width
                         .padding()
                         .background(RoundedCorners(
                             tl: 10,
@@ -159,14 +168,13 @@ struct ChatAssistantView: View {
                         ).fill(Color(hex: Colors.chatBG.rawValue)))
                     }
                 }
-                .padding(.top, 10)
                 
-                HStack(spacing: 20) {
+                HStack(spacing: 10) {
                     Button {
                         UserDefaults.standard.sessionID += 1
                         selectedMessages = [MessageWithImages(
                             id: UUID().uuidString,
-                            content: .text("Act as a writer"),
+                            content: .text("Act as a biology expert."),
                             createdAt: Date(),
                             role: .system,
                             sessionID: Double(UserDefaults.standard.sessionID)
@@ -176,17 +184,19 @@ struct ChatAssistantView: View {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_plag")
                                 .padding(.top, 10)
-                            Text("Plagiarism Checker")
+                            Text("Biology")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                                 .padding(.top, 10)
-                            Text("Check the level of text plagiarism with AI.")
+                            Text("Explore the wonders of life's diversity.")
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
-                                .padding(.top, 5)
+                                .padding(.top, 1)
+                            Spacer()
                         }
                         .frame(height: 226.0)
+                        .frame(minWidth: 0, maxWidth: .infinity) // Equal width
                         .padding()
                         .background(RoundedCorners(
                             tl: 10,
@@ -195,42 +205,34 @@ struct ChatAssistantView: View {
                             br: 10
                         ).fill(Color(hex: Colors.chatBG.rawValue)))
                     }
-                    .frame(height: 226.0)
                     
                     Button {
-                        UserDefaults.standard.sessionID += 1
-                        selectedMessages = [MessageWithImages(
-                            id: UUID().uuidString,
-                            content: .text("Act as a writer"),
-                            createdAt: Date(),
-                            role: .system,
-                            sessionID: Double(UserDefaults.standard.sessionID)
-                        )]
-                        moveToChatScreen.toggle()
+                        
                     } label: {
                         VStack(alignment: .leading) {
-                            Image("ic_assistant_academic")
-                                .padding(.top, 10)
-                            Text("Academic Writer")
+                            Text("Physics")
                                 .font(.system(size: 18, weight: .bold))
-                                .foregroundColor(.black)
-                                .padding(.top, 10)
-                            Text("Generate educational writing such as essays, reports, etc.")
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .multilineTextAlignment(.leading)
-                                .padding(.top, 5)
+                                .padding(.top, 10)
+                            Text("Act as a physics expert.")
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                                .padding(.top, 1)
+                            Spacer()
                         }
                         .frame(height: 226.0)
+                        .frame(minWidth: 0, maxWidth: .infinity) // Equal width
                         .padding()
                         .background(RoundedCorners(
                             tl: 10,
                             tr: 10,
                             bl: 10,
                             br: 10
-                        ).fill(Color(hex: Colors.chatBG.rawValue)))
+                        ).fill(.white))
                     }
+                    
                 }
-                .padding(.top, 10)
             }
         }
         .padding(.horizontal, 10)

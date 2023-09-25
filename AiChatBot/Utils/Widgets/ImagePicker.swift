@@ -75,8 +75,8 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                 self.picker.viewModel.msgsArr.append(newImageMessage)
                 self.picker.viewModel.msgsArr.append(typingMsg)
                 self.picker.viewModel.sendImage(image: selectedImage) { msg in
+                    _ = self.picker.viewModel.msgsArr.popLast()
                     if let message = msg {
-                        _ = self.picker.viewModel.msgsArr.popLast()
                         self.addToCoreData(message: message)
                         DispatchQueue.main.async {
                             self.picker.viewModel.msgsArr.append(message)

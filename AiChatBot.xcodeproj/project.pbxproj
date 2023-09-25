@@ -12,7 +12,6 @@
 		D53043F62A1EA10600B30BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53043F52A1EA10600B30BCF /* Assets.xcassets */; };
 		D53043F92A1EA10600B30BCF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53043F82A1EA10600B30BCF /* Preview Assets.xcassets */; };
 		D53044012A1EA73400B30BCF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044002A1EA73400B30BCF /* SplashView.swift */; };
-		D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044032A1EA8AD00B30BCF /* Enums.swift */; };
 		D530441B2A1EAEBE00B30BCF /* Urbanist-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044092A1EAEBC00B30BCF /* Urbanist-LightItalic.ttf */; };
 		D530441C2A1EAEBE00B30BCF /* Urbanist-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440A2A1EAEBC00B30BCF /* Urbanist-MediumItalic.ttf */; };
 		D530441D2A1EAEBE00B30BCF /* Urbanist-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440B2A1EAEBD00B30BCF /* Urbanist-BlackItalic.ttf */; };
@@ -96,7 +95,6 @@
 		D53043F52A1EA10600B30BCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D53043F82A1EA10600B30BCF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D53044002A1EA73400B30BCF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		D53044032A1EA8AD00B30BCF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D53044072A1EAAEC00B30BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D53044092A1EAEBC00B30BCF /* Urbanist-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-LightItalic.ttf"; sourceTree = "<group>"; };
 		D530440A2A1EAEBC00B30BCF /* Urbanist-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				D530442D2A1EB0F500B30BCF /* Utils */,
 				D53044082A1EAE6300B30BCF /* Fonts */,
 				D53044072A1EAAEC00B30BCF /* Info.plist */,
-				D53044022A1EA87900B30BCF /* Constants */,
 				D53043FF2A1EA72300B30BCF /* Views */,
 				D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */,
 				D53043F32A1EA10200B30BCF /* ContentView.swift */,
@@ -242,14 +239,6 @@
 				D530444B2A24123D00B30BCF /* HomeView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D53044022A1EA87900B30BCF /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				D53044032A1EA8AD00B30BCF /* Enums.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		D53044082A1EAE6300B30BCF /* Fonts */ = {
@@ -544,7 +533,6 @@
 				D53044512A24DF8100B30BCF /* ResetPasswordView.swift in Sources */,
 				D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
-				D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */,
 				D5D350A72AA5161F00201EE9 /* ImagePicker.swift in Sources */,
 				D530444C2A24123D00B30BCF /* HomeView.swift in Sources */,
 				D55328B52A2F652000AE74C8 /* ChatVM.swift in Sources */,

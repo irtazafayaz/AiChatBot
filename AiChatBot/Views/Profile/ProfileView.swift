@@ -24,7 +24,7 @@ struct ProfileView: View {
         ZStack {
             VStack(alignment: .leading) {
                 
-                HStack {
+                HStack(spacing: 10) {
                     Image("ic_profile")
                         .foregroundColor(.gray)
                     VStack(alignment: .leading) {
@@ -34,6 +34,7 @@ struct ProfileView: View {
                         Text(UserDefaults.standard.loggedInEmail)
                             .font(Font.custom(FontFamily.medium.rawValue, size: 14))
                             .foregroundColor(Color(hex: "#616161"))
+                            .padding(.top, 2)
                     }
                 }
                 Button {
