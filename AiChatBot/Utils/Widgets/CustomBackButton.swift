@@ -16,7 +16,7 @@ struct CustomBackButton: View {
             presentationMode.wrappedValue.dismiss()
         }) {
             Image("ic_back_arrow")
-                .foregroundColor(Color(hex: Colors.labelDark.rawValue))
+                .foregroundColor(.black)
         }
     }
 }

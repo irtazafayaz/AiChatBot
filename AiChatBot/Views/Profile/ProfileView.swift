@@ -144,6 +144,19 @@ struct ProfileView: View {
             .sheet(isPresented: $showPrivacy, content: {
                 SharedWebView(pageType: .privacy)
             })
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading, content: {
+                    Image("ic_app_logo_small")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                })
+                ToolbarItem(placement: .principal, content: {
+                    Text("Account")
+                        .font(Font.custom(FontFamily.medium.rawValue, size: 20))
+                        .foregroundColor(Color(hex: "#000000"))
+                })
+            }
             
             PopupView(show: $viewModel.showPopUp)
             

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @State private var selectedTab: Int = 0
+    @State private var title = "School AI"
     @ObservedObject private var viewModel: HomeVM
     @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
-
+    
     init(viewModel: HomeVM) {
         self.viewModel = viewModel
     }
@@ -27,41 +29,66 @@ struct HomeView: View {
     }
     
     var body: some View {
-            VStack(alignment: .center) {
-                TabView {
-                    StartChatView()
-                        .tabItem {
-                            Image("ic_tab_chat")
-                            Text("Chat")
-                        }
-                    ChatAssistantView()
-                        .tabItem {
-                            Image("ic_tab_assistant")
-                            Text("AI Assistants")
-                        }
-                    ChatHistoryView()
-                        .tabItem {
-                            Image("ic_tab_history")
-                            Text("History")
-                        }
-                    ProfileView()
-                        .tabItem {
-                            Image("ic_tab_people")
-                            Text("Account")
-                        }
-                }
-                .accentColor(Color(hex: Colors.primary.rawValue))
+        VStack(alignment: .center) {
+            TabView(selection: $selectedTab) {
+                StartChatView()
+                    .tabItem {
+                        Image("ic_tab_chat")
+                        Text("Chat")
+                    }
+                    .tag(0)
+                ChatAssistantView()
+                    .tabItem {
+                        Image("ic_tab_assistant")
+                        Text("AI Assistants")
+                    }
+                    .tag(1)
+                ChatHistoryView()
+                    .tabItem {
+                        Image("ic_tab_history")
+                        Text("History")
+                    }
+                    .tag(2)
+                ProfileView()
+                    .tabItem {
+                        Image("ic_tab_people")
+                        Text("Account")
+                    }
+                    .tag(3)
+            }
+            .accentColor(Color(hex: Colors.primary.rawValue))
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading, content: {
+                Image("ic_app_logo_small")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
                 
+            })
+            ToolbarItem(placement: .principal, content: {
+                Text(title)
+                    .font(Font.custom(FontFamily.medium.rawValue, size: 20))
+                    .foregroundColor(Color(hex: "#000000"))
+            })
+        }
+        .onChange(of: selectedTab) { newTab in
+            switch newTab {
+            case 0:
+                title = "School AI"
+            case 1:
+                title = "AI Assistants"
+            case 2:
+                title = "History"
+            case 3:
+                title  = "Account"
+            default:
+                title = "School AI"
             }
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading, content: {
-                    Image("ic_app_logo_small")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                })
-            }
+            
+        }
     }
 }
 

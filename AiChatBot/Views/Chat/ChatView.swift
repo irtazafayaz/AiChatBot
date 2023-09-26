@@ -38,7 +38,7 @@ struct ChatView: View {
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
     @State private var openCameraDialogue = false
-        
+    
     //MARK: - Initialization Methods -
     
     init(messagesArr: [MessageWithImages] = []) {
@@ -47,7 +47,7 @@ struct ChatView: View {
     
     var body: some View {
         VStack {
-
+            
             if !viewModel.msgsArr.isEmpty {
                 chatListWithImagesView
             } else {
@@ -56,14 +56,15 @@ struct ChatView: View {
         }
         .padding(.horizontal, 10)
         .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading, content: {
-                HStack {
-                    CustomBackButton()
-                    Text("School AI")
-                        .font(Font.custom(FontFamily.bold.rawValue, size: 24))
-                        .foregroundColor(Color(hex: "#FFFFFF"))
-                }
+                CustomBackButton()
+            })
+            ToolbarItem(placement: .principal, content: {
+                Text("Chat")
+                    .font(Font.custom(FontFamily.medium.rawValue, size: 20))
+                    .foregroundColor(Color(hex: "#000000"))
             })
         }
         .sheet(isPresented: self.$isImagePickerDisplay) {
@@ -188,7 +189,7 @@ struct ChatView: View {
             .ignoresSafeArea(.keyboard, edges: .bottom)
             
             Button {
-                if UserDefaults.standard.maxTries <= 3 || UserDefaults.standard.isProMemeber {
+                if UserDefaults.standard.isProMemeber {
                     openCameraDialogue.toggle()
                 } else {
                     isPaywallPresented.toggle()
@@ -213,7 +214,7 @@ struct ChatView: View {
                     if proxy != nil {
                         scrollToBottom(proxy: proxy!)
                     }
-                    if UserDefaults.standard.maxTries <= 3 || UserDefaults.standard.isProMemeber {
+                    if UserDefaults.standard.isProMemeber {
                         addToCoreData(message: viewModel.addUserMsg())
                         viewModel.sendMessageUsingFirebase { success in
                             guard let resp = success else { return }
@@ -307,65 +308,25 @@ struct ChatView: View {
     
     //MARK: - Render text to PDF -
     
-    private func createPDF(text: String) -> Data {
-        let pdfMetaData = [
-            kCGPDFContextCreator: "Your App Name",
-            kCGPDFContextAuthor: "Your Name",
-        ]
-        let format = UIGraphicsPDFRendererFormat()
-        format.documentInfo = pdfMetaData as [String: Any]
-        let pdfData = NSMutableData()
-        let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 300, height: 500), format: format)
-        let pageInfo = PDFPageInfo(text: text)
-        let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("temp.pdf")
-        do {
-            try renderer.writePDF(to: fileURL) { context in
-                context.beginPage()
-                pageInfo.draw(in: context.cgContext)
-            }
-        } catch {
-            print("Error writing PDF: \(error)")
-        }
-        if let fileData = try? Data(contentsOf: fileURL) {
-            pdfData.append(fileData)
-        }
-        return pdfData as Data
-    }
-    
     func render(_ content: String) -> URL {
-        // 1: Render Hello World with some modifiers
         let renderer = ImageRenderer(content:
-            Text(content)
-                .font(.largeTitle)
-                .foregroundStyle(.black)
-                .padding()
-                .multilineTextAlignment(.center)
+                                        Text(content)
+            .font(.largeTitle)
+            .foregroundStyle(.black)
+            .padding()
+            .multilineTextAlignment(.center)
         )
-
-        // 2: Save it to our documents directory
         let url = URL.documentsDirectory.appending(path: "output.pdf")
-
-        // 3: Start the rendering process
         renderer.render { size, context in
-            // 4: Tell SwiftUI our PDF should be the same size as the views we're rendering
             var box = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-
-            // 5: Create the CGContext for our PDF pages
             guard let pdf = CGContext(url as CFURL, mediaBox: &box, nil) else {
                 return
             }
-
-            // 6: Start a new PDF page
             pdf.beginPDFPage(nil)
-            
-            // 7: Render the SwiftUI view data onto the page
             context(pdf)
-            
-            // 8: End the page and close the file
             pdf.endPDFPage()
             pdf.closePDF()
         }
-
         return url
     }
     
@@ -399,18 +360,3 @@ struct ChatView: View {
     
 }
 
-struct RenderView: View {
-    let text: String
-    
-    var body: some View {
-        VStack(alignment: .center) {
-            Text(text)
-                .font(.largeTitle)
-                .foregroundColor(.black)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
-        }
-        .frame(maxHeight: .infinity)
-        .padding()
-    }
-}

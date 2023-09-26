@@ -28,13 +28,13 @@ struct PaywallView: View {
         }
         switch subPeriod.unit {
         case .day:
-            return "Daily"
+            return "Daily Premium (School AI)"
         case .month:
-            return "Monthly"
+            return "Monthly Premium (School AI)"
         case .week:
-            return "Weekly"
+            return "Weekly Premium (School AI)"
         case .year:
-            return "Yearly"
+            return "Yearly Premium (School AI)"
         }
     }
     
@@ -112,16 +112,13 @@ struct PaywallView: View {
                                 VStack(alignment: .leading) {
                                     HStack {
                                         VStack(alignment: .leading) {
-                                            Text("\(pkg.storeProduct.localizedTitle)")
-                                            .foregroundColor(.black)
-                                            .font(Font.custom(FontFamily.regular.rawValue, size: 12))
+                                            Text(getPeriodTitle(pkg.storeProduct.subscriptionPeriod))
+                                                .foregroundColor(.black)
+                                            .font(Font.custom(FontFamily.bold.rawValue, size: 18))
                                             HStack(spacing: 0) {
-                                                Text("\(pkg.storeProduct.localizedPriceString)/")
-                                                    .foregroundColor(.black)
-                                                    .font(Font.custom(FontFamily.medium.rawValue, size: 18))
-                                                Text(getPeriodTitle(pkg.storeProduct.subscriptionPeriod))
-                                                    .foregroundColor(.black)
-                                                    .font(Font.custom(FontFamily.medium.rawValue, size: 18))
+                                                Text("\(pkg.storeProduct.localizedPriceString)")
+                                                    .foregroundColor(.black.opacity(0.6))
+                                                    .font(Font.custom(FontFamily.regular.rawValue, size: 18))
                                             }
                                         }
                                     }
@@ -130,7 +127,7 @@ struct PaywallView: View {
                                 .padding()
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.gray.opacity(0.2))
+                                        .fill(selectedPackage == pkg ? Color(hex: Colors.secondary.rawValue) : .gray.opacity(0.2))
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 10)
                                                 .stroke(Color(hex: Colors.primary.rawValue), lineWidth: selectedPackage == pkg ? 2 : 0)
@@ -172,10 +169,10 @@ struct PaywallView: View {
                 } label: {
                     ZStack {
                         Rectangle()
-                            .frame(height: 55)
+                            .frame(height: 65)
                             .foregroundColor(Color(hex: Colors.primary.rawValue))
-                            .cornerRadius(10)
-                        Text("Start Free Trial and Plan")
+                            .cornerRadius(100)
+                        Text("Buy Plan")
                             .font(Font.custom(FontFamily.semiBold.rawValue, size: 20))
                             .foregroundColor(.white)
                         

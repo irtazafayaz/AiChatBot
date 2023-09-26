@@ -64,6 +64,7 @@ struct CompleteYourProfileView: View {
                         }
                         .flagHidden(false)
                         .flagSelectable(true)
+                        .scrollDismissesKeyboard(.automatic)
                         .padding(.bottom, 10)
                         .underlinedTextFieldStyle()
                     }
@@ -120,6 +121,9 @@ struct CompleteYourProfileView: View {
             .navigationDestination(isPresented: $viewModel.registerActionSuccess, destination: {
                 LoginRegisterSelectionView()
             })
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
             
             PopupView(show: $viewModel.showPopUp)
 

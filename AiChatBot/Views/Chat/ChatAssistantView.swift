@@ -239,12 +239,16 @@ struct ChatAssistantView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading, content: {
-                HStack {
-                    CustomBackButton()
-                    Text("School AI")
-                        .font(Font.custom(FontFamily.bold.rawValue, size: 24))
-                        .foregroundColor(Color(hex: "#FFFFFF"))
-                }
+                Image("ic_app_logo_small")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+
+            })
+            ToolbarItem(placement: .principal, content: {
+                Text("AI Assistants") 
+                    .font(Font.custom(FontFamily.medium.rawValue, size: 20))
+                    .foregroundColor(Color(hex: "#000000"))
             })
         }
         .navigationDestination(isPresented: $moveToChatScreen, destination: {
