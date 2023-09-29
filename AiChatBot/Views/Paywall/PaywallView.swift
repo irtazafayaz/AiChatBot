@@ -169,7 +169,7 @@ struct PaywallView: View {
                 } label: {
                     ZStack {
                         Rectangle()
-                            .frame(height: 65)
+                            .frame(height: 55)
                             .foregroundColor(Color(hex: Colors.primary.rawValue))
                             .cornerRadius(100)
                         Text("Buy Plan")

@@ -56,15 +56,11 @@ struct ChatView: View {
         }
         .padding(.horizontal, 10)
         .navigationBarBackButtonHidden(true)
-        .navigationBarTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Chat")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading, content: {
                 CustomBackButton()
-            })
-            ToolbarItem(placement: .principal, content: {
-                Text("Chat")
-                    .font(Font.custom(FontFamily.medium.rawValue, size: 20))
-                    .foregroundColor(Color(hex: "#000000"))
             })
         }
         .sheet(isPresented: self.$isImagePickerDisplay) {
@@ -73,7 +69,7 @@ struct ChatView: View {
         .navigationDestination(isPresented: $isPaywallPresented, destination: {
             PaywallView(isPaywallPresented: $isPaywallPresented)
         })
-        .confirmationDialog("Open Camera Dialogue", isPresented: $openCameraDialogue) {
+        .alert("Select Image Picker", isPresented: $openCameraDialogue) {
             Button("Open Camera") {
                 self.sourceType = .camera
                 self.isImagePickerDisplay.toggle()
@@ -216,6 +212,7 @@ struct ChatView: View {
                     }
                     if UserDefaults.standard.isProMemeber {
                         addToCoreData(message: viewModel.addUserMsg())
+//                    viewModel.sendUsingAlamofireStream()
                         viewModel.sendMessageUsingFirebase { success in
                             guard let resp = success else { return }
                             switch resp.content {
@@ -246,18 +243,6 @@ struct ChatView: View {
             .disabled(viewModel.currentInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
         .padding(.top, 12)
-    }
-    
-    func sharePDF(_ pdfURL: URL) {
-        let activityViewController = UIActivityViewController(
-            activityItems: [pdfURL],
-            applicationActivities: nil
-        )
-        UIApplication.shared.windows.first?.rootViewController?.present(
-            activityViewController,
-            animated: true,
-            completion: nil
-        )
     }
     
     func getMessageViewWithImage(_ message: MessageWithImages) -> some View {
@@ -330,6 +315,17 @@ struct ChatView: View {
         return url
     }
     
+    func sharePDF(_ pdfURL: URL) {
+        let activityViewController = UIActivityViewController(
+            activityItems: [pdfURL],
+            applicationActivities: nil
+        )
+        UIApplication.shared.windows.first?.rootViewController?.present(
+            activityViewController,
+            animated: true,
+            completion: nil
+        )
+    }
     
     //MARK: - Actions -
     

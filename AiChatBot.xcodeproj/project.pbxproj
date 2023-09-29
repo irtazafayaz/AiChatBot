@@ -86,6 +86,8 @@
 		D5D350A72AA5161F00201EE9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D350A62AA5161F00201EE9 /* ImagePicker.swift */; };
 		D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */; };
 		D5D746692AAF3F7D000831A6 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D746682AAF3F7D000831A6 /* PopupView.swift */; };
+		D5E23B1C2AC43EEB00738DF6 /* Websocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E23B1B2AC43EEB00738DF6 /* Websocket.swift */; };
+		D5E23B232AC4660A00738DF6 /* SSEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E23B222AC4660A00738DF6 /* SSEClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +168,8 @@
 		D5D350A62AA5161F00201EE9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAssistantView.swift; sourceTree = "<group>"; };
 		D5D746682AAF3F7D000831A6 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		D5E23B1B2AC43EEB00738DF6 /* Websocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Websocket.swift; sourceTree = "<group>"; };
+		D5E23B222AC4660A00738DF6 /* SSEClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSEClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +426,8 @@
 				D55E44EA2AAB306D005B1C55 /* BaseService.swift */,
 				D55E44EC2AAB308F005B1C55 /* BaseActions.swift */,
 				D55E44EE2AAB30A3005B1C55 /* APIServiceEndpoint.swift */,
+				D5E23B1B2AC43EEB00738DF6 /* Websocket.swift */,
+				D5E23B222AC4660A00738DF6 /* SSEClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -530,6 +536,7 @@
 				D55328AD2A2E96CD00AE74C8 /* ChatView.swift in Sources */,
 				D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */,
 				D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */,
+				D5E23B232AC4660A00738DF6 /* SSEClient.swift in Sources */,
 				D53044512A24DF8100B30BCF /* ResetPasswordView.swift in Sources */,
 				D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
@@ -567,6 +574,7 @@
 				D5496E8C2AA6126D0057A9E3 /* ChatHistory.swift in Sources */,
 				D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */,
 				D53044482A21724000B30BCF /* PickerTextField.swift in Sources */,
+				D5E23B1C2AC43EEB00738DF6 /* Websocket.swift in Sources */,
 				D5496EA32AA76FB10057A9E3 /* UserDefaults.swift in Sources */,
 				D5496E962AA690420057A9E3 /* Utilities.swift in Sources */,
 				D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */,
@@ -716,17 +724,19 @@
 				INFOPLIST_FILE = AiChatBot/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "School AI";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "AiChatBot requires camera access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "SchoolAI requires camera access to capture images for homework assignments and class activities.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SchoolAI requires access to the photo library to upload selected image to ask questions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = SchoolAIDevelopment;
@@ -753,17 +763,19 @@
 				INFOPLIST_FILE = AiChatBot/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "School AI";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "AiChatBot requires camera access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "SchoolAI requires camera access to capture images for homework assignments and class activities.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SchoolAI requires access to the photo library to upload selected image to ask questions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

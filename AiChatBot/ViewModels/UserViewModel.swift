@@ -14,7 +14,7 @@ class UserViewModel: ObservableObject {
 
     init() {
         Purchases.shared.getCustomerInfo { (customerInfo, error) in
-            self.isSubscriptionActive = customerInfo?.entitlements.all["pro"]?.isActive == true
+            self.isSubscriptionActive = customerInfo?.entitlements.all["Pro"]?.isActive == true
         }
     }
     
@@ -22,7 +22,7 @@ class UserViewModel: ObservableObject {
     func checkIfSubscribed(completion: @escaping (Bool) -> Void) {
         completion(true)
         Purchases.shared.getCustomerInfo { (customerInfo, error) in
-            if customerInfo?.entitlements.all["pro"]?.isActive == true {
+            if customerInfo?.entitlements.all["Pro"]?.isActive == true {
                 completion(true)
             } else {
                 completion(false)

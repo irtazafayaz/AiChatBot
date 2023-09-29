@@ -24,49 +24,41 @@ struct ProfileView: View {
         ZStack {
             VStack(alignment: .leading) {
                 
-                HStack(spacing: 10) {
-                    Image("ic_profile")
-                        .foregroundColor(.gray)
-                    VStack(alignment: .leading) {
-                        Text(UserDefaults.standard.fullName)
-                            .font(Font.custom(FontFamily.bold.rawValue, size: 20))
-                            .foregroundColor(Color(hex: "#212121"))
-                        Text(UserDefaults.standard.loggedInEmail)
-                            .font(Font.custom(FontFamily.medium.rawValue, size: 14))
-                            .foregroundColor(Color(hex: "#616161"))
-                            .padding(.top, 2)
-                    }
-                }
-                Button {
-                    isPaywallPresented.toggle()
-                } label: {
-                    HStack(alignment: .center) {
-                        Image("ic_paywall")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 80, height: 80)
-                        
-                        VStack(alignment: .leading) {
-                            Text("Upgrade to PRO!")
-                                .font(Font.custom(FontFamily.bold.rawValue, size: 20))
-                                .foregroundColor(Color(hex: "#FFFFFF"))
-                            Text("Enjoy all benefits without restrictions")
-                                .font(Font.custom(FontFamily.semiBold.rawValue, size: 12))
-                                .foregroundColor(Color(hex: "#FFFFFF"))
+                if !UserDefaults.standard.isProMemeber {
+                    Button {
+                        isPaywallPresented.toggle()
+                    } label: {
+                        HStack(alignment: .center) {
+                            Image("ic_paywall")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                            
+                            VStack(alignment: .leading) {
+                                Text("Upgrade to PRO!")
+                                    .font(Font.custom(FontFamily.bold.rawValue, size: 20))
+                                    .foregroundColor(Color(hex: "#FFFFFF"))
+                                Text("Enjoy all benefits without restrictions")
+                                    .font(Font.custom(FontFamily.semiBold.rawValue, size: 12))
+                                    .foregroundColor(Color(hex: "#FFFFFF"))
+                            }
+                            Spacer()
+                            Image("ic_arrow_right")
+                                .foregroundColor(.white)
                         }
-                        Spacer()
-                        Image("ic_arrow_right")
-                            .foregroundColor(.white)
+                        .padding()
+                        .background(RoundedCorners(
+                            tl: 10,
+                            tr: 10,
+                            bl: 10,
+                            br: 10
+                        ).fill(Color(hex: "#17CE92")))
+                        .padding(.top, 20)
                     }
-                    .padding()
-                    .background(RoundedCorners(
-                        tl: 10,
-                        tr: 10,
-                        bl: 10,
-                        br: 10
-                    ).fill(Color(hex: "#17CE92")))
-                    .padding(.top, 20)
                 }
+                
+                DividerWithLabel(label: "About")
+                    .padding(.top, 30)
                 
                 Button {
                     showTerms.toggle()
@@ -79,13 +71,12 @@ struct ProfileView: View {
                         Text("Terms and Conditions")
                             .font(Font.custom(FontFamily.bold.rawValue, size: 18))
                             .foregroundColor(Color(hex: Colors.labelDark.rawValue))
-                            .padding(.leading, 10)
+                            .padding(.leading, 5)
                         Spacer()
                         Image("ic_arrow_right")
                             .foregroundColor(.black)
                     }
-                    .padding(.top, 30)
-                    .padding(.horizontal)
+                    .padding(.top, 20)
                 }
                 
                 Button {
@@ -99,36 +90,14 @@ struct ProfileView: View {
                         Text("Privacy Policy")
                             .font(Font.custom(FontFamily.bold.rawValue, size: 18))
                             .foregroundColor(Color(hex: Colors.labelDark.rawValue))
-                            .padding(.leading, 10)
+                            .padding(.leading, 5)
                         Spacer()
                         Image("ic_arrow_right")
                             .foregroundColor(.black)
                     }
                     .padding(.top, 20)
-                    .padding(.horizontal)
                 }
-                
-                Button {
-                    viewModel.logout { success in
-                        if success {
-                            viewModel.goToLogin.toggle()
-                        }
-                    }
-                } label: {
-                    HStack(alignment: .center) {
-                        Image("ic_logout")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 17, height: 20)
-                        Text("Logout")
-                            .font(Font.custom(FontFamily.bold.rawValue, size: 18))
-                            .foregroundColor(Color(hex: "#F75555"))
-                            .padding(.leading, 10)
-                        Spacer()
-                    }
-                    .padding(.top, 20)
-                    .padding(.horizontal)
-                }
+
                 Spacer()
             }
             .padding()
@@ -144,22 +113,7 @@ struct ProfileView: View {
             .sheet(isPresented: $showPrivacy, content: {
                 SharedWebView(pageType: .privacy)
             })
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading, content: {
-                    Image("ic_app_logo_small")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                })
-                ToolbarItem(placement: .principal, content: {
-                    Text("Account")
-                        .font(Font.custom(FontFamily.medium.rawValue, size: 20))
-                        .foregroundColor(Color(hex: "#000000"))
-                })
-            }
-            
             PopupView(show: $viewModel.showPopUp)
-            
         }
         
         

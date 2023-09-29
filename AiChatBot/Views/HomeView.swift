@@ -18,78 +18,66 @@ struct HomeView: View {
         self.viewModel = viewModel
     }
     
-    private func makeScannerView() -> ScannerView {
-        ScannerView(completionHandler: { textPerPage in
-            if let output = textPerPage?.joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines) {
-                let newScanData = ScanData(content: output)
-                self.viewModel.texts.append(newScanData)
+    var body: some View {
+        NavigationStack {
+            VStack(alignment: .center) {
+                TabView(selection: $selectedTab) {
+                    StartChatView()
+                        .tabItem {
+                            Image("ic_tab_chat")
+                            Text("Chat")
+                        }
+                        .tag(0)
+                    ChatAssistantView()
+                        .tabItem {
+                            Image("ic_tab_assistant")
+                            Text("AI Assistants")
+                        }
+                        .tag(1)
+                    ChatHistoryView()
+                        .tabItem {
+                            Image("ic_tab_history")
+                            Text("History")
+                        }
+                        .tag(2)
+                    ProfileView()
+                        .tabItem {
+                            Image("ic_tab_people")
+                            Text("Account")
+                        }
+                        .tag(3)
+                }
+                .accentColor(Color(hex: Colors.primary.rawValue))
             }
-            self.viewModel.openCameraSheet = false
-        })
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(title)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading, content: {
+                    Image("ic_app_logo_small")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                    
+                })
+            }
+            .onChange(of: selectedTab) { newTab in
+                switch newTab {
+                case 0:
+                    title = "School AI"
+                case 1:
+                    title = "AI Assistants"
+                case 2:
+                    title = "History"
+                case 3:
+                    title  = "Account"
+                default:
+                    title = "School AI"
+                }
+            }
+        }
     }
     
-    var body: some View {
-        VStack(alignment: .center) {
-            TabView(selection: $selectedTab) {
-                StartChatView()
-                    .tabItem {
-                        Image("ic_tab_chat")
-                        Text("Chat")
-                    }
-                    .tag(0)
-                ChatAssistantView()
-                    .tabItem {
-                        Image("ic_tab_assistant")
-                        Text("AI Assistants")
-                    }
-                    .tag(1)
-                ChatHistoryView()
-                    .tabItem {
-                        Image("ic_tab_history")
-                        Text("History")
-                    }
-                    .tag(2)
-                ProfileView()
-                    .tabItem {
-                        Image("ic_tab_people")
-                        Text("Account")
-                    }
-                    .tag(3)
-            }
-            .accentColor(Color(hex: Colors.primary.rawValue))
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitle("")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading, content: {
-                Image("ic_app_logo_small")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40, height: 40)
-                
-            })
-            ToolbarItem(placement: .principal, content: {
-                Text(title)
-                    .font(Font.custom(FontFamily.medium.rawValue, size: 20))
-                    .foregroundColor(Color(hex: "#000000"))
-            })
-        }
-        .onChange(of: selectedTab) { newTab in
-            switch newTab {
-            case 0:
-                title = "School AI"
-            case 1:
-                title = "AI Assistants"
-            case 2:
-                title = "History"
-            case 3:
-                title  = "Account"
-            default:
-                title = "School AI"
-            }
-            
-        }
-    }
 }
 
 struct HomeView_Previews: PreviewProvider {

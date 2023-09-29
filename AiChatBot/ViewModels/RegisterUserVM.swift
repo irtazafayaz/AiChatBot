@@ -20,8 +20,8 @@ class RegisterUserVM: ObservableObject {
     
     //MARK: CompleteYourProfileView
     @Published var isLoading = false
-    @Published var fullName: String = "dasd"
-    @Published var phoneNumber: String = "423424244"
+    @Published var fullName: String = ""
+    @Published var phoneNumber: String = ""
     @Published var selectedGender = ""
     @Published var selectedDate = Date()
     @Published var showPopUp: Bool = false
