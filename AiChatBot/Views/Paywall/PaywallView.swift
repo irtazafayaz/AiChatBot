@@ -137,6 +137,25 @@ struct PaywallView: View {
                                 .padding(.horizontal, 20)
                             }
                         }
+                        
+                        Button {
+                            Purchases.shared.restorePurchases { (customerInfo, error) in
+                                if let errorInfo = error {
+                                    message = errorInfo.localizedDescription
+                                    showAlert.toggle()
+                                } else if Utilities.updateCustumerInCache(cust: customerInfo) {
+                                    message = "Subscription Restored."
+                                    showAlert.toggle()
+                                    self.goBack = true
+                                } else {
+                                    message = "Nothing found to restore."
+                                    showAlert.toggle()
+                                }
+                            }
+                        } label: {
+                            Text("Restore Purchase")
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
                     }
                 } else {
                     VStack(alignment: .center) {
@@ -156,8 +175,7 @@ struct PaywallView: View {
                         if let errorInfo = error {
                             message = errorInfo.localizedDescription
                             showAlert.toggle()
-                        }
-                        else if Utilities.updateCustumerInCache(cust: customerInfo) {
+                        } else if Utilities.updateCustumerInCache(cust: customerInfo) {
                             message = "Subscription Purchased."
                             showAlert.toggle()
                             self.goBack = true

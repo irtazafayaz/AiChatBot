@@ -7,33 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D12919EA-1D37-463B-96BB-2D053E6D8C78"
+            uuid = "3F94EEC7-D150-4E31-A17A-2DFFF887A673"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AiChatBot/ViewModels/ChatVM.swift"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/AiChatBot-epbaxxxacvlfqxbskhozxldovzqg/SourcePackages/checkouts/purchases-ios/Sources/LocalReceiptParsing/BasicTypes/InAppPurchase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "sendMessage()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "685038DC-4D0C-4AEE-8FD7-B4E7C09CD052"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AiChatBot/ViewModels/ChatVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "sendMessage()"
-            landmarkType = "7">
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "isActiveSubscription"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
