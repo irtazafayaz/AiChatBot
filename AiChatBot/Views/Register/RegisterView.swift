@@ -18,7 +18,7 @@ struct RegisterView: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            Text("Hello There 👋")
+            Text("Hello There")
                 .font(Font.custom(FontFamily.bold.rawValue, size: 32))
                 .frame(alignment: .leading)
             

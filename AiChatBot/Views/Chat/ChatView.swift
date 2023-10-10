@@ -117,7 +117,7 @@ struct ChatView: View {
                         bl: 10,
                         br: 10
                     ).fill(Color(hex: Colors.chatBG.rawValue)))
-                Text("Conversational AI.\n(I can talk to you like a natural human)")
+                Text("Conversational AI.")
                     .font(Font.custom(FontFamily.medium.rawValue, size: 16))
                     .foregroundColor(Color(hex: "9E9E9E"))
                     .multilineTextAlignment(.center)

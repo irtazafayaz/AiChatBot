@@ -20,7 +20,7 @@ struct LoginView: View {
         ZStack {
             VStack(alignment: .leading) {
                 
-                Text("Welcome back 👋")
+                Text("Welcome back")
                     .font(Font.custom(FontFamily.bold.rawValue, size: 32))
                     .frame(alignment: .leading)
                 

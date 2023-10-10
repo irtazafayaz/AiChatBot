@@ -11,6 +11,7 @@ struct HomeView: View {
     
     @State private var selectedTab: Int = 0
     @State private var title = "School AI"
+    @State var isPaywallPresented = false
     @ObservedObject private var viewModel: HomeVM
     @FetchRequest(sortDescriptors: []) var chatHistory: FetchedResults<ChatHistory>
     
@@ -75,6 +76,12 @@ struct HomeView: View {
                     title = "School AI"
                 }
             }
+            .onAppear {
+                isPaywallPresented = true
+            }
+            .navigationDestination(isPresented: $isPaywallPresented, destination: {
+                PaywallView(isPaywallPresented: $isPaywallPresented)
+            })
         }
     }
     
