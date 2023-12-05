@@ -47,5 +47,5 @@ enum Constants: String {
 }
 
 public enum URLs {
-    static let baseURL: String = "http://3.125.43.131/"
+    static let baseURL: String = "http://154.62.109.121/"
 }

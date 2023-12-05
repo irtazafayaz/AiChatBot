@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D50D6CCB2AE2AB0B00811EC0 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCA2AE2AB0B00811EC0 /* CropViewController */; };
+		D50D6CCD2AE2AB0B00811EC0 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */; };
 		D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */; };
 		D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53043F32A1EA10200B30BCF /* ContentView.swift */; };
 		D53043F62A1EA10600B30BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53043F52A1EA10600B30BCF /* Assets.xcassets */; };
@@ -180,6 +182,8 @@
 				D53044462A20E22600B30BCF /* iPhoneNumberField in Frameworks */,
 				D53A803D2A844C65003C15D3 /* Alamofire in Frameworks */,
 				D58592FE2AB888A900950D87 /* JWTDecode in Frameworks */,
+				D50D6CCB2AE2AB0B00811EC0 /* CropViewController in Frameworks */,
+				D50D6CCD2AE2AB0B00811EC0 /* TOCropViewController in Frameworks */,
 				D5496E9E2AA76E520057A9E3 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +457,8 @@
 				D53A803C2A844C65003C15D3 /* Alamofire */,
 				D5496E9D2AA76E520057A9E3 /* RevenueCat */,
 				D58592FD2AB888A900950D87 /* JWTDecode */,
+				D50D6CCA2AE2AB0B00811EC0 /* CropViewController */,
+				D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */,
 			);
 			productName = AiChatBot;
 			productReference = D53043EE2A1EA10200B30BCF /* AiChatBot.app */;
@@ -487,6 +493,7 @@
 				D53A803B2A844C65003C15D3 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D5496E9C2AA76E510057A9E3 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				D58592FC2AB888A900950D87 /* XCRemoteSwiftPackageReference "JWTDecode" */,
+				D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = D53043EF2A1EA10200B30BCF /* Products */;
 			projectDirPath = "";
@@ -722,7 +729,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "School AI";
+				INFOPLIST_KEY_CFBundleDisplayName = "School AI - Chatbot Assistant";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "SchoolAI requires camera access to capture images for homework assignments and class activities.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SchoolAI requires access to the photo library to upload selected image to ask questions.";
@@ -736,7 +743,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6;
+				MARKETING_VERSION = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = SchoolAIDevelopment;
@@ -761,7 +768,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "School AI";
+				INFOPLIST_KEY_CFBundleDisplayName = "School AI - Chatbot Assistant";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "SchoolAI requires camera access to capture images for homework assignments and class activities.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SchoolAI requires access to the photo library to upload selected image to ask questions.";
@@ -775,7 +782,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6;
+				MARKETING_VERSION = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDistributionSchoolAI;
@@ -810,6 +817,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
 		D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField";
@@ -845,6 +860,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D50D6CCA2AE2AB0B00811EC0 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
+		};
 		D53044452A20E22600B30BCF /* iPhoneNumberField */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
