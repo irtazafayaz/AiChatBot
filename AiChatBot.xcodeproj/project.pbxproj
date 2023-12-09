@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D50D6CCB2AE2AB0B00811EC0 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCA2AE2AB0B00811EC0 /* CropViewController */; };
+		D50D6CCD2AE2AB0B00811EC0 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */; };
 		D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */; };
 		D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53043F32A1EA10200B30BCF /* ContentView.swift */; };
 		D53043F62A1EA10600B30BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53043F52A1EA10600B30BCF /* Assets.xcassets */; };
 		D53043F92A1EA10600B30BCF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D53043F82A1EA10600B30BCF /* Preview Assets.xcassets */; };
 		D53044012A1EA73400B30BCF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044002A1EA73400B30BCF /* SplashView.swift */; };
-		D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53044032A1EA8AD00B30BCF /* Enums.swift */; };
 		D530441B2A1EAEBE00B30BCF /* Urbanist-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53044092A1EAEBC00B30BCF /* Urbanist-LightItalic.ttf */; };
 		D530441C2A1EAEBE00B30BCF /* Urbanist-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440A2A1EAEBC00B30BCF /* Urbanist-MediumItalic.ttf */; };
 		D530441D2A1EAEBE00B30BCF /* Urbanist-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D530440B2A1EAEBD00B30BCF /* Urbanist-BlackItalic.ttf */; };
@@ -82,12 +83,13 @@
 		D55E44EF2AAB30A3005B1C55 /* APIServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E44EE2AAB30A3005B1C55 /* APIServiceEndpoint.swift */; };
 		D55E44F12AAB322B005B1C55 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E44F02AAB322B005B1C55 /* ResponseModel.swift */; };
 		D55E44F32AAB70DD005B1C55 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E44F22AAB70DD005B1C55 /* ProfileVM.swift */; };
-		D55E44F52AAF0F30005B1C55 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E44F42AAF0F30005B1C55 /* WebSocket.swift */; };
 		D58592FB2AB882E100950D87 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58592FA2AB882E100950D87 /* UserModel.swift */; };
 		D58592FE2AB888A900950D87 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = D58592FD2AB888A900950D87 /* JWTDecode */; };
 		D5D350A72AA5161F00201EE9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D350A62AA5161F00201EE9 /* ImagePicker.swift */; };
 		D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */; };
 		D5D746692AAF3F7D000831A6 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D746682AAF3F7D000831A6 /* PopupView.swift */; };
+		D5E23B1C2AC43EEB00738DF6 /* Websocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E23B1B2AC43EEB00738DF6 /* Websocket.swift */; };
+		D5E23B232AC4660A00738DF6 /* SSEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E23B222AC4660A00738DF6 /* SSEClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,7 +99,6 @@
 		D53043F52A1EA10600B30BCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D53043F82A1EA10600B30BCF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D53044002A1EA73400B30BCF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		D53044032A1EA8AD00B30BCF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D53044072A1EAAEC00B30BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D53044092A1EAEBC00B30BCF /* Urbanist-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-LightItalic.ttf"; sourceTree = "<group>"; };
 		D530440A2A1EAEBC00B30BCF /* Urbanist-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -165,11 +166,12 @@
 		D55E44EE2AAB30A3005B1C55 /* APIServiceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceEndpoint.swift; sourceTree = "<group>"; };
 		D55E44F02AAB322B005B1C55 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		D55E44F22AAB70DD005B1C55 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
-		D55E44F42AAF0F30005B1C55 /* WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		D58592FA2AB882E100950D87 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D5D350A62AA5161F00201EE9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D5D350A82AA5351300201EE9 /* ChatAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAssistantView.swift; sourceTree = "<group>"; };
 		D5D746682AAF3F7D000831A6 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		D5E23B1B2AC43EEB00738DF6 /* Websocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Websocket.swift; sourceTree = "<group>"; };
+		D5E23B222AC4660A00738DF6 /* SSEClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSEClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,8 @@
 				D53044462A20E22600B30BCF /* iPhoneNumberField in Frameworks */,
 				D53A803D2A844C65003C15D3 /* Alamofire in Frameworks */,
 				D58592FE2AB888A900950D87 /* JWTDecode in Frameworks */,
+				D50D6CCB2AE2AB0B00811EC0 /* CropViewController in Frameworks */,
+				D50D6CCD2AE2AB0B00811EC0 /* TOCropViewController in Frameworks */,
 				D5496E9E2AA76E520057A9E3 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,7 +217,6 @@
 				D530442D2A1EB0F500B30BCF /* Utils */,
 				D53044082A1EAE6300B30BCF /* Fonts */,
 				D53044072A1EAAEC00B30BCF /* Info.plist */,
-				D53044022A1EA87900B30BCF /* Constants */,
 				D53043FF2A1EA72300B30BCF /* Views */,
 				D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */,
 				D53043F32A1EA10200B30BCF /* ContentView.swift */,
@@ -244,14 +247,6 @@
 				D530444B2A24123D00B30BCF /* HomeView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D53044022A1EA87900B30BCF /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				D53044032A1EA8AD00B30BCF /* Enums.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		D53044082A1EAE6300B30BCF /* Fonts */ = {
@@ -368,7 +363,6 @@
 				D53A80362A844A90003C15D3 /* UserViewModel.swift */,
 				D5496E902AA613930057A9E3 /* DataController.swift */,
 				D55E44F22AAB70DD005B1C55 /* ProfileVM.swift */,
-				D55E44F42AAF0F30005B1C55 /* WebSocket.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -436,6 +430,8 @@
 				D55E44EA2AAB306D005B1C55 /* BaseService.swift */,
 				D55E44EC2AAB308F005B1C55 /* BaseActions.swift */,
 				D55E44EE2AAB30A3005B1C55 /* APIServiceEndpoint.swift */,
+				D5E23B1B2AC43EEB00738DF6 /* Websocket.swift */,
+				D5E23B222AC4660A00738DF6 /* SSEClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -461,6 +457,8 @@
 				D53A803C2A844C65003C15D3 /* Alamofire */,
 				D5496E9D2AA76E520057A9E3 /* RevenueCat */,
 				D58592FD2AB888A900950D87 /* JWTDecode */,
+				D50D6CCA2AE2AB0B00811EC0 /* CropViewController */,
+				D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */,
 			);
 			productName = AiChatBot;
 			productReference = D53043EE2A1EA10200B30BCF /* AiChatBot.app */;
@@ -495,6 +493,7 @@
 				D53A803B2A844C65003C15D3 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D5496E9C2AA76E510057A9E3 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				D58592FC2AB888A900950D87 /* XCRemoteSwiftPackageReference "JWTDecode" */,
+				D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = D53043EF2A1EA10200B30BCF /* Products */;
 			projectDirPath = "";
@@ -544,17 +543,16 @@
 				D55328AD2A2E96CD00AE74C8 /* ChatView.swift in Sources */,
 				D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */,
 				D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */,
+				D5E23B232AC4660A00738DF6 /* SSEClient.swift in Sources */,
 				D53044512A24DF8100B30BCF /* ResetPasswordView.swift in Sources */,
 				D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
-				D53044042A1EA8AD00B30BCF /* Enums.swift in Sources */,
 				D5D350A72AA5161F00201EE9 /* ImagePicker.swift in Sources */,
 				D530444C2A24123D00B30BCF /* HomeView.swift in Sources */,
 				D55328B52A2F652000AE74C8 /* ChatVM.swift in Sources */,
 				D5496EA12AA76E770057A9E3 /* PaywallView.swift in Sources */,
 				D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */,
 				D55E44ED2AAB308F005B1C55 /* BaseActions.swift in Sources */,
-				D55E44F52AAF0F30005B1C55 /* WebSocket.swift in Sources */,
 				D55B69652A2AA418009D6B18 /* ScanData.swift in Sources */,
 				D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */,
 				D55328B32A2F638E00AE74C8 /* MessageView.swift in Sources */,
@@ -583,6 +581,7 @@
 				D5496E8C2AA6126D0057A9E3 /* ChatHistory.swift in Sources */,
 				D530445F2A261ADE00B30BCF /* ResetPasswordVM.swift in Sources */,
 				D53044482A21724000B30BCF /* PickerTextField.swift in Sources */,
+				D5E23B1C2AC43EEB00738DF6 /* Websocket.swift in Sources */,
 				D5496EA32AA76FB10057A9E3 /* UserDefaults.swift in Sources */,
 				D5496E962AA690420057A9E3 /* Utilities.swift in Sources */,
 				D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */,
@@ -730,19 +729,21 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "School AI";
+				INFOPLIST_KEY_CFBundleDisplayName = "School AI - Chatbot Assistant";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "AiChatBot requires camera access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "SchoolAI requires camera access to capture images for homework assignments and class activities.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SchoolAI requires access to the photo library to upload selected image to ask questions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = SchoolAIDevelopment;
@@ -762,27 +763,29 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AiChatBot/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 86GDT8VMYM;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 86GDT8VMYM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "School AI";
+				INFOPLIST_KEY_CFBundleDisplayName = "School AI - Chatbot Assistant";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "AiChatBot requires camera access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "SchoolAI requires camera access to capture images for homework assignments and class activities.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SchoolAI requires access to the photo library to upload selected image to ask questions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = iOSDistributionSchoolAI;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = iOSDistributionSchoolAI;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -814,6 +817,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
 		D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField";
@@ -849,6 +860,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D50D6CCA2AE2AB0B00811EC0 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
+		};
 		D53044452A20E22600B30BCF /* iPhoneNumberField */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D53044442A20E22600B30BCF /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;

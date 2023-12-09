@@ -34,11 +34,11 @@ class Utilities {
         }
     }
     static func updateCustumerInCache(cust: CustomerInfo?) -> Bool {
-        UserDefaults.standard.isProMemeber = cust?.entitlements["pro"]?.isActive == true
-        UserDefaults.standard.subscriptionDate = cust?.entitlements["pro"]?.latestPurchaseDate
-        UserDefaults.standard.expiryDate = cust?.entitlements["pro"]?.expirationDate
-        UserDefaults.standard.subscriptionType = cust?.entitlements["pro"]?.productIdentifier ?? ""
-        return cust?.entitlements["pro"]?.isActive == true
+        UserDefaults.standard.isProMemeber = cust?.entitlements["Pro"]?.isActive == true
+        UserDefaults.standard.subscriptionDate = cust?.entitlements["Pro"]?.latestPurchaseDate
+        UserDefaults.standard.expiryDate = cust?.entitlements["Pro"]?.expirationDate
+        UserDefaults.standard.subscriptionType = cust?.entitlements["Pro"]?.productIdentifier ?? ""
+        return cust?.entitlements["Pro"]?.isActive == true
     }
     
     static func isValidEmail(_ email: String) -> Bool {

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Auto Layout Horizontal.png",
+      "filename" : "Auto Layout Horizontal@2x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Auto Layout Horizontal-2.png",
+      "filename" : "Auto Layout Horizontal@3x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Auto Layout Horizontal-6.png",
+      "filename" : "Auto Layout Horizontal@4x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -22,9 +22,10 @@ class BaseService: BaseActions {
         url: URL,
         params: [String: Any],
         method: HTTPMethod = .post,
+        contentType: String = "application/json",
         completion: @escaping (Result<D, ApiError>) -> ()) {
             
-            var headers: HTTPHeaders = ["Content-Type": "application/json"]
+            var headers: HTTPHeaders = ["Content-Type": contentType]
             if let refreshToken = params["refresh_token"] {
                 headers["Authorization"] = "Bearer \(refreshToken)"
             }
@@ -145,5 +146,18 @@ class BaseService: BaseActions {
             }
             self.loadAndDecode(url: url, params: params, completion: completion)
         }
+    
+    
+    
+    func streamText(
+        from movieEndPoint: ApiServiceEndPoint,
+        history: [String : [[String : Any]]],
+        completion: @escaping (Result<GPTTextResponse, ApiError>) -> ()) {
+        guard let url = URL(string: "http://127.0.0.1:5000/chat-stream") else {
+            completion(.failure(.invalidEndPoint))
+            return
+        }
+        self.loadAndDecode(url: url, params: history, contentType: "text/event-stream", completion: completion)
+    }
     
 }

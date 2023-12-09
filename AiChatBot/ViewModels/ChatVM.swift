@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import CoreData
+import Alamofire
 
 class ChatVM: ObservableObject {
     
@@ -37,7 +38,13 @@ class ChatVM: ObservableObject {
             guard let self = self else { return }
             switch response {
             case .success(let response):
-                completion(MessageWithImages(id: UUID().uuidString, content: .text(response.gptResponse), createdAt: Date(), role: .assistant, sessionID: self.getSession()))
+                if let error = response.error {
+                    completion(MessageWithImages(id: UUID().uuidString, content: .text(error), createdAt: Date(), role: .assistant, sessionID: self.getSession()))
+                } else if let gpt = response.gptResponse {
+                    completion(MessageWithImages(id: UUID().uuidString, content: .text(gpt), createdAt: Date(), role: .assistant, sessionID: self.getSession()))
+                } else {
+                    completion(nil)
+                }
             case .failure(_):
                 completion(nil)
             }
@@ -65,6 +72,88 @@ class ChatVM: ObservableObject {
             }
         }
     }
+    
+    func sendUsingAlamofireStream() {
+        
+        guard let baseUrl = URL(string: "http://127.0.0.1:5000/chat-stream") else {
+            return
+        }
+        let content = "please write 50 words response"
+        let role = "user"
+        let jsonParam = [[
+            "content": content,
+            "role": role
+        ]]
+        do {
+            let messages = msgsArr.map { message in
+                var messageDictionary: [String: Any] = [
+                    "role": message.role.rawValue
+                ]
+                switch message.content {
+                case .text(let text):
+                    messageDictionary["content"] = text
+                case .image(_):
+                    messageDictionary["content"] = "image"
+                }
+                
+                return messageDictionary
+            }
+            let jsonData = try JSONSerialization.data(withJSONObject: messages, options: [])
+            let jsonDataString = String(data: jsonData, encoding: .utf8) ?? "{}"
+            if let encodedJsonData = jsonDataString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                let urlString = "\(baseUrl)?chat_history=\(encodedJsonData)"
+                
+                let serverMsg = MessageWithImages(id: UUID().uuidString, content: .text(""), createdAt: Date(), role: .assistant, sessionID: getSession())
+                msgsArr.append(serverMsg)
+                openAIService.sendStreamMessages(baseURL: urlString).responseStreamString { [weak self] stream in
+                    guard let self = self else { return }
+                    switch stream.event {
+                    case .stream(let response):
+                        switch response {
+                        case .success(let string):
+                            let newMessageResponse = parseStreamData(string)
+                            guard let existingMessageIndex = self.msgsArr.lastIndex(where: {$0.role == .assistant}) else {
+                                return
+                            }
+                            let newMsg = MessageWithImages(
+                                id: serverMsg.id,
+                                content: .text(getMsgContentText(self.msgsArr[existingMessageIndex].content) + newMessageResponse),
+                                createdAt: serverMsg.createdAt,
+                                role: .assistant,
+                                sessionID: serverMsg.sessionID
+                            )
+                            self.msgsArr[existingMessageIndex] = newMsg
+                        case .failure(_):
+                            print("/ChatVM/sendMessage/sendStreamMessage/Failure")
+                        }
+                    case .complete(_):
+                        print("COMPLETE")
+                    }
+                }
+            }
+        } catch {
+            print("Error encoding JSON: \(error.localizedDescription)")
+        }
+    }
+            
+    
+    func getMsgContentText(_ msg: MessageContent) -> String {
+        switch msg {
+        case .text(let text):
+            return text
+        case .image(_):
+            return "Image.png"
+        }
+    }
+    
+    func parseStreamData(_ data: String) -> String {
+        let responseString = data.split(separator: "data:").map { String($0) }
+        return responseString.isEmpty ? "" : responseString[0]
+    }
+
+    
+    
+    
     
     // MARK: HELPER FUNCTIONS
     

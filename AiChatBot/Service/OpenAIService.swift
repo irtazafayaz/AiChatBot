@@ -24,15 +24,13 @@ class OpenAIService {
 
     }
 
-    func sendStreamMessages(messages: [Message]) -> DataStreamRequest {
+    func sendStreamMessages(baseURL: String) -> DataStreamRequest {
         
-        let openAIMappedMessages = messages.map({OpenAIChatMessage(role: $0.role, content: $0.content)})
-        let body = OpenAIChatBody(model: "gpt-3.5-turbo", messages: openAIMappedMessages, stream: true, maxTokens: 450)
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(Constants.apiKey.rawValue)"
         ]
         
-        return AF.streamRequest(baseURL, method: .post, parameters: body, encoder: .json, headers: headers)
+        return AF.streamRequest(baseURL, method: .get, headers: headers)
 
     }
 }

@@ -35,9 +35,7 @@ struct DividerWithLabel: View {
     }
     
     var body: some View {
-        
         HStack {
-            dividerLine
             Text(label).foregroundColor(labelColor)
                 .font(Font.custom(fontName, size: fontSize))
                 .frame(maxWidth: .infinity)

@@ -29,6 +29,7 @@ struct SplashView: View {
             }
         }
         .onAppear {
+            Utilities.updateSubscription()
             isLoading = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation {

@@ -16,7 +16,7 @@ struct ChatHistoryView: View {
         ],
         predicate: NSPredicate(format: "address == %@", UserDefaults.standard.loggedInEmail)
     ) var chatHistory: FetchedResults<ChatHistory>
-    
+     
     @Environment(\.managedObjectContext) var moc
     @State private var moveToChatScreen: Bool = false
     @State private var fromChatHistory: Bool = true
@@ -82,16 +82,6 @@ struct ChatHistoryView: View {
         }
         .padding(.horizontal, 10)
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading, content: {
-                HStack {
-                    CustomBackButton()
-                    Text("History")
-                        .font(Font.custom(FontFamily.bold.rawValue, size: 24))
-                        .foregroundColor(Color(hex: "#FFFFFF"))
-                }
-            })
-        }
         .navigationDestination(isPresented: $moveToChatScreen, destination: {
             ChatView(messagesArr: selectedMessages)
         })

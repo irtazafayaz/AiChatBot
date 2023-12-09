@@ -28,13 +28,29 @@ struct PaywallView: View {
         }
         switch subPeriod.unit {
         case .day:
-            return "Daily"
+            return "Daily Premium (School AI)"
         case .month:
-            return "Monthly"
+            return "Monthly Premium (School AI)"
         case .week:
-            return "Weekly"
+            return "Weekly Premium (School AI)"
         case .year:
-            return "Yearly"
+            return "Yearly Premium (School AI)"
+        }
+    }
+    
+    func getPeriodSubTitle(_ period: SubscriptionPeriod?) -> String {
+        guard let subPeriod = period else {
+            return "NaN"
+        }
+        switch subPeriod.unit {
+        case .day:
+            return "Daily Premium (School AI)"
+        case .month:
+            return "350 tries mathpix"
+        case .week:
+            return "70 tries mathpix"
+        case .year:
+            return "1000 tries mathpix"
         }
     }
     
@@ -42,7 +58,7 @@ struct PaywallView: View {
         
         NavigationStack {
             
-            VStack (alignment: .leading, spacing: 20) {
+            VStack (alignment: .leading, spacing: 10) {
                 Text("Unlock Unlimited Access")
                     .font(Font.custom(FontFamily.bold.rawValue, size: 30))
                     .foregroundColor(.black)
@@ -57,9 +73,6 @@ struct PaywallView: View {
                             Text("Answers from GPT3.5")
                                 .font(Font.custom(FontFamily.semiBold.rawValue, size: 20))
                                 .foregroundColor(.black)
-                            Text("More accurate & detailed answers")
-                                .font(Font.custom(FontFamily.regular.rawValue, size: 12))
-                                .foregroundColor(.black)
                         }
                     }
                     
@@ -70,33 +83,15 @@ struct PaywallView: View {
                             Text("Higher word limit")
                                 .font(Font.custom(FontFamily.semiBold.rawValue, size: 20))
                                 .foregroundColor(.black)
-                            Text("Type longer messages")
-                                .font(Font.custom(FontFamily.regular.rawValue, size: 12))
-                                .foregroundColor(.black)
                         }
                     }
 
-                    HStack(alignment: .center) {
-                        Image(systemName: "shareplay")
-                            .foregroundColor(.black)
-                        VStack(alignment: .leading) {
-                            Text("No Limits")
-                                .font(Font.custom(FontFamily.semiBold.rawValue, size: 20))
-                                .foregroundColor(.black)
-                            Text("Have unlimited dialogues")
-                                .font(Font.custom(FontFamily.regular.rawValue, size: 12))
-                                .foregroundColor(.black)
-                        }
-                    }
                     HStack(alignment: .center) {
                         Image(systemName: "brain.head.profile")
                             .foregroundColor(.black)
                         VStack(alignment: .leading) {
                             Text("No Ads")
                                 .font(Font.custom(FontFamily.semiBold.rawValue, size: 20))
-                                .foregroundColor(.black)
-                            Text("Enjoy School AI without any ads")
-                                .font(Font.custom(FontFamily.regular.rawValue, size: 12))
                                 .foregroundColor(.black)
                         }
                     }
@@ -106,39 +101,64 @@ struct PaywallView: View {
                 if isHideLoader {
                     if currentOffering != nil {
                         ForEach(currentOffering!.availablePackages) { pkg in
-                            Button {
-                                selectedPackage = pkg
-                            } label: {
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        VStack(alignment: .leading) {
-                                            Text("\(pkg.storeProduct.localizedTitle)")
-                                            .foregroundColor(.black)
-                                            .font(Font.custom(FontFamily.regular.rawValue, size: 12))
-                                            HStack(spacing: 0) {
-                                                Text("\(pkg.storeProduct.localizedPriceString)/")
-                                                    .foregroundColor(.black)
-                                                    .font(Font.custom(FontFamily.medium.rawValue, size: 18))
+                            VStack(alignment: .leading) {
+                                Button {
+                                    selectedPackage = pkg
+                                } label: {
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            VStack(alignment: .leading) {
                                                 Text(getPeriodTitle(pkg.storeProduct.subscriptionPeriod))
                                                     .foregroundColor(.black)
-                                                    .font(Font.custom(FontFamily.medium.rawValue, size: 18))
+                                                .font(Font.custom(FontFamily.bold.rawValue, size: 18))
+                                                HStack(spacing: 0) {
+                                                    Text("\(pkg.storeProduct.localizedPriceString)")
+                                                        .foregroundColor(.black.opacity(0.6))
+                                                        .font(Font.custom(FontFamily.regular.rawValue, size: 18))
+                                                }
                                             }
                                         }
                                     }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(selectedPackage == pkg ? Color(hex: Colors.secondary.rawValue) : .gray.opacity(0.2))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .stroke(Color(hex: Colors.primary.rawValue), lineWidth: selectedPackage == pkg ? 2 : 0)
+                                            )
+                                    )
+                                    .cornerRadius(10)
+                                    .padding(.horizontal, 20)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.gray.opacity(0.2))
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color(hex: Colors.primary.rawValue), lineWidth: selectedPackage == pkg ? 2 : 0)
-                                        )
-                                )
-                                .cornerRadius(10)
-                                .padding(.horizontal, 20)
+                                Text(getPeriodSubTitle(pkg.storeProduct.subscriptionPeriod))
+                                    .font(Font.custom(FontFamily.regular.rawValue, size: 12))
+                                    .foregroundColor(.black)
+                                    .padding(.horizontal, 20)
+
                             }
+
+                        }
+                        
+                        Button {
+                            Purchases.shared.restorePurchases { (customerInfo, error) in
+                                isHideLoader.toggle()
+                                if let errorInfo = error {
+                                    message = errorInfo.localizedDescription
+                                    showAlert.toggle()
+                                } else if Utilities.updateCustumerInCache(cust: customerInfo) {
+                                    message = "Subscription Restored."
+                                    showAlert.toggle()
+                                    self.goBack = true
+                                } else {
+                                    message = "Nothing found to restore."
+                                    showAlert.toggle()
+                                }
+                            }
+                        } label: {
+                            Text("Restore Purchase")
+                                .frame(maxWidth: .infinity, alignment: .center)
                         }
                     }
                 } else {
@@ -154,13 +174,12 @@ struct PaywallView: View {
                     guard let pkg = selectedPackage else { return }
                     Purchases.shared.purchase(package: pkg) { (transaction, customerInfo, error, userCancelled) in
                         withAnimation {
-                            isHideLoader = false
+                            isHideLoader = true
                         }
                         if let errorInfo = error {
                             message = errorInfo.localizedDescription
                             showAlert.toggle()
-                        }
-                        else if Utilities.updateCustumerInCache(cust: customerInfo) {
+                        } else if Utilities.updateCustumerInCache(cust: customerInfo) {
                             message = "Subscription Purchased."
                             showAlert.toggle()
                             self.goBack = true
@@ -174,8 +193,8 @@ struct PaywallView: View {
                         Rectangle()
                             .frame(height: 55)
                             .foregroundColor(Color(hex: Colors.primary.rawValue))
-                            .cornerRadius(10)
-                        Text("Start Free Trial and Plan")
+                            .cornerRadius(100)
+                        Text("Buy Plan")
                             .font(Font.custom(FontFamily.semiBold.rawValue, size: 20))
                             .foregroundColor(.white)
                         

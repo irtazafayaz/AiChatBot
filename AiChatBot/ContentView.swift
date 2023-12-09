@@ -11,12 +11,6 @@ import UIKit
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack {
-            if UserDefaults.standard.rememberMe {
-                HomeView(viewModel: HomeVM())
-            } else {
-                LoginIntroView()
-            }
-        }
+        HomeView(viewModel: HomeVM())
     }
 }

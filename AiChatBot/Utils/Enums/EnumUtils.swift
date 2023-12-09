@@ -37,3 +37,15 @@ enum AppImages: String {
     case logo = "ic_app_logo"
     case loginIntro = "ic_loginintro"
 }
+
+enum Constants: String {
+    case appName = "School AI"
+    case apiKey = "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"
+    static let privacyURL = "https://www.termsfeed.com/live/4d1413e3-f4df-4b88-8350-052b4c5e308c"
+    static let termsURL = "https://www.termsfeed.com/live/5dacdbaa-f525-4afc-b475-e598246063a2"
+    static let revenueCat = "appl_xFsXdUptFTkRcJLQslEieltBKEe"
+}
+
+public enum URLs {
+    static let baseURL: String = "http://154.62.109.121/"
+}

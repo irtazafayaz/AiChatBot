@@ -11,7 +11,7 @@ import JWTDecode
 
 class LoginVM: ObservableObject {
     
-    @Published var email: String = "irtaza@gmail.com"
+    @Published var email: String = "thefreelancers.devs@gmail.com"
     @Published var password: String = "12345678"
     @Published var isPasswordVisible = false
     @Published var isAgreed = false
@@ -25,7 +25,7 @@ class LoginVM: ObservableObject {
     
     func createParams() -> [String: String] {
         var params = [String: String]()
-        params["email"] = email.lowercased()
+        params["email"] = email
         params["password"] = password
         return params
     }
