@@ -9,10 +9,51 @@ import SwiftUI
 
 struct ChatAssistantView: View {
     
+    @FetchRequest(
+        entity: ChatHistory.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \ChatHistory.createdAt, ascending: true)
+        ],
+        predicate: NSPredicate(format: "address == %@", UserDefaults.standard.loggedInEmail)
+    ) var chatHistory: FetchedResults<ChatHistory>
+
+    
     @State private var selectedText: String = ""
     @State private var selectedMessages: [MessageWithImages] = []
     @State private var moveToChatScreen: Bool = false
     @Environment(\.managedObjectContext) var moc
+    
+    var groupedItems: [(Double, [ChatHistory])] {
+        let groupedDictionary = Dictionary(grouping: chatHistory) { item in
+            return item.sessionID
+        }
+        return groupedDictionary.sorted { $0.key < $1.key }
+    }
+    
+    var uniqueGroups: [Double] {
+        let groupSet = Set(chatHistory.compactMap { $0.sessionID })
+        let sortedChatHistory = groupSet.sorted { $0 > $1 }
+        return Array(sortedChatHistory)
+    }
+    
+    func representativeItem(forGroup group: Double) -> ChatHistory? {
+        return chatHistory.last { $0.sessionID == group }
+    }
+    
+    func convertDataToMessagesArray(forGroup group: Double) {
+        let chatArr = chatHistory.filter { $0.sessionID == group }
+        if !chatArr.isEmpty {
+            selectedMessages = chatArr.map {
+                MessageWithImages(
+                    id: UUID().uuidString,
+                    content: ($0.message != nil) ? .text($0.message ?? "NaN") : .image($0.imageData!),
+                    createdAt: $0.createdAt ?? Date(),
+                    role: SenderRole(rawValue: $0.role ?? "NaN") ?? .paywall,
+                    sessionID: $0.sessionID
+                )
+            }
+        }
+    }
     
     var body: some View {
         
@@ -55,15 +96,7 @@ struct ChatAssistantView: View {
                         ).fill(Color(hex: Colors.chatBG.rawValue)))
                     }
                     Button {
-                        UserDefaults.standard.sessionID += 1
-                        selectedMessages = [MessageWithImages(
-                            id: UUID().uuidString,
-                            content: .text("Solve the following latex code and give a detailed elaboration of the solution in human read able form"),
-                            createdAt: Date(),
-                            role: .system,
-                            sessionID: Double(UserDefaults.standard.sessionID)
-                        )]
-                        moveToChatScreen.toggle()
+                        checkSubjectHistory(selectedSubject: "Math")
                     } label: {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_academic")
@@ -95,15 +128,7 @@ struct ChatAssistantView: View {
                 
                 HStack(spacing: 10) {
                     Button {
-                        UserDefaults.standard.sessionID += 1
-                        selectedMessages = [MessageWithImages(
-                            id: UUID().uuidString,
-                            content: .text("Act as a geographer."),
-                            createdAt: Date(),
-                            role: .system,
-                            sessionID: Double(UserDefaults.standard.sessionID)
-                        )]
-                        moveToChatScreen.toggle()
+                        checkSubjectHistory(selectedSubject: "Geography")
                     } label: {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_summarize")
@@ -133,15 +158,7 @@ struct ChatAssistantView: View {
                     }
                     
                     Button {
-                        UserDefaults.standard.sessionID += 1
-                        selectedMessages = [MessageWithImages(
-                            id: UUID().uuidString,
-                            content: .text("Act as a physics expert."),
-                            createdAt: Date(),
-                            role: .system,
-                            sessionID: Double(UserDefaults.standard.sessionID)
-                        )]
-                        moveToChatScreen.toggle()
+                        checkSubjectHistory(selectedSubject: "Physics")
                     } label: {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_world")
@@ -171,15 +188,7 @@ struct ChatAssistantView: View {
                 
                 HStack(spacing: 10) {
                     Button {
-                        UserDefaults.standard.sessionID += 1
-                        selectedMessages = [MessageWithImages(
-                            id: UUID().uuidString,
-                            content: .text("Act as a biology expert."),
-                            createdAt: Date(),
-                            role: .system,
-                            sessionID: Double(UserDefaults.standard.sessionID)
-                        )]
-                        moveToChatScreen.toggle()
+                        checkSubjectHistory(selectedSubject: "Biology")
                     } label: {
                         VStack(alignment: .leading) {
                             Image("ic_assistant_plag")
@@ -240,6 +249,78 @@ struct ChatAssistantView: View {
             ChatView(messagesArr: selectedMessages)
         })
         
+    }
+    
+    func checkSubjectHistory(selectedSubject: String) {
+        if selectedSubject == "Math" {
+            if UserDefaults.standard.mathID > 0 {
+                convertDataToMessagesArray(forGroup: Double(UserDefaults.standard.mathID ))
+                moveToChatScreen.toggle()
+            } else {
+                UserDefaults.standard.sessionID += 1
+                UserDefaults.standard.mathID = UserDefaults.standard.sessionID
+                selectedMessages = [MessageWithImages(
+                    id: UUID().uuidString,
+                    content: .text("Solve the following latex code and give a detailed elaboration of the solution in human read able form"),
+                    createdAt: Date(),
+                    role: .system,
+                    sessionID: Double(UserDefaults.standard.sessionID)
+                )]
+                moveToChatScreen.toggle()
+            }
+        }
+        else if selectedSubject == "Geography" {
+            if UserDefaults.standard.geographyID > 0 {
+                convertDataToMessagesArray(forGroup: Double(UserDefaults.standard.geographyID ))
+                moveToChatScreen.toggle()
+            } else {
+                UserDefaults.standard.sessionID += 1
+                UserDefaults.standard.geographyID = UserDefaults.standard.sessionID
+                selectedMessages = [MessageWithImages(
+                    id: UUID().uuidString,
+                    content: .text("Act as a geographer."),
+                    createdAt: Date(),
+                    role: .system,
+                    sessionID: Double(UserDefaults.standard.sessionID)
+                )]
+                moveToChatScreen.toggle()
+            }
+        }
+        
+        else if selectedSubject == "Physics" {
+            if UserDefaults.standard.physicsID > 0 {
+                convertDataToMessagesArray(forGroup: Double(UserDefaults.standard.physicsID ))
+                moveToChatScreen.toggle()
+            } else {
+                UserDefaults.standard.sessionID += 1
+                UserDefaults.standard.physicsID = UserDefaults.standard.sessionID
+                selectedMessages = [MessageWithImages(
+                    id: UUID().uuidString,
+                    content: .text("Act as a physics expert."),
+                    createdAt: Date(),
+                    role: .system,
+                    sessionID: Double(UserDefaults.standard.sessionID)
+                )]
+                moveToChatScreen.toggle()
+            }
+        }
+        else if selectedSubject == "Biology" {
+            if UserDefaults.standard.biologyID > 0 {
+                convertDataToMessagesArray(forGroup: Double(UserDefaults.standard.biologyID ))
+                moveToChatScreen.toggle()
+            } else {
+                UserDefaults.standard.sessionID += 1
+                UserDefaults.standard.biologyID = UserDefaults.standard.sessionID
+                selectedMessages = [MessageWithImages(
+                    id: UUID().uuidString,
+                    content: .text("Act as a biology expert."),
+                    createdAt: Date(),
+                    role: .system,
+                    sessionID: Double(UserDefaults.standard.sessionID)
+                )]
+                moveToChatScreen.toggle()
+            }
+        }
     }
 }
 

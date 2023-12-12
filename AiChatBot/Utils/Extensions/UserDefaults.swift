@@ -115,4 +115,39 @@ extension UserDefaults {
         }
     }
     
+    var mathID: Int {
+        get {
+            UserDefaults.standard.integer(forKey: "mathID")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "mathID")
+        }
+    }
+    
+    var geographyID: Int {
+        get {
+            UserDefaults.standard.integer(forKey: "geographyID")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "geographyID")
+        }
+    }
+    
+    var physicsID: Int {
+        get {
+            UserDefaults.standard.integer(forKey: "physicsID")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "physicsID")
+        }
+    }
+    
+    var biologyID: Int {
+        get {
+            UserDefaults.standard.integer(forKey: "biologyID")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "biologyID")
+        }
+    }
 }
