@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		371ECA8F2B29FD6800C05F90 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371ECA8E2B29FD6800C05F90 /* CameraPicker.swift */; };
+		377B71E22B29BE5E00614A5A /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B71E12B29BE5E00614A5A /* Crop.swift */; };
+		377B71E42B29C2D300614A5A /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B71E32B29C2D300614A5A /* CustomImagePicker.swift */; };
 		D50D6CCB2AE2AB0B00811EC0 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCA2AE2AB0B00811EC0 /* CropViewController */; };
 		D50D6CCD2AE2AB0B00811EC0 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */; };
 		D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */; };
@@ -93,6 +96,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		371ECA8E2B29FD6800C05F90 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		377B71E12B29BE5E00614A5A /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
+		377B71E32B29C2D300614A5A /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
 		D53043EE2A1EA10200B30BCF /* AiChatBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AiChatBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiChatBotApp.swift; sourceTree = "<group>"; };
 		D53043F32A1EA10200B30BCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -307,6 +313,8 @@
 				D53044542A24E31A00B30BCF /* CustomOTPBox.swift */,
 				D5D350A62AA5161F00201EE9 /* ImagePicker.swift */,
 				D5D746682AAF3F7D000831A6 /* PopupView.swift */,
+				377B71E32B29C2D300614A5A /* CustomImagePicker.swift */,
+				371ECA8E2B29FD6800C05F90 /* CameraPicker.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -348,6 +356,7 @@
 				D5496E8D2AA613040057A9E3 /* ChatHistoryCD.xcdatamodeld */,
 				D55E44F02AAB322B005B1C55 /* ResponseModel.swift */,
 				D58592FA2AB882E100950D87 /* UserModel.swift */,
+				377B71E12B29BE5E00614A5A /* Crop.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -556,6 +565,7 @@
 				D55B69652A2AA418009D6B18 /* ScanData.swift in Sources */,
 				D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */,
 				D55328B32A2F638E00AE74C8 /* MessageView.swift in Sources */,
+				377B71E42B29C2D300614A5A /* CustomImagePicker.swift in Sources */,
 				D5496E942AA627010057A9E3 /* ChatHistoryView.swift in Sources */,
 				D55B69632A295466009D6B18 /* EnumUtils.swift in Sources */,
 				D55328B12A2F62DA00AE74C8 /* ContentMessageView.swift in Sources */,
@@ -566,6 +576,7 @@
 				D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */,
 				D53044412A20D5CE00B30BCF /* CompleteYourProfileView.swift in Sources */,
 				D53044552A24E31A00B30BCF /* CustomOTPBox.swift in Sources */,
+				371ECA8F2B29FD6800C05F90 /* CameraPicker.swift in Sources */,
 				D55E44F12AAB322B005B1C55 /* ResponseModel.swift in Sources */,
 				D55B696B2A2AAB8B009D6B18 /* TextRecognizer.swift in Sources */,
 				D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */,
@@ -584,6 +595,7 @@
 				D5E23B1C2AC43EEB00738DF6 /* Websocket.swift in Sources */,
 				D5496EA32AA76FB10057A9E3 /* UserDefaults.swift in Sources */,
 				D5496E962AA690420057A9E3 /* Utilities.swift in Sources */,
+				377B71E22B29BE5E00614A5A /* Crop.swift in Sources */,
 				D5D350A92AA5351300201EE9 /* ChatAssistantView.swift in Sources */,
 				D5496E9B2AA74B8F0057A9E3 /* ProfileView.swift in Sources */,
 				D55328AB2A2E95CC00AE74C8 /* StartChatView.swift in Sources */,
