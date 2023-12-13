@@ -185,7 +185,7 @@ struct ChatView: View {
             .ignoresSafeArea(.keyboard, edges: .bottom)
             
             Button {
-                if UserDefaults.standard.isProMemeber {
+                if UserDefaults.standard.isProMemeber || UserDefaults.standard.maxTries < 5{
                     openCameraDialogue.toggle()
                 } else {
                     isPaywallPresented.toggle()
@@ -210,7 +210,7 @@ struct ChatView: View {
                     if proxy != nil {
                         scrollToBottom(proxy: proxy!)
                     }
-                    if UserDefaults.standard.isProMemeber {
+                    if UserDefaults.standard.isProMemeber || UserDefaults.standard.maxTries < 5{
                         addToCoreData(message: viewModel.addUserMsg())
 //                    viewModel.sendUsingAlamofireStream()
                         viewModel.sendMessageUsingFirebase { success in
