@@ -20,6 +20,10 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let imagePicker = UIImagePickerController()
+        if sourceType == .camera {
+            imagePicker.allowsEditing = true
+            imagePicker.cameraCaptureMode = .photo
+        }
         imagePicker.sourceType = self.sourceType
         imagePicker.delegate = context.coordinator
         return imagePicker
@@ -43,7 +47,10 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[.originalImage] as? UIImage else {return}
+        guard let selectedImage = info[.editedImage] as? UIImage else {
+            picker.dismiss(animated: true, completion: nil)
+            return
+        }
         self.picker.selectedImage = selectedImage
         self.picker.viewModel.getMessageObject()
         self.addImage(selectedImage: selectedImage)
