@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		371ECA8F2B29FD6800C05F90 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371ECA8E2B29FD6800C05F90 /* CameraPicker.swift */; };
+		371ECA912B2AFAF500C05F90 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 371ECA902B2AFAF500C05F90 /* CropViewController */; };
+		371ECA932B2AFAF500C05F90 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 371ECA922B2AFAF500C05F90 /* TOCropViewController */; };
+		371ECB002B2C566800C05F90 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371ECAFF2B2C566800C05F90 /* CameraView.swift */; };
+		371ECB022B2C568900C05F90 /* ImageCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371ECB012B2C568900C05F90 /* ImageCropperView.swift */; };
 		377B71E22B29BE5E00614A5A /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B71E12B29BE5E00614A5A /* Crop.swift */; };
-		377B71E42B29C2D300614A5A /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B71E32B29C2D300614A5A /* CustomImagePicker.swift */; };
 		D50D6CCB2AE2AB0B00811EC0 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCA2AE2AB0B00811EC0 /* CropViewController */; };
 		D50D6CCD2AE2AB0B00811EC0 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */; };
 		D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */; };
@@ -96,9 +98,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		371ECA8E2B29FD6800C05F90 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		371ECAFF2B2C566800C05F90 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		371ECB012B2C568900C05F90 /* ImageCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperView.swift; sourceTree = "<group>"; };
 		377B71E12B29BE5E00614A5A /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
-		377B71E32B29C2D300614A5A /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
 		D53043EE2A1EA10200B30BCF /* AiChatBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AiChatBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiChatBotApp.swift; sourceTree = "<group>"; };
 		D53043F32A1EA10200B30BCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -187,10 +189,12 @@
 			files = (
 				D53044462A20E22600B30BCF /* iPhoneNumberField in Frameworks */,
 				D53A803D2A844C65003C15D3 /* Alamofire in Frameworks */,
+				371ECA932B2AFAF500C05F90 /* TOCropViewController in Frameworks */,
 				D58592FE2AB888A900950D87 /* JWTDecode in Frameworks */,
 				D50D6CCB2AE2AB0B00811EC0 /* CropViewController in Frameworks */,
 				D50D6CCD2AE2AB0B00811EC0 /* TOCropViewController in Frameworks */,
 				D5496E9E2AA76E520057A9E3 /* RevenueCat in Frameworks */,
+				371ECA912B2AFAF500C05F90 /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,8 +317,8 @@
 				D53044542A24E31A00B30BCF /* CustomOTPBox.swift */,
 				D5D350A62AA5161F00201EE9 /* ImagePicker.swift */,
 				D5D746682AAF3F7D000831A6 /* PopupView.swift */,
-				377B71E32B29C2D300614A5A /* CustomImagePicker.swift */,
-				371ECA8E2B29FD6800C05F90 /* CameraPicker.swift */,
+				371ECAFF2B2C566800C05F90 /* CameraView.swift */,
+				371ECB012B2C568900C05F90 /* ImageCropperView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -468,6 +472,8 @@
 				D58592FD2AB888A900950D87 /* JWTDecode */,
 				D50D6CCA2AE2AB0B00811EC0 /* CropViewController */,
 				D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */,
+				371ECA902B2AFAF500C05F90 /* CropViewController */,
+				371ECA922B2AFAF500C05F90 /* TOCropViewController */,
 			);
 			productName = AiChatBot;
 			productReference = D53043EE2A1EA10200B30BCF /* AiChatBot.app */;
@@ -550,6 +556,7 @@
 			files = (
 				D530443D2A20A7EB00B30BCF /* RegisterView.swift in Sources */,
 				D55328AD2A2E96CD00AE74C8 /* ChatView.swift in Sources */,
+				371ECB022B2C568900C05F90 /* ImageCropperView.swift in Sources */,
 				D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */,
 				D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */,
 				D5E23B232AC4660A00738DF6 /* SSEClient.swift in Sources */,
@@ -565,7 +572,6 @@
 				D55B69652A2AA418009D6B18 /* ScanData.swift in Sources */,
 				D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */,
 				D55328B32A2F638E00AE74C8 /* MessageView.swift in Sources */,
-				377B71E42B29C2D300614A5A /* CustomImagePicker.swift in Sources */,
 				D5496E942AA627010057A9E3 /* ChatHistoryView.swift in Sources */,
 				D55B69632A295466009D6B18 /* EnumUtils.swift in Sources */,
 				D55328B12A2F62DA00AE74C8 /* ContentMessageView.swift in Sources */,
@@ -576,7 +582,6 @@
 				D53044322A1EB4F800B30BCF /* LoginIntroView.swift in Sources */,
 				D53044412A20D5CE00B30BCF /* CompleteYourProfileView.swift in Sources */,
 				D53044552A24E31A00B30BCF /* CustomOTPBox.swift in Sources */,
-				371ECA8F2B29FD6800C05F90 /* CameraPicker.swift in Sources */,
 				D55E44F12AAB322B005B1C55 /* ResponseModel.swift in Sources */,
 				D55B696B2A2AAB8B009D6B18 /* TextRecognizer.swift in Sources */,
 				D53044432A20D6F300B30BCF /* RoundedIconWithEditButton.swift in Sources */,
@@ -608,6 +613,7 @@
 				D5496EA52AA773780057A9E3 /* SharedWebView.swift in Sources */,
 				D55E44EB2AAB306D005B1C55 /* BaseService.swift in Sources */,
 				D53044392A20A14E00B30BCF /* DividerWithLabel.swift in Sources */,
+				371ECB002B2C566800C05F90 /* CameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,11 +739,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development: Butrint Hodaj (JMD7LZ4ZBB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gaurav Peters (N4SFMYAG62)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AiChatBot/Preview Content\"";
 				DEVELOPMENT_TEAM = 86GDT8VMYM;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 47VW287NFF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AiChatBot/Info.plist;
@@ -756,9 +763,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 9;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thefreelancers.schoolai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lstLearn.findingbelle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = SchoolAIDevelopment;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = profile_testing;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -872,6 +880,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		371ECA902B2AFAF500C05F90 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CropViewController;
+		};
+		371ECA922B2AFAF500C05F90 /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TOCropViewController;
+		};
 		D50D6CCA2AE2AB0B00811EC0 /* CropViewController */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D50D6CC92AE2AB0B00811EC0 /* XCRemoteSwiftPackageReference "TOCropViewController" */;

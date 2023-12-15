@@ -36,8 +36,13 @@ struct ChatView: View {
     //MARK: Image Picker
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var selectedImage: UIImage?
+    @State private var croppedImage: UIImage?
     @State private var isImagePickerDisplay = false
     @State private var openCameraDialogue = false
+    @State private var isCameraViewDisplay = false
+    @State private var showCropper = false
+
+
     
     //MARK: - Initialization Methods -
     
@@ -66,13 +71,23 @@ struct ChatView: View {
         .sheet(isPresented: self.$isImagePickerDisplay) {
             ImagePicker(selectedImage: self.$selectedImage, sourceType: self.sourceType, viewModel: viewModel)
         }
+        .sheet(isPresented: self.$isCameraViewDisplay) {
+            CameraView(image: self.$selectedImage, onImageCaptured: {
+                self.showCropper = true
+            })
+        }
+        .sheet(isPresented: $showCropper) {
+            ImageCropperView(image: self.$selectedImage, croppedImage: $croppedImage, viewModel: viewModel) {
+                self.showCropper = false
+            }
+        }
         .navigationDestination(isPresented: $isPaywallPresented, destination: {
             PaywallView(isPaywallPresented: $isPaywallPresented)
         })
         .alert("Select Image Picker", isPresented: $openCameraDialogue) {
             Button("Open Camera") {
                 self.sourceType = .camera
-                self.isImagePickerDisplay.toggle()
+                self.isCameraViewDisplay.toggle()
             }
             Button("Open Gallery") {
                 self.sourceType = .photoLibrary
