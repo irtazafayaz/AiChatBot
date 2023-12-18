@@ -20,10 +20,6 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let imagePicker = UIImagePickerController()
-        if sourceType == .camera {
-            imagePicker.allowsEditing = true
-            imagePicker.cameraCaptureMode = .photo
-        }
         imagePicker.sourceType = self.sourceType
         imagePicker.delegate = context.coordinator
         return imagePicker
@@ -47,10 +43,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[.editedImage] as? UIImage else {
-            picker.dismiss(animated: true, completion: nil)
-            return
-        }
+        guard let selectedImage = info[.originalImage] as? UIImage else {return}
         self.picker.selectedImage = selectedImage
         self.picker.viewModel.getMessageObject()
         self.addImage(selectedImage: selectedImage)
@@ -74,7 +67,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
     func addImage(selectedImage: UIImage) {
         DispatchQueue.main.async {
-            if let imageData = selectedImage.jpegData(compressionQuality: 0.8) {
+            if let imageData = selectedImage.pngData() {
                 print("Image converted to data successfully.")
                 let newImageMessage = MessageWithImages(id: UUID().uuidString, content: .image(imageData), createdAt: Date(), role: .user, sessionID: self.picker.viewModel.getSession())
                 let typingMsg = MessageWithImages(id: UUID().uuidString, content: .text("typing..."), createdAt: Date(), role: .assistant, sessionID: self.picker.viewModel.getSession())
@@ -82,8 +75,8 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                 self.picker.viewModel.msgsArr.append(newImageMessage)
                 self.picker.viewModel.msgsArr.append(typingMsg)
                 self.picker.viewModel.sendImage(image: selectedImage) { msg in
-                    _ = self.picker.viewModel.msgsArr.popLast()
                     if let message = msg {
+                        _ = self.picker.viewModel.msgsArr.popLast()
                         self.addToCoreData(message: message)
                         DispatchQueue.main.async {
                             self.picker.viewModel.msgsArr.append(message)
@@ -97,6 +90,4 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             }
         }
     }
-    
-    
 }
