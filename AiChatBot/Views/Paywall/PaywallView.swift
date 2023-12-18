@@ -46,11 +46,11 @@ struct PaywallView: View {
         case .day:
             return "Daily Premium (School AI)"
         case .month:
-            return "350 tries mathpix"
+            return "350 scanning tries + 700 chatbot tries"
         case .week:
-            return "70 tries mathpix"
+            return "70 scanning tries + 140 chatbot tries"
         case .year:
-            return "1000 tries mathpix"
+            return "1000 scanning tries + 2000 chatbot tries"
         }
     }
     
