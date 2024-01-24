@@ -150,4 +150,22 @@ extension UserDefaults {
             UserDefaults.standard.setValue(newValue, forKey: "biologyID")
         }
     }
+    
+    var showDemo: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "showDemo")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "showDemo")
+        }
+    }
+    
+    var skipDemo: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "skipDemo")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "skipDemo")
+        }
+    }
 }

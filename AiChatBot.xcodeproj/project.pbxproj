@@ -11,6 +11,10 @@
 		371ECA932B2AFAF500C05F90 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 371ECA922B2AFAF500C05F90 /* TOCropViewController */; };
 		371ECB002B2C566800C05F90 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371ECAFF2B2C566800C05F90 /* CameraView.swift */; };
 		371ECB022B2C568900C05F90 /* ImageCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371ECB012B2C568900C05F90 /* ImageCropperView.swift */; };
+		372FD03A2B60F8AE00326FB0 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FD0392B60F8AE00326FB0 /* WelcomeView.swift */; };
+		372FD03C2B60F91300326FB0 /* DemoViewOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FD03B2B60F91300326FB0 /* DemoViewOne.swift */; };
+		372FD03E2B60F91D00326FB0 /* DemoViewTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FD03D2B60F91D00326FB0 /* DemoViewTwo.swift */; };
+		372FD0402B60F92900326FB0 /* DemoViewThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FD03F2B60F92900326FB0 /* DemoViewThree.swift */; };
 		377B71E22B29BE5E00614A5A /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B71E12B29BE5E00614A5A /* Crop.swift */; };
 		D50D6CCB2AE2AB0B00811EC0 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCA2AE2AB0B00811EC0 /* CropViewController */; };
 		D50D6CCD2AE2AB0B00811EC0 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = D50D6CCC2AE2AB0B00811EC0 /* TOCropViewController */; };
@@ -100,6 +104,10 @@
 /* Begin PBXFileReference section */
 		371ECAFF2B2C566800C05F90 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		371ECB012B2C568900C05F90 /* ImageCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperView.swift; sourceTree = "<group>"; };
+		372FD0392B60F8AE00326FB0 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		372FD03B2B60F91300326FB0 /* DemoViewOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewOne.swift; sourceTree = "<group>"; };
+		372FD03D2B60F91D00326FB0 /* DemoViewTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewTwo.swift; sourceTree = "<group>"; };
+		372FD03F2B60F92900326FB0 /* DemoViewThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewThree.swift; sourceTree = "<group>"; };
 		377B71E12B29BE5E00614A5A /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
 		D53043EE2A1EA10200B30BCF /* AiChatBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AiChatBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53043F12A1EA10200B30BCF /* AiChatBotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiChatBotApp.swift; sourceTree = "<group>"; };
@@ -201,6 +209,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		372FD0382B60F7CF00326FB0 /* GetStarted */ = {
+			isa = PBXGroup;
+			children = (
+				372FD0392B60F8AE00326FB0 /* WelcomeView.swift */,
+				372FD03B2B60F91300326FB0 /* DemoViewOne.swift */,
+				372FD03D2B60F91D00326FB0 /* DemoViewTwo.swift */,
+				372FD03F2B60F92900326FB0 /* DemoViewThree.swift */,
+			);
+			path = GetStarted;
+			sourceTree = "<group>";
+		};
 		D53043E52A1EA10200B30BCF = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +266,7 @@
 		D53043FF2A1EA72300B30BCF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				372FD0382B60F7CF00326FB0 /* GetStarted */,
 				D5496E9F2AA76E650057A9E3 /* Paywall */,
 				D5496E992AA74B810057A9E3 /* Profile */,
 				D5496E922AA626EC0057A9E3 /* Chat History */,
@@ -487,7 +507,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					D53043ED2A1EA10200B30BCF = {
 						CreatedOnToolsVersion = 14.1;
@@ -560,6 +580,7 @@
 				D53043F42A1EA10200B30BCF /* ContentView.swift in Sources */,
 				D53044342A1EBCC900B30BCF /* LoginView.swift in Sources */,
 				D5E23B232AC4660A00738DF6 /* SSEClient.swift in Sources */,
+				372FD0402B60F92900326FB0 /* DemoViewThree.swift in Sources */,
 				D53044512A24DF8100B30BCF /* ResetPasswordView.swift in Sources */,
 				D55328AF2A2F626500AE74C8 /* ChatModel.swift in Sources */,
 				D53043F22A1EA10200B30BCF /* AiChatBotApp.swift in Sources */,
@@ -568,6 +589,7 @@
 				D55328B52A2F652000AE74C8 /* ChatVM.swift in Sources */,
 				D5496EA12AA76E770057A9E3 /* PaywallView.swift in Sources */,
 				D530444A2A22C2CD00B30BCF /* LoadingView.swift in Sources */,
+				372FD03C2B60F91300326FB0 /* DemoViewOne.swift in Sources */,
 				D55E44ED2AAB308F005B1C55 /* BaseActions.swift in Sources */,
 				D55B69652A2AA418009D6B18 /* ScanData.swift in Sources */,
 				D530445D2A26193F00B30BCF /* LoginVM.swift in Sources */,
@@ -607,9 +629,11 @@
 				D55B69672A2AA463009D6B18 /* HomeVM.swift in Sources */,
 				D5496E8F2AA613040057A9E3 /* ChatHistoryCD.xcdatamodeld in Sources */,
 				D5D746692AAF3F7D000831A6 /* PopupView.swift in Sources */,
+				372FD03E2B60F91D00326FB0 /* DemoViewTwo.swift in Sources */,
 				D530443F2A20D4C500B30BCF /* CustomBackButton.swift in Sources */,
 				D53044362A201F3400B30BCF /* UnderlinedTextField.swift in Sources */,
 				D53A80372A844A90003C15D3 /* UserViewModel.swift in Sources */,
+				372FD03A2B60F8AE00326FB0 /* WelcomeView.swift in Sources */,
 				D5496EA52AA773780057A9E3 /* SharedWebView.swift in Sources */,
 				D55E44EB2AAB306D005B1C55 /* BaseService.swift in Sources */,
 				D53044392A20A14E00B30BCF /* DividerWithLabel.swift in Sources */,

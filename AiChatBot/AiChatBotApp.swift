@@ -18,6 +18,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         Purchases.logLevel = .debug
         Purchases.configure(withAPIKey: Constants.revenueCat)
         Utilities.updateSubscription()
+        UserDefaults.standard.register(defaults: ["showDemo": true])
+        UserDefaults.standard.register(defaults: ["skipDemo": false])
         return true
         
     }
